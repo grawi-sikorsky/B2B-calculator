@@ -102,5 +102,8 @@
       }
     }
   },
-  "defaultProject": "b2b-calculator"
+  "defaultProject": "b2b-calculator",
+  "cli": {
+    "analytics": "e31d420e-3d77-4bc3-ae96-91f10caf748d"
+  }
 }
