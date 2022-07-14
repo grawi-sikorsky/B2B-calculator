@@ -1,6 +1,6 @@
 # B2bCalculator
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
+Angular project to calculate net salary with B2B contracts in IT 
 
 ## Development server
 
