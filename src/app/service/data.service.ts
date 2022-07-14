@@ -17,15 +17,17 @@ export class DataService {
   public userData: UserData = {
     outcomeList: [],
     income: 0,
-    taxProfile: new TaxProfile,
-    bigFamily: false,
+    taxFormPicked: 0,
+    taxRatePicked: 0.12,
     zusProfile: [],
     zusPicked: 0,
-    zusChorobowe: false
+    zusChorobowe: false,
+    bigFamily: false,
+    taxFree: false,
   };
 
 
-  private userDataSubject = new Subject<UserData>();
+  private userDataSubject = new BehaviorSubject<UserData>(this.userData);
   currentUserData = this.userDataSubject.asObservable();
 
   updateUserData(data: UserData) {
@@ -38,6 +40,7 @@ export class DataService {
   outcomeList: Outcome[] = [];
   income: number = 0;
   taxProfile: TaxProfile = {};
+  taxPicked: number = 0;
   bigFamily: boolean = false;
   zusProfile: ZusProfile[] = [];
   zusPicked: number = 0;

@@ -1,8 +1,6 @@
 <div class="row">
-    <div class="col-md-12" style="padding-top: 25px;">
-    </div>
-    <div class="col-md-2">
-        <div class="card-income">
+    <div class="col-md-4">
+        <div class="card-mein card-income">
             <div class="card-mein-caption">Przychód:</div>
             <div class="card-mein-mieso">
                 {{ this.dataService.userData.income | number }} PLN netto
@@ -11,99 +9,79 @@
                 {{ (this.dataService.userData.income * 1.23) | number : '1.2-2' }} PLN brutto
             </div>
             <div class="card-mein-sub">
-                {{ (this.dataService.userData.income * 1.23) - this.dataService.userData.income | number : '1.2-2' }} PLN VAT
+                {{ (this.dataService.userData.income * 1.23) - this.dataService.userData.income | number : '1.2-2' }}
+                PLN VAT
             </div>
-        </div> 
+        </div>
     </div>
-    <div class="col-md-2">
-        <div class="card-zus">
-            <div class="card-mein-caption">ZUS: <span style="font-size:10px;">{{this.dataService.userData.zusProfile[this.dataService.userData.zusPicked].zusType }}</span></div>
+    <div class="col-md-4">
+        <div class="card-mein card-profit">
+            <div class="card-mein-caption">Na czysto: </div>
             <div class="card-mein-mieso">
-                {{this.dataService.userData.zusProfile[this.dataService.userData.zusPicked].zusAmount }} PLN
+                {{this.netSalary | number : '1.2-2' }} PLN
             </div>
-            <div class="card-mein-sub">
-                {{this.dataService.userData.zusProfile[this.dataService.userData.zusPicked].zusAmount }} pln
-            </div>
-            <div class="card-mein-sub">
-                Chorobowe:  {{this.dataService.userData.zusChorobowe }}
-            </div>
-        </div> 
+        </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4">
         <div class="card-mein">
-            <div class="card-mein-caption">Reawrds 30 day:</div>
+            <div class="card-mein-caption">Wydatki:</div>
             <div class="card-mein-mieso">
-                {{this.dataService.userData.income | number }} HNT
+                {{this.outcomeAmount | number }} PLN
             </div>
-            <div class="card-mein-sub">
-                {{this.dataService.userData.income! | number : '1.2-2' }} USD
-            </div>
-            <div class="card-mein-sub">
-                {{this.dataService.userData.income! | number : '1.2-2' }} PLN
-            </div>
-        </div> 
-    </div>
-    <div class="col-md-2">
-        <div class="card-mein">
-            <div class="card-mein-caption">Lifetime Rewards:</div>
-            <div class="card-mein-mieso">
-                {{this.dataService.userData.income | number}} HNT
-            </div>
-            <div class="card-mein-sub">
-                {{this.dataService.userData.income! | number : '1.2-2' }} USD
-            </div>
-            <div class="card-mein-sub">
-                {{this.dataService.userData.income! | number : '1.2-2' }} PLN
-            </div>
-        </div> 
-    </div>
-    <div class="col-md-2">
-        <div class="card-mein">
-            <div class="card-mein-caption">Transmit scale:</div>
-            <div class="card-mein-mieso">
-                {{this.dataService.userData.income | number : '1.2-2' }}
-            </div>
-            <div class="card-mein-sub">
-                {{this.dataService.userData.income! | number : '1.2-2' }} USD
-            </div>
-            <div class="card-mein-sub">
-                {{this.dataService.userData.income! | number : '1.2-2' }} PLN
-            </div>
-        </div> 
-    </div>
-    <div class="col-md-2">
-        <div class="card-mein">
-            <div class="card-mein-caption">Hotspot rewards:</div>
-            <div class="card-mein-mieso">
-                {{ (this.dataService.userData.income! / 100000000) | number}} HNT
-            </div>
-            <div class="card-mein-sub">
-                {{ ((this.dataService.userData.income! / 100000000)) | number : '1.2-2' }} USD
-            </div>
-            <div class="card-mein-sub">
-                {{ ((this.dataService.userData.income! / 100000000)) | number : '1.2-2' }} PLN
-            </div>
-        </div> 
+        </div>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <div class="card-mein">
+        <div class="card-mein card-zus">
             <div class="row">
-                <div class="card-mein-caption">Estimated ROI:</div>
+                <div class="card-mein-caption">ZUS:</div>
                 <div class="col-md-6">
                     <div class="card-mein-mieso">
-                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.userData.income! / 30! | number : '1.1-1'}} months" > {{dataService.userData.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">24h</sup> </p>
+                        <div class="card-mein-mieso">
+                            {{this.zusSuma | number : '1.2-2' }} PLN
+                        </div>
+                        <div class="card-mein-sub">
+                            Do odliczenia: {{ (this.zusZdrowotna / 2 ) * 0.12 | number : '1.2-2' }} pln
+                        </div>
+
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="card-mein-mieso">
-                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.userData.income! / 30! | number : '1.1-1'}} months" > {{dataService.userData.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">7d</sup> </p>
+                        <div class="card-mein-sub">
+                            Społeczna: {{this.zusSkladka | number : '1.2-2' }} pln
+                        </div>
+                        <div class="card-mein-sub">
+                            Zdrowotna: {{this.zusZdrowotna | number : '1.2-2' }} pln
+                        </div>
+                        <div class="card-mein-sub">
+                            Chorobowe: {{this.zusChorobowa | number : '1.2-2' }} pln
+                        </div>
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card-mein card-us">
+            <div class="row">
+                <div class="card-mein-caption">Urzad skarbowy:</div>
+                <div class="col-md-6">
+                    <div class="card-mein-mieso">
+                        {{this.usPodatekYear / 12 | number : '1.2-2' }} PLN
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-mein-caption"></div>
+                    <div class="card-mein-mieso">
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col-md-4">
         <div class="card-mein">
@@ -111,34 +89,22 @@
                 <div class="card-mein-caption">Break-even in:</div>
                 <div class="col-md-6">
                     <div class="card-mein-mieso">
-                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.userData.income! / 30! | number : '1.1-1'}} months" > {{dataService.userData.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">24h</sup> </p>
+                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top"
+                            title="~ {{dataService.userData.income! / 30! | number : '1.1-1'}} months">
+                            {{dataService.userData.income | number : '1.1-1'}} days<sup
+                                class="hotspot-roi-sup">24h</sup> </p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="card-mein-caption"></div>
                     <div class="card-mein-mieso">
-                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.userData.income! / 30! | number : '1.1-1'}} months" > {{dataService.userData.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">7d</sup> </p>
+                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top"
+                            title="~ {{dataService.userData.income! / 30! | number : '1.1-1'}} months">
+                            {{dataService.userData.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">7d</sup>
+                        </p>
                     </div>
                 </div>
             </div>
-        </div> 
-    </div>
-    <div class="col-md-4">
-        <div class="card-mein">
-            <div class="row">
-                <div class="card-mein-caption">Break-even in:</div>
-                <div class="col-md-6">
-                    <div class="card-mein-mieso">
-                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.userData.income! / 30! | number : '1.1-1'}} months" > {{dataService.userData.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">24h</sup> </p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card-mein-caption"></div>
-                    <div class="card-mein-mieso">
-                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.userData.income! / 30! | number : '1.1-1'}} months" > {{dataService.userData.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">7d</sup> </p>
-                    </div>
-                </div>
-            </div>
-        </div> 
+        </div>
     </div>
 </div>

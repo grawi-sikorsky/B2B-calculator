@@ -1,14 +1,15 @@
 import { Outcome } from "./outcome";
-import { TaxProfile } from "./taxprofile";
 import { ZusProfile } from "./zusprofile";
 
 export class UserData {
-    
+
     outcomeList: Outcome[] = [];
     income: number = 0;
-    taxProfile: TaxProfile = {};
-    bigFamily: boolean = false;
+    taxRatePicked: number = 0;
+    taxFormPicked: number = 0;
     zusProfile: ZusProfile[] = [];
     zusPicked: number = 0;
     zusChorobowe: boolean = false;
+    bigFamily: boolean = false;
+    taxFree: boolean = false;
 }
