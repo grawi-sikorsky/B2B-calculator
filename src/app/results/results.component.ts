@@ -153,5 +153,6 @@ export class ResultsComponent implements OnInit {
         for (let i = 0; i < this.dataService.userData.outcomeList.length; i++) {
             this.outcomeAmount += this.dataService.userData.outcomeList[i].netto;
         }
+        this.calculateNetSalary();
     }
 }
