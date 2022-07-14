@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-results',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dataService:DataService) { }
 
   ngOnInit(): void {
+    this.displayResults();
+  }
+
+  displayResults():void{
+    console.log(this.dataService.bigFamily);
   }
 
 }

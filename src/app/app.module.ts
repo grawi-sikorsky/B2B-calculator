@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import { IncomeFormComponent } from './income-form/income-form.component';
 import { OutcomeFormComponent } from './outcome-form/outcome-form.component';
 import { DataService } from './service/data.service';
 import { MaterialModule } from './material.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,8 +23,10 @@ import { MaterialModule } from './material.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
+    FormsModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

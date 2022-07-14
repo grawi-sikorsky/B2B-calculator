@@ -1,17 +1,63 @@
 <p>Income:</p>
 
 <div class="row">
-    
-    <mat-form-field appearance="legacy">
-        <mat-label>Legacy form field</mat-label>
-        <input matInput placeholder="Placeholder">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-hint>Hint</mat-hint>
+
+    <!-- INCOME -->
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Przychód netto:</mat-label>
+            <input matInput placeholder="Kasiorki ile?" [(ngModel)]="this.dataService.income">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Hint</mat-hint>
+        </mat-form-field>
+    </p>
+
+
+    <!-- ZUS -->
+    <mat-form-field appearance="fill">
+        <mat-select required>
+            <mat-option value="zus-big">Lubię duży ZUS'ik (lubię schylać się w więzieniu po mydełko)</mat-option>
+            <mat-option value="zus-small">Lubię mały ZUS'ik (2 lata)</mat-option>
+            <mat-option value="zus-plus">ZUS'ik plusik (120k / rok)</mat-option>
+            <mat-option value="zus-none">Morawiecki to mój wuj (ZUS'iku nie płacę)</mat-option>
+        </mat-select>
+        <mat-label>
+            <mat-icon>favorite</mat-icon> <b> Kochany ZUS'ik - jaki lubisz? </b>
+        </mat-label>
+    </mat-form-field>
+    <mat-checkbox class="zus-chorobowe">Mam czas chorować (toteż płacę składkę chorobową). </mat-checkbox>
+
+
+
+    <!-- FORMA DUPCZENIA ZA TRUDY PRACY -->
+    <mat-form-field appearance="fill">
+        <mat-select required>
+            <mat-option value="us-ryczalt">Oddaję się ryczałtem</mat-option>
+            <mat-option value="us-skala">Oddaję się w skali</mat-option>
+            <mat-option value="us-liniowka">Oddaję się liniowo</mat-option>
+        </mat-select>
+        <mat-label>
+            <mat-icon>favorite</mat-icon> <b> Skarbóweczce z chęcią się oddaję w formie: </b>
+        </mat-label>
     </mat-form-field>
 
-    <label>label <input class="form-control" type="number" min="0"> </label>
-    <input class="form-control" type="number" min="0">
-    <input class="form-control" type="number" min="0">
-    <input class="form-control" type="number" min="0">
+    <!-- MOC DUPCZENIA ZA TRUDY PRACY -->
+    <mat-form-field appearance="fill">
+        <mat-select required>
+            <mat-option value="rycz-17">17 % [Wolne zawody]</mat-option>
+            <mat-option value="rycz-15">15 % </mat-option>
+            <mat-option value="rycz-14">14 % [Architektura/Opieka]</mat-option>
+            <mat-option value="rycz-12">12 % [IT Programista]</mat-option>
+            <mat-option value="rycz-10">10 % </mat-option>
+            <mat-option value="rycz-8-5">8.5 % [Niektóre Usługi]</mat-option>
+            <mat-option value="rycz-5-5">5.5 % [Działalność wytwórcza] </mat-option>
+            <mat-option value="rycz-3">3 % [Handelek]</mat-option>
+        </mat-select>
+        <mat-label>
+            <mat-icon>favorite</mat-icon> <b> Oddaję się z mocą: </b>
+        </mat-label>
+    </mat-form-field>
+
+    <mat-checkbox class="zus-chorobowe"> Mam na utrzymaniu 4+ młodocianych (Ulga dla rodzin 4+) </mat-checkbox>
 
 </div>
