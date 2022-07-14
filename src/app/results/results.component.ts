@@ -26,7 +26,9 @@ export class ResultsComponent implements OnInit {
 
     // US
     usPodatekMonth: number = 0;
+    usPodatekMonthNoTaxFree: number = 0;
     usPodatekYear: number = 0;
+    usPodatekYearNoTaxFree: number = 0;
     usTaxFreeAmount: number = 0;
 
 
@@ -36,8 +38,13 @@ export class ResultsComponent implements OnInit {
     // PROFIT
     netSalary: number = 0;
 
-    displayResults(): void {
-        console.log(this.dataService.userData.bigFamily);
+    // UTILS
+    isPositive(val: number): boolean {
+        if (val > 0) {
+            return true;
+        } else {
+            return false
+        }
     }
 
     doTheMath() {
@@ -112,7 +119,11 @@ export class ResultsComponent implements OnInit {
 
         // RYCZALT
         if (this.dataService.userData.taxFormPicked === 0) {
-            this.usPodatekYear = (((this.dataService.userData.income * 12) - (this.zusZdrowotna * 12 / 2) - this.usTaxFreeAmount) * this.dataService.userData.taxRatePicked);
+            // TAX FREE
+            this.usPodatekYear = (((this.dataService.userData.income * 12) - ((this.zusZdrowotna * 12 / 2) + this.usTaxFreeAmount)) * this.dataService.userData.taxRatePicked);
+            this.usPodatekMonth = this.usPodatekYear / 12;
+            // NO TAX FREE
+            // this.usPodatekYearNoTaxFree = (((this.dataService.userData.income * 12) - (this.zusZdrowotna * 12 / 2) - this.usTaxFreeAmount) * this.dataService.userData.taxRatePicked);
         }
         // SKALA
         else if (this.dataService.userData.taxFormPicked === 1) {
@@ -123,12 +134,13 @@ export class ResultsComponent implements OnInit {
 
         }
 
-        if (this.usPodatekYear < 0) {
+        if (this.usPodatekYear < 0 || this.usPodatekMonth < 0) {
             this.usPodatekYear = 0;
+            this.usPodatekMonth = 0;
         }
     }
 
-    calculateNetSalary(){
-        this.netSalary = this.dataService.userData.income - this.usPodatekMonth - this.zusSuma - this.outcomeAmount;
+    calculateNetSalary() {
+        this.netSalary = this.dataService.userData.income - (this.usPodatekMonth + this.zusSuma + this.outcomeAmount);
     }
 }

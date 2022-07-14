@@ -1,16 +1,33 @@
 <div class="row">
     <div class="col-md-4">
         <div class="card-mein card-income">
-            <div class="card-mein-caption">Przychód:</div>
-            <div class="card-mein-mieso">
-                {{ this.dataService.userData.income | number }} PLN netto
-            </div>
-            <div class="card-mein-sub">
-                {{ (this.dataService.userData.income * 1.23) | number : '1.2-2' }} PLN brutto
-            </div>
-            <div class="card-mein-sub">
-                {{ (this.dataService.userData.income * 1.23) - this.dataService.userData.income | number : '1.2-2' }}
-                PLN VAT
+            <div class="row">
+                <div class="card-mein-caption">Przychód:</div>
+                <div class="col-md-6">
+                    <div class="card-mein-mieso">
+                        {{ this.dataService.userData.income | number }} PLN netto
+                    </div>
+                    <div class="card-mein-sub">
+                        {{ (this.dataService.userData.income * 1.23) | number : '1.2-2' }} PLN brutto
+                    </div>
+                    <div class="card-mein-sub">
+                        {{ (this.dataService.userData.income * 1.23) - this.dataService.userData.income | number :'1.2-2' }} PLN VAT
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-mein-caption"></div>
+                    <div class="card-mein-mieso">
+                        <div class="card-mein-sub">
+                            {{ (this.dataService.userData.income * 12) | number : '1.2-2' }} PLN netto rocznie
+                        </div>
+                        <div class="card-mein-sub">
+                            ~ {{ (this.dataService.userData.income / 24) | number : '1.2-2' }} PLN netto dziennie
+                        </div>
+                        <div class="card-mein-sub">
+                            ~ {{ (this.dataService.userData.income /24 / 8) | number : '1.2-2' }} PLN netto na godzinę
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -19,6 +36,12 @@
             <div class="card-mein-caption">Na czysto: </div>
             <div class="card-mein-mieso">
                 {{this.netSalary | number : '1.2-2' }} PLN
+            </div>
+            <div class="card-mein-sub">
+                {{ (this.dataService.userData.income * 1.23) | number : '1.2-2' }} PLN brutto
+            </div>
+            <div class="card-mein-sub">
+                {{ (this.dataService.userData.income * 1.23) - this.dataService.userData.income | number :'1.2-2' }} PLN VAT
             </div>
         </div>
     </div>
@@ -71,7 +94,18 @@
                 <div class="col-md-6">
                     <div class="card-mein-mieso">
                         {{this.usPodatekYear / 12 | number : '1.2-2' }} PLN
-
+                    </div>
+                    <div class="card-mein-sub">
+                        Podatek za cały rok: {{this.usPodatekYear | number : '1.2-2' }} pln
+                    </div>
+                    <div class="card-mein-sub">
+                        Kwota wolna od podatku: {{this.usTaxFreeAmount | number : '1.2-2' }} pln
+                    </div>
+                    <div class="card-mein-sub" *ngIf="isPositive(this.usTaxFreeAmount - this.dataService.userData.income * 12)">
+                        Pozostała kwota wolna: {{ this.usTaxFreeAmount - this.dataService.userData.income * 12 | number : '1.2-2' }} pln
+                    </div>
+                    <div class="card-mein-sub" *ngIf="!isPositive(this.usTaxFreeAmount - this.dataService.userData.income * 12)">
+                        Pozostała kwota wolna: {{ 0 | number : '1.2-2' }} pln
                     </div>
                 </div>
                 <div class="col-md-6">

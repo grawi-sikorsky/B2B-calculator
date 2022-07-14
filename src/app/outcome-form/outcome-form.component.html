@@ -6,4 +6,31 @@
         <mat-icon matSuffix>sentiment_very_dissatisfied</mat-icon>
         <mat-hint>Gdzie kaska wydana, co?</mat-hint>
     </mat-form-field>
+
+
+    <table class="table table-hover hotspots-table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Netto</th>
+                <th scope="col">VAT</th>
+                <th scope="col">Brutto 24h</th>
+                <th scope="col">Odlicz</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="clickable-row" *ngFor="let outcome of this.dataService.userData.outcomeList; let index = index">
+                <td>{{index}}</td>
+                <td><input matInput placeholder="Kasiorki ile?" (input)="onChange()" [(ngModel)]="outcome.name"> </td>
+                <td><input matInput type="number" placeholder="Kasiorki ile?" (input)="onChange()" [(ngModel)]="outcome.netto"><sup>netto</sup></td>
+                <td>{{outcome.vat}} pln </td>
+                <td>{{outcome.brutto | number}} pln </td>
+                <td>{{outcome.vatReduce | number}} % </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-primary" (click)="addRow()">Dodaj</button>
+
 </div>
