@@ -8,14 +8,37 @@ import { DataService } from '../service/data.service';
 })
 export class ResultsComponent implements OnInit {
 
-  constructor(public dataService:DataService) { }
+  constructor(public dataService: DataService) { }
 
   ngOnInit(): void {
-    this.displayResults();
+    this.dataService.currentUserData.subscribe(data => {
+      console.log("Result:");
+      this.doTheMath();
+    })
   }
 
-  displayResults():void{
-    console.log(this.dataService.bigFamily);
+  displayResults(): void {
+    console.log(this.dataService.userData.bigFamily);
+  }
+
+  doTheMath() {
+    this.calculateZUS();
+
+  }
+
+  calculateZUS() {
+    if (this.dataService.userData.zusPicked === 0) {
+      console.log("zus duzy");
+    }
+    else if (this.dataService.userData.zusPicked === 1) {
+      console.log("zus maly");
+    }
+    else if (this.dataService.userData.zusPicked === 2) {
+      console.log("zus trzeci");
+    }
+    else if (this.dataService.userData.zusPicked === 3) {
+      console.log("zus czwarty");
+    }
   }
 
 }

@@ -1,33 +1,31 @@
-<p>{{this.dataService.income}}</p>
-
 <div class="row">
     <div class="col-md-12" style="padding-top: 25px;">
     </div>
     <div class="col-md-2">
-        <div class="card-mein">
+        <div class="card-income">
             <div class="card-mein-caption">Przychód:</div>
             <div class="card-mein-mieso">
-                {{ this.dataService.income | number }} PLN netto
+                {{ this.dataService.userData.income | number }} PLN netto
             </div>
             <div class="card-mein-sub">
-                {{ (this.dataService.income * 1.23) | number : '1.2-2' }} PLN brutto
+                {{ (this.dataService.userData.income * 1.23) | number : '1.2-2' }} PLN brutto
             </div>
             <div class="card-mein-sub">
-                {{ (this.dataService.income * 1.23) - this.dataService.income | number : '1.2-2' }} PLN VAT
+                {{ (this.dataService.userData.income * 1.23) - this.dataService.userData.income | number : '1.2-2' }} PLN VAT
             </div>
         </div> 
     </div>
     <div class="col-md-2">
-        <div class="card-mein">
-            <div class="card-mein-caption">Rewards 7 day:</div>
+        <div class="card-zus">
+            <div class="card-mein-caption">ZUS: <span style="font-size:10px;">{{this.dataService.userData.zusProfile[this.dataService.userData.zusPicked].zusType }}</span></div>
             <div class="card-mein-mieso">
-                {{this.dataService.income | number}} HNT
+                {{this.dataService.userData.zusProfile[this.dataService.userData.zusPicked].zusAmount }} PLN
             </div>
             <div class="card-mein-sub">
-                {{this.dataService.income! | number : '1.2-2' }} USD
+                {{this.dataService.userData.zusProfile[this.dataService.userData.zusPicked].zusAmount }} pln
             </div>
             <div class="card-mein-sub">
-                {{this.dataService.income! | number : '1.2-2' }} PLN
+                Chorobowe:  {{this.dataService.userData.zusChorobowe }}
             </div>
         </div> 
     </div>
@@ -35,13 +33,13 @@
         <div class="card-mein">
             <div class="card-mein-caption">Reawrds 30 day:</div>
             <div class="card-mein-mieso">
-                {{this.dataService.income | number }} HNT
+                {{this.dataService.userData.income | number }} HNT
             </div>
             <div class="card-mein-sub">
-                {{this.dataService.income! | number : '1.2-2' }} USD
+                {{this.dataService.userData.income! | number : '1.2-2' }} USD
             </div>
             <div class="card-mein-sub">
-                {{this.dataService.income! | number : '1.2-2' }} PLN
+                {{this.dataService.userData.income! | number : '1.2-2' }} PLN
             </div>
         </div> 
     </div>
@@ -49,13 +47,13 @@
         <div class="card-mein">
             <div class="card-mein-caption">Lifetime Rewards:</div>
             <div class="card-mein-mieso">
-                {{this.dataService.income | number}} HNT
+                {{this.dataService.userData.income | number}} HNT
             </div>
             <div class="card-mein-sub">
-                {{this.dataService.income! | number : '1.2-2' }} USD
+                {{this.dataService.userData.income! | number : '1.2-2' }} USD
             </div>
             <div class="card-mein-sub">
-                {{this.dataService.income! | number : '1.2-2' }} PLN
+                {{this.dataService.userData.income! | number : '1.2-2' }} PLN
             </div>
         </div> 
     </div>
@@ -63,13 +61,13 @@
         <div class="card-mein">
             <div class="card-mein-caption">Transmit scale:</div>
             <div class="card-mein-mieso">
-                {{this.dataService.income | number : '1.2-2' }}
+                {{this.dataService.userData.income | number : '1.2-2' }}
             </div>
             <div class="card-mein-sub">
-                {{this.dataService.income! | number : '1.2-2' }} USD
+                {{this.dataService.userData.income! | number : '1.2-2' }} USD
             </div>
             <div class="card-mein-sub">
-                {{this.dataService.income! | number : '1.2-2' }} PLN
+                {{this.dataService.userData.income! | number : '1.2-2' }} PLN
             </div>
         </div> 
     </div>
@@ -77,13 +75,13 @@
         <div class="card-mein">
             <div class="card-mein-caption">Hotspot rewards:</div>
             <div class="card-mein-mieso">
-                {{ (this.dataService.income! / 100000000) | number}} HNT
+                {{ (this.dataService.userData.income! / 100000000) | number}} HNT
             </div>
             <div class="card-mein-sub">
-                {{ ((this.dataService.income! / 100000000)) | number : '1.2-2' }} USD
+                {{ ((this.dataService.userData.income! / 100000000)) | number : '1.2-2' }} USD
             </div>
             <div class="card-mein-sub">
-                {{ ((this.dataService.income! / 100000000)) | number : '1.2-2' }} PLN
+                {{ ((this.dataService.userData.income! / 100000000)) | number : '1.2-2' }} PLN
             </div>
         </div> 
     </div>
@@ -96,30 +94,12 @@
                 <div class="card-mein-caption">Estimated ROI:</div>
                 <div class="col-md-6">
                     <div class="card-mein-mieso">
-                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.income! / 30! | number : '1.1-1'}} months" > {{dataService.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">24h</sup> </p>
+                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.userData.income! / 30! | number : '1.1-1'}} months" > {{dataService.userData.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">24h</sup> </p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="card-mein-mieso">
-                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.income! / 30! | number : '1.1-1'}} months" > {{dataService.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">7d</sup> </p>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </div>
-    <div class="col-md-4">
-        <div class="card-mein">
-            <div class="row">
-                <div class="card-mein-caption">Break-even in:</div>
-                <div class="col-md-6">
-                    <div class="card-mein-mieso">
-                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.income! / 30! | number : '1.1-1'}} months" > {{dataService.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">24h</sup> </p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card-mein-caption"></div>
-                    <div class="card-mein-mieso">
-                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.income! / 30! | number : '1.1-1'}} months" > {{dataService.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">7d</sup> </p>
+                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.userData.income! / 30! | number : '1.1-1'}} months" > {{dataService.userData.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">7d</sup> </p>
                     </div>
                 </div>
             </div>
@@ -131,13 +111,31 @@
                 <div class="card-mein-caption">Break-even in:</div>
                 <div class="col-md-6">
                     <div class="card-mein-mieso">
-                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.income! / 30! | number : '1.1-1'}} months" > {{dataService.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">24h</sup> </p>
+                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.userData.income! / 30! | number : '1.1-1'}} months" > {{dataService.userData.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">24h</sup> </p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="card-mein-caption"></div>
                     <div class="card-mein-mieso">
-                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.income! / 30! | number : '1.1-1'}} months" > {{dataService.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">7d</sup> </p>
+                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.userData.income! / 30! | number : '1.1-1'}} months" > {{dataService.userData.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">7d</sup> </p>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div class="col-md-4">
+        <div class="card-mein">
+            <div class="row">
+                <div class="card-mein-caption">Break-even in:</div>
+                <div class="col-md-6">
+                    <div class="card-mein-mieso">
+                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.userData.income! / 30! | number : '1.1-1'}} months" > {{dataService.userData.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">24h</sup> </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-mein-caption"></div>
+                    <div class="card-mein-mieso">
+                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top" title="~ {{dataService.userData.income! / 30! | number : '1.1-1'}} months" > {{dataService.userData.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">7d</sup> </p>
                     </div>
                 </div>
             </div>

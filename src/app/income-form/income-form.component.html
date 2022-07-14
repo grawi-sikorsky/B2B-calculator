@@ -6,7 +6,7 @@
     <p>
         <mat-form-field appearance="outline">
             <mat-label>Przychód netto:</mat-label>
-            <input matInput placeholder="Kasiorki ile?" [(ngModel)]="this.dataService.income">
+            <input matInput type="number" placeholder="Kasiorki ile?" (input)="onChange()" [(ngModel)]="this.dataService.userData.income">
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             <mat-hint>Hint</mat-hint>
         </mat-form-field>
@@ -14,29 +14,16 @@
 
 
     <!-- ZUS -->
-    <mat-form-field appearance="fill">
-        <mat-select required>
-            <mat-option value="zus-big">Lubię duży ZUS'ik (lubię schylać się w więzieniu po mydełko)</mat-option>
-            <mat-option value="zus-small">Lubię mały ZUS'ik (2 lata)</mat-option>
-            <mat-option value="zus-plus">ZUS'ik plusik (120k / rok)</mat-option>
-            <mat-option value="zus-none">Morawiecki to mój wuj (ZUS'iku nie płacę)</mat-option>
+    <mat-form-field appearance="fill" >
+        <mat-select (selectionChange)="onChange()" required [(value)]="this.dataService.userData.zusPicked">
+            <mat-option  *ngFor="let zus of this.dataService.userData.zusProfile; let index = index" [value]="index">{{zus.zusType}}</mat-option>
         </mat-select>
         <mat-label>
             <mat-icon>favorite</mat-icon> <b> Kochany ZUS'ik - jaki lubisz? </b>
         </mat-label>
     </mat-form-field>
-    <mat-checkbox class="zus-chorobowe">Mam czas chorować (toteż płacę składkę chorobową). </mat-checkbox>
 
-    <!-- ZUS -->
-    <mat-form-field appearance="fill">
-        <mat-select required>
-            <mat-option *ngFor="let zus of this.dataService.zusProfile.zusType"></mat-option>
-        </mat-select>
-        <mat-label>
-            <mat-icon>favorite</mat-icon> <b> Kochany ZUS'ik - jaki lubisz? </b>
-        </mat-label>
-    </mat-form-field>
-    <mat-checkbox class="zus-chorobowe">Mam czas chorować (toteż płacę składkę chorobową). </mat-checkbox>
+    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.zusChorobowe" class="zus-chorobowe">Mam czas chorować (toteż płacę składkę chorobową). </mat-checkbox>
 
 
 
@@ -49,7 +36,7 @@
             <mat-option value="us-liniowka">Oddaję się liniowo</mat-option>
         </mat-select>
         <mat-label>
-            <mat-icon>favorite</mat-icon> <b> Skarbóweczce z chęcią się oddaję w formie: </b>
+            <mat-icon>favorite</mat-icon> <b> Skarbówce oddaję się w formie: </b>
         </mat-label>
     </mat-form-field>
 
@@ -71,5 +58,8 @@
     </mat-form-field>
 
     <mat-checkbox class="zus-chorobowe"> Mam na utrzymaniu 4+ młodocianych (Ulga dla rodzin 4+) </mat-checkbox>
+
+
+    <button class="btn btn-primary" (click)="onChange()">Testowy Baton</button>
 
 </div>

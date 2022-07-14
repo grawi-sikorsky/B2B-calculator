@@ -1,11 +1,9 @@
 export class ZusProfile {
-    zusType?: ZusType;
+    zusType?: string;
     zusAmount?: number;
-}
 
-enum ZusType{
-    Duzy = 'Duzy',
-    Maly = 'Maly',
-    ZusPlus = 'Zus Plus',
-    ZusNone = "no ZUS"
+    constructor(zusType:string, zusAmount:number){
+        this.zusAmount = zusAmount;
+        this.zusType = zusType;
+    }
 }

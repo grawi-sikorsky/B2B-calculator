@@ -13,4 +13,9 @@ export class IncomeFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onChange(){
+    console.log(this.dataService.userData);
+    this.dataService.updateUserData(this.dataService.userData);
+  }
+
 }
