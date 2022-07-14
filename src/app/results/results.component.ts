@@ -51,6 +51,7 @@ export class ResultsComponent implements OnInit {
         this.calculateZUS();
         this.calculateUS();
         this.calculateNetSalary();
+        this.calculateOutcomes();
     }
 
     calculateZUS() {
@@ -142,5 +143,15 @@ export class ResultsComponent implements OnInit {
 
     calculateNetSalary() {
         this.netSalary = this.dataService.userData.income - (this.usPodatekMonth + this.zusSuma + this.outcomeAmount);
+    }
+
+    calculateOutcomes() {
+        let outcomeArray: number[];
+        this.outcomeAmount = 0;
+        //his.dataService.userData.outcomeList.forEach( each => outcomeArray.push(each.netto));
+
+        for (let i = 0; i < this.dataService.userData.outcomeList.length; i++) {
+            this.outcomeAmount += this.dataService.userData.outcomeList[i].netto;
+        }
     }
 }

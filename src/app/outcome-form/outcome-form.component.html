@@ -22,11 +22,15 @@
         <tbody>
             <tr class="clickable-row" *ngFor="let outcome of this.dataService.userData.outcomeList; let index = index">
                 <td>{{index}}</td>
-                <td><input matInput placeholder="Kasiorki ile?" (input)="onChange()" [(ngModel)]="outcome.name"> </td>
-                <td><input matInput type="number" placeholder="Kasiorki ile?" (input)="onChange()" [(ngModel)]="outcome.netto"><sup>netto</sup></td>
-                <td>{{outcome.vat}} pln </td>
-                <td>{{outcome.brutto | number}} pln </td>
-                <td>{{outcome.vatReduce | number}} % </td>
+                <td><input placeholder="Co tam kupione było?" (input)="onChange()" [(ngModel)]="outcome.name"></td>
+                <td>
+
+                        <input placeholder="A kasiorki ile poszło?" (input)="onChange()" [(ngModel)]="outcome.netto" type="number">
+
+                </td>
+                <td>{{ (outcome.netto! * 1.23) - outcome.netto! | number :'1.2-2' }} pln </td>
+                <td>{{ outcome.netto! * 1.23 | number :'1.2-2' }} pln </td>
+                <td>{{ outcome.vatReduce | number}} % </td>
             </tr>
         </tbody>
     </table>

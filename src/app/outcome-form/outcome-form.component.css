@@ -1,0 +1,50 @@
+.hotspots-table{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.hotspot-reward-price{
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    margin-left: 4px;
+    color: #365a1f;
+    /* color:#793ca3; */
+    cursor: pointer;
+}
+.hotspot-reward{
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0;
+    cursor: pointer;
+}
+.hotspot-name{
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    margin: 2px;
+    color:#E53D00;
+    text-decoration: none;
+}
+.percent-left{
+    text-align: left;
+    vertical-align: bottom;
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 100;
+}
+.percent-right{
+    text-align: right;
+    vertical-align: bottom;
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 100;
+}
+
+.clickable-row{
+    cursor: pointer;
+}

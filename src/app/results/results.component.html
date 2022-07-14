@@ -34,8 +34,11 @@
     <div class="col-md-4">
         <div class="card-mein card-profit">
             <div class="card-mein-caption">Na czysto: </div>
-            <div class="card-mein-mieso">
+            <div class="card-mein-mieso" *ngIf="isPositive(this.netSalary)">
                 {{this.netSalary | number : '1.2-2' }} PLN
+            </div>
+            <div class="card-mein-mieso" *ngIf="!isPositive(this.netSalary)">
+                {{this.netSalary | number : '1.2-2' }} PLN <mat-icon>sentiment_very_dissatisfied</mat-icon>
             </div>
             <div class="card-mein-sub">
                 {{ (this.dataService.userData.income * 1.23) | number : '1.2-2' }} PLN brutto
@@ -49,7 +52,7 @@
         <div class="card-mein">
             <div class="card-mein-caption">Wydatki:</div>
             <div class="card-mein-mieso">
-                {{this.outcomeAmount | number }} PLN
+                {{this.outcomeAmount | number :'1.2-2' }} PLN
             </div>
         </div>
     </div>
