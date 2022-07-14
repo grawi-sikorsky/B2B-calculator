@@ -2,6 +2,7 @@ export class ZusProfile {
     zusType?: ZusType;
     zusAmount?: number;
 }
+
 enum ZusType{
     Duzy = 'Duzy',
     Maly = 'Maly',

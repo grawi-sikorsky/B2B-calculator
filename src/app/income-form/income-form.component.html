@@ -27,6 +27,18 @@
     </mat-form-field>
     <mat-checkbox class="zus-chorobowe">Mam czas chorować (toteż płacę składkę chorobową). </mat-checkbox>
 
+    <!-- ZUS -->
+    <mat-form-field appearance="fill">
+        <mat-select required>
+            <mat-option *ngFor="let zus of this.dataService.zusProfile.zusType"></mat-option>
+        </mat-select>
+        <mat-label>
+            <mat-icon>favorite</mat-icon> <b> Kochany ZUS'ik - jaki lubisz? </b>
+        </mat-label>
+    </mat-form-field>
+    <mat-checkbox class="zus-chorobowe">Mam czas chorować (toteż płacę składkę chorobową). </mat-checkbox>
+
+
 
 
     <!-- FORMA DUPCZENIA ZA TRUDY PRACY -->
