@@ -6,8 +6,7 @@
 
     <mat-form-field appearance="outline">
         <mat-label>Przychód netto:</mat-label>
-        <input matInput type="number" placeholder="Kasiorki ile?" (input)="onChange()"
-            [(ngModel)]="this.dataService.userData.income">
+        <input matInput type="number" placeholder="Kasiorki ile?" #income (input)="onChangePrice(income.value)">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint>Hint</mat-hint>
     </mat-form-field>
@@ -58,7 +57,7 @@
             <mat-icon>favorite</mat-icon> <b> Oddaję się z mocą: </b>
         </mat-label>
     </mat-form-field>
-    
+
     <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.taxFree" class="zus-chorobowe"> Kwota wolna od podatku (30 000 pln)</mat-checkbox>
     <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.bigFamily" class="zus-chorobowe"> Ulga dla rodzin 4+ (85 528 pln) </mat-checkbox>
 

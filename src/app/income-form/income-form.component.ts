@@ -18,4 +18,8 @@ export class IncomeFormComponent implements OnInit {
     this.dataService.updateUserData(this.dataService.userData);
   }
 
+  onChangePrice(val:any){
+    this.dataService.userData.income = val;
+    this.dataService.updateUserData(this.dataService.userData);
+  }
 }

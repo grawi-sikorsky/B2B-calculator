@@ -17,22 +17,24 @@
                 <th scope="col">VAT</th>
                 <th scope="col">Brutto 24h</th>
                 <th scope="col">Odlicz</th>
+                <th scope="col">Usuń</th>
             </tr>
         </thead>
         <tbody>
             <tr class="clickable-row" *ngFor="let outcome of this.dataService.userData.outcomeList; let index = index">
                 <td>{{index}}</td>
-                <td><input placeholder="Co tam kupione było?" (input)="onChange()" [(ngModel)]="outcome.name"></td>
+                <td><input placeholder="Co tam kupione było?" [(ngModel)]="outcome.name" (input)="onChange()"></td>
                 <td>
-                        <input placeholder="A kasiorki ile poszło?" (input)="onChange()" [(ngModel)]="outcome.netto" type="number">
+                        <input placeholder="A kasiorki ile poszło?" [(ngModel)]="outcome.netto" (input)="onChange()" (value)="''" string-to-number type="number">
                 </td>
                 <td>{{ (outcome.netto! * 1.23) - outcome.netto! | number :'1.2-2' }} pln </td>
                 <td>{{ outcome.netto! * 1.23 | number :'1.2-2' }} pln </td>
                 <td>{{ outcome.vatReduce | number}} % </td>
+                <td><button mat-raised-button color="warn" (click)="deleteRow(index)">Usuń</button></td>
             </tr>
         </tbody>
     </table>
 
-    <button class="btn btn-primary" (click)="addRow()">Dodaj</button>
+    <button mat-raised-button color="primary" (click)="addRow()">Dodaj</button>
 
 </div>
