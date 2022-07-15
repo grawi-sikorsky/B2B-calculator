@@ -30,6 +30,9 @@ export class ResultsComponent implements OnInit {
     usPodatekYear: number = 0;
     usPodatekYearNoTaxFree: number = 0;
     usTaxFreeAmount: number = 0;
+    usFullTaxFreeAmount : number = 0;
+    usPodatekDoZwrotu: number = 0;
+    usPodatekDoZwrotuMonth: number = 0;
     usVatToPay: number = 0;
     usVatKoszty: number = 0;
     usVatNaliczony: number = 0;
@@ -119,14 +122,16 @@ export class ResultsComponent implements OnInit {
         else if (this.dataService.userData.taxFree === false && this.dataService.userData.bigFamily === true) this.usTaxFreeAmount = 85528;
         else if (this.dataService.userData.taxFree === true && this.dataService.userData.bigFamily === false) this.usTaxFreeAmount = 30000;
         else if (this.dataService.userData.taxFree === false && this.dataService.userData.bigFamily === false) this.usTaxFreeAmount = 0;
+        this.usFullTaxFreeAmount = (this.zusZdrowotna * 12 / 2) + this.usTaxFreeAmount;
 
         // RYCZALT
         if (this.dataService.userData.taxFormPicked === 0) {
             // TAX FREE
-            this.usPodatekYear = (((this.dataService.userData.income * 12) - ((this.zusZdrowotna * 12 / 2) + this.usTaxFreeAmount)) * this.dataService.userData.taxRatePicked);
+            this.usPodatekYear = (((this.dataService.userData.income * 12) - (this.usFullTaxFreeAmount)) * this.dataService.userData.taxRatePicked);
             this.usPodatekMonth = this.usPodatekYear / 12;
             // NO TAX FREE
-            // this.usPodatekYearNoTaxFree = (((this.dataService.userData.income * 12) - (this.zusZdrowotna * 12 / 2) - this.usTaxFreeAmount) * this.dataService.userData.taxRatePicked);
+            this.usPodatekYearNoTaxFree = ((this.dataService.userData.income * 12 ) * this.dataService.userData.taxRatePicked);
+            this.usPodatekMonthNoTaxFree = this.usPodatekYearNoTaxFree / 12;
         }
         // SKALA
         else if (this.dataService.userData.taxFormPicked === 1) {
@@ -137,6 +142,17 @@ export class ResultsComponent implements OnInit {
 
         }
 
+        // NADPLATA / ZWROT PODATKU
+        //
+        if(this.usPodatekYear > 0 ){
+            this.usPodatekDoZwrotu = this.usFullTaxFreeAmount * this.dataService.userData.taxRatePicked;
+        }else if ( this.usFullTaxFreeAmount - this.dataService.userData.income * 12 > 0 ){
+            this.usPodatekDoZwrotu = this.usPodatekYearNoTaxFree;
+        }
+
+        this.usPodatekDoZwrotuMonth = this.usPodatekDoZwrotu / 12;
+
+        // ZERO PODATKU
         if (this.usPodatekYear < 0 || this.usPodatekMonth < 0) {
             this.usPodatekYear = 0;
             this.usPodatekMonth = 0;
@@ -151,7 +167,7 @@ export class ResultsComponent implements OnInit {
         // VAT DO ZPLATY
         this.usVatToPay = this.usVatNaliczony - this.usVatKoszty;
 
-        //
+        // 
     }
 
     calculateNetSalary() {

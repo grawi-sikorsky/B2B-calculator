@@ -33,6 +33,12 @@
     font-size: 16px;
     cursor: default;
 }
+.card-mein-caption-divider{
+    font-size: 16px;
+    cursor: default;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 .card-mein-mieso{
     line-height: 40px;
     font-size: 26px;

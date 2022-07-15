@@ -96,13 +96,15 @@
                 <div class="card-mein-caption">Urzad skarbowy:</div>
                 <div class="col-md-6">
                     <div class="card-mein-mieso">
-                        {{this.usPodatekYear / 12 | number : '1.2-2' }} PLN
+                        {{this.usPodatekMonthNoTaxFree | number : '1.2-2' }} PLN
                     </div>
+                    <div class="card-mein-caption-divider">Podatek dochodowy:</div>
                     <div class="card-mein-sub">
                         Podatek za cały rok: {{this.usPodatekYear | number : '1.2-2' }} pln
                     </div>
+                    <mat-divider></mat-divider>
                     <div class="card-mein-sub">
-                        Kwota wolna od podatku: {{this.usTaxFreeAmount | number : '1.2-2' }} pln
+                        Kwota wolna od podatku: {{this.usFullTaxFreeAmount | number : '1.2-2' }} pln
                     </div>
                     <div class="card-mein-sub" *ngIf="isPositive(this.usTaxFreeAmount - this.dataService.userData.income * 12)">
                         Pozostała kwota wolna: {{ this.usTaxFreeAmount - this.dataService.userData.income * 12 | number : '1.2-2' }} pln
@@ -110,9 +112,16 @@
                     <div class="card-mein-sub" *ngIf="!isPositive(this.usTaxFreeAmount - this.dataService.userData.income * 12)">
                         Pozostała kwota wolna: {{ 0 | number : '1.2-2' }} pln
                     </div>
+                    <mat-divider></mat-divider>
+                    <div class="card-mein-sub">
+                        Nadplata podatku (msc): {{this.usPodatekDoZwrotuMonth | number : '1.2-2' }} pln
+                    </div>
+                    <div class="card-mein-sub">
+                        Nadplata podatku (rok): {{this.usPodatekDoZwrotu | number : '1.2-2' }} pln
+                    </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card-mein-caption">  </div>
+                    <div class="card-mein-caption-divider">Podatek VAT:</div>
                     <div class="card-mein-mieso">
 
                     </div>
@@ -130,24 +139,23 @@
         </div>
     </div>
     <div class="col-md-4">
-        <div class="card-mein">
+        <div class="card-mein card-us">
             <div class="row">
-                <div class="card-mein-caption">Break-even in:</div>
+                <div class="card-mein-caption">Urząd skarbowy:</div>
                 <div class="col-md-6">
                     <div class="card-mein-mieso">
-                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top"
-                            title="~ {{dataService.userData.income! / 30! | number : '1.1-1'}} months">
-                            {{dataService.userData.income | number : '1.1-1'}} days<sup
-                                class="hotspot-roi-sup">24h</sup> </p>
+                        {{this.usVatToPay | number : '1.2-2' }} PLN VAT
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card-mein-caption"></div>
-                    <div class="card-mein-mieso">
-                        <p class="hotspot-reward" data-toggle="tooltip" data-placement="top"
-                            title="~ {{dataService.userData.income! / 30! | number : '1.1-1'}} months">
-                            {{dataService.userData.income | number : '1.1-1'}} days<sup class="hotspot-roi-sup">7d</sup>
-                        </p>
+                    <div class="card-mein-sub">
+                        VAT do zapłaty: {{this.usVatToPay | number : '1.2-2' }}
+                    </div>
+                    <div class="card-mein-sub">
+                        VAT naliczony: {{this.usVatNaliczony | number : '1.2-2' }}
+                    </div>
+                    <div class="card-mein-sub">
+                        VAT do odliczenia: {{this.usVatKoszty | number : '1.2-2' }}
                     </div>
                 </div>
             </div>

@@ -58,9 +58,10 @@
             <mat-icon>favorite</mat-icon> <b> Oddaję się z mocą: </b>
         </mat-label>
     </mat-form-field>
-
-    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.bigFamily" class="zus-chorobowe"> Ulga dla rodzin 4+ (85 528 pln) </mat-checkbox>
+    
     <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.taxFree" class="zus-chorobowe"> Kwota wolna od podatku (30 000 pln)</mat-checkbox>
+    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.bigFamily" class="zus-chorobowe"> Ulga dla rodzin 4+ (85 528 pln) </mat-checkbox>
+
     <mat-checkbox (input)="onChange()" class="zus-chorobowe"> costam </mat-checkbox>
 
 </div>

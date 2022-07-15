@@ -24,6 +24,10 @@ export class OutcomeFormComponent implements OnInit {
     const wydatek: Outcome = new Outcome("Nowy wydatek", 0, 0, 0, 100);
     this.dataService.userData.outcomeList.push(wydatek);
   }
+  deleteRow(index:number) {
+    const wydatek: Outcome = new Outcome("Nowy wydatek", 0, 0, 0, 100);
+    this.dataService.userData.outcomeList.(wydatek);
+  }
 
   onEdit(index:number){
     //this.dataService.userData.outcomeList[index].
