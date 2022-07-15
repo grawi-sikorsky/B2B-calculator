@@ -30,7 +30,9 @@ export class ResultsComponent implements OnInit {
     usPodatekYear: number = 0;
     usPodatekYearNoTaxFree: number = 0;
     usTaxFreeAmount: number = 0;
-
+    usVatToPay: number = 0;
+    usVatKoszty: number = 0;
+    usVatNaliczony: number = 0;
 
     // OUTCOME
     outcomeAmount: number = 0;
@@ -48,10 +50,10 @@ export class ResultsComponent implements OnInit {
     }
 
     doTheMath() {
+        this.calculateOutcomes();
         this.calculateZUS();
         this.calculateUS();
         this.calculateNetSalary();
-        this.calculateOutcomes();
     }
 
     calculateZUS() {
@@ -139,6 +141,17 @@ export class ResultsComponent implements OnInit {
             this.usPodatekYear = 0;
             this.usPodatekMonth = 0;
         }
+
+        // VAT NALICZONY
+        this.usVatNaliczony = (this.dataService.userData.income * 1.23) - this.dataService.userData.income
+
+        // VAT KOSZTY
+        this.usVatKoszty = this.outcomeAmount * 0.23;
+
+        // VAT DO ZPLATY
+        this.usVatToPay = this.usVatNaliczony - this.usVatKoszty;
+
+        //
     }
 
     calculateNetSalary() {

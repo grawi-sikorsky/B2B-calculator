@@ -11,7 +11,7 @@
                         {{ (this.dataService.userData.income * 1.23) | number : '1.2-2' }} PLN brutto
                     </div>
                     <div class="card-mein-sub">
-                        {{ (this.dataService.userData.income * 1.23) - this.dataService.userData.income | number :'1.2-2' }} PLN VAT
+                        {{ this.usVatNaliczony | number :'1.2-2' }} PLN VAT
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -41,10 +41,10 @@
                 {{this.netSalary | number : '1.2-2' }} PLN <mat-icon>sentiment_very_dissatisfied</mat-icon>
             </div>
             <div class="card-mein-sub">
-                {{ (this.dataService.userData.income * 1.23) | number : '1.2-2' }} PLN brutto
+                {{ (this.netSalary * 1.23) | number : '1.2-2' }} PLN brutto
             </div>
             <div class="card-mein-sub">
-                {{ (this.dataService.userData.income * 1.23) - this.dataService.userData.income | number :'1.2-2' }} PLN VAT
+                {{ this.usVatNaliczony | number :'1.2-2' }} PLN VAT
             </div>
         </div>
     </div>
@@ -52,7 +52,10 @@
         <div class="card-mein">
             <div class="card-mein-caption">Wydatki:</div>
             <div class="card-mein-mieso">
-                {{this.outcomeAmount | number :'1.2-2' }} PLN
+                {{this.outcomeAmount | number :'1.2-2' }} PLN netto
+            </div>
+            <div class="card-mein-sub">
+                VAT do odliczenia: {{this.usVatKoszty | number : '1.2-2' }} pln
             </div>
         </div>
     </div>
@@ -65,13 +68,10 @@
                 <div class="card-mein-caption">ZUS:</div>
                 <div class="col-md-6">
                     <div class="card-mein-mieso">
-                        <div class="card-mein-mieso">
-                            {{this.zusSuma | number : '1.2-2' }} PLN
-                        </div>
-                        <div class="card-mein-sub">
-                            Do odliczenia: {{ (this.zusZdrowotna / 2 ) * 0.12 | number : '1.2-2' }} pln
-                        </div>
-
+                        {{this.zusSuma | number : '1.2-2' }} PLN
+                    </div>
+                    <div class="card-mein-sub">
+                        Do odliczenia: {{ (this.zusZdrowotna / 2 ) * 0.12 | number : '1.2-2' }} pln
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -112,9 +112,18 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card-mein-caption"></div>
+                    <div class="card-mein-caption">  </div>
                     <div class="card-mein-mieso">
 
+                    </div>
+                    <div class="card-mein-sub">
+                        VAT do zapłaty: {{this.usVatToPay | number : '1.2-2' }}
+                    </div>
+                    <div class="card-mein-sub">
+                        VAT naliczony: {{this.usVatNaliczony | number : '1.2-2' }}
+                    </div>
+                    <div class="card-mein-sub">
+                        VAT do odliczenia: {{this.usVatKoszty | number : '1.2-2' }}
                     </div>
                 </div>
             </div>
