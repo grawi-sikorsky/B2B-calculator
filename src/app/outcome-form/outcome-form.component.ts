@@ -31,8 +31,9 @@ export class OutcomeFormComponent implements OnInit {
   }
 
   clearNetto(index:any){
-    //this.dataService.userData.outcomeList[index].netto
+    this.dataService.userData.outcomeList[index].netto = undefined;
   }
+  
   onUpdate(index:any){
     this.dataService.userData.outcomeList[index].netto = 0;
     this.dataService.updateUserData(this.dataService.userData);

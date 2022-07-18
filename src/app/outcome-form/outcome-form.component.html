@@ -25,7 +25,7 @@
                 <td>{{index}}</td>
                 <td><input placeholder="Co tam kupione było?" [(ngModel)]="outcome.name" (input)="onChange()"></td>
                 <td>
-                        <input placeholder="A kasiorki ile poszło?" [(ngModel)]="outcome.netto" (input)="onChange()" (value)="''" string-to-number type="number">
+                    <input placeholder="A kasiorki ile poszło?" [(ngModel)]="outcome.netto" (input)="onChange()" type="number">
                 </td>
                 <td>{{ (outcome.netto! * 1.23) - outcome.netto! | number :'1.2-2' }} pln </td>
                 <td>{{ outcome.netto! * 1.23 | number :'1.2-2' }} pln </td>

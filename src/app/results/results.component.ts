@@ -30,7 +30,7 @@ export class ResultsComponent implements OnInit {
     usPodatekYear: number = 0;
     usPodatekYearNoTaxFree: number = 0;
     usTaxFreeAmount: number = 0;
-    usFullTaxFreeAmount : number = 0;
+    usFullTaxFreeAmount: number = 0;
     usPodatekDoZwrotu: number = 0;
     usPodatekDoZwrotuMonth: number = 0;
     usVatToPay: number = 0;
@@ -130,7 +130,7 @@ export class ResultsComponent implements OnInit {
             this.usPodatekYear = (((this.dataService.userData.income * 12) - (this.usFullTaxFreeAmount)) * this.dataService.userData.taxRatePicked);
             this.usPodatekMonth = this.usPodatekYear / 12;
             // NO TAX FREE
-            this.usPodatekYearNoTaxFree = ((this.dataService.userData.income * 12 ) * this.dataService.userData.taxRatePicked);
+            this.usPodatekYearNoTaxFree = ((this.dataService.userData.income * 12) * this.dataService.userData.taxRatePicked);
             this.usPodatekMonthNoTaxFree = this.usPodatekYearNoTaxFree / 12;
         }
         // SKALA
@@ -144,9 +144,9 @@ export class ResultsComponent implements OnInit {
 
         // NADPLATA / ZWROT PODATKU
         //
-        if(this.usPodatekYear > 0 ){
+        if (this.usPodatekYear > 0) {
             this.usPodatekDoZwrotu = this.usFullTaxFreeAmount * this.dataService.userData.taxRatePicked;
-        }else if ( this.usFullTaxFreeAmount - this.dataService.userData.income * 12 > 0 ){
+        } else if (this.usFullTaxFreeAmount - this.dataService.userData.income * 12 > 0) {
             this.usPodatekDoZwrotu = this.usPodatekYearNoTaxFree;
         }
 
@@ -175,12 +175,13 @@ export class ResultsComponent implements OnInit {
     }
 
     calculateOutcomes() {
-        let outcomeArray: number[];
         this.outcomeAmount = 0;
-        //his.dataService.userData.outcomeList.forEach( each => outcomeArray.push(each.netto));
 
         for (let i = 0; i < this.dataService.userData.outcomeList.length; i++) {
-            this.outcomeAmount += this.dataService.userData.outcomeList[i].netto;
+            if (this.dataService.userData.outcomeList[i].netto !== null && this.dataService.userData.outcomeList[i].netto !== undefined) {
+                this.outcomeAmount += this.dataService.userData.outcomeList[i].netto!;
+            }
+
         }
         this.calculateNetSalary();
     }
