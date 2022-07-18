@@ -27,9 +27,11 @@
                 <td>
                     <input placeholder="A kasiorki ile poszło?" [(ngModel)]="outcome.netto" (input)="onChange()" type="number">
                 </td>
-                <td>{{ (outcome.netto! * 1.23) - outcome.netto! | number :'1.2-2' }} pln </td>
+                <td>{{ outcome.vat | number :'1.2-2' }} pln </td>
                 <td>{{ outcome.netto! * 1.23 | number :'1.2-2' }} pln </td>
-                <td>{{ outcome.vatReduce | number}} % </td>
+
+                <td><button mat-raised-button (click)="onClickVatReduce(index)"> {{ outcome.vatReduce | number}} % </button></td>
+
                 <td><button mat-raised-button color="warn" (click)="deleteRow(index)">Usuń</button></td>
             </tr>
         </tbody>

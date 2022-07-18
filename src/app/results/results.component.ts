@@ -162,7 +162,7 @@ export class ResultsComponent implements OnInit {
         this.usVatNaliczony = (this.dataService.userData.income * 1.23) - this.dataService.userData.income
 
         // VAT KOSZTY
-        this.usVatKoszty = this.outcomeAmount * 0.23;
+        //this.usVatKoszty = this.outcomeAmount * 0.23;
 
         // VAT DO ZPLATY
         this.usVatToPay = this.usVatNaliczony - this.usVatKoszty;
@@ -176,13 +176,17 @@ export class ResultsComponent implements OnInit {
 
     calculateOutcomes() {
         this.outcomeAmount = 0;
+        this.usVatKoszty = 0;
 
         for (let i = 0; i < this.dataService.userData.outcomeList.length; i++) {
             if (this.dataService.userData.outcomeList[i].netto !== null && this.dataService.userData.outcomeList[i].netto !== undefined) {
                 this.outcomeAmount += this.dataService.userData.outcomeList[i].netto!;
-            }
 
+                this.dataService.userData.outcomeList[i].vat = this.dataService.userData.outcomeList[i].netto! * 0.23 * (this.dataService.userData.outcomeList[i].vatReduce / 100);
+                this.usVatKoszty += this.dataService.userData.outcomeList[i].vat;
+            }
         }
+
         this.calculateNetSalary();
     }
 }
