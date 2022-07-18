@@ -23,14 +23,22 @@
         <tbody>
             <tr class="clickable-row" *ngFor="let outcome of this.dataService.userData.outcomeList; let index = index">
                 <td>{{index}}</td>
-                <td><input placeholder="Co tam kupione było?" [(ngModel)]="outcome.name" (input)="onChange()"></td>
+                <td>
+                    <mat-form-field appearance="outline" class="outcome-name-input">
+                        <mat-label>Wydajemy</mat-label>
+                        <input matInput placeholder="Gdzie kasiorka wydana?">
+                        <mat-icon matSuffix>sentiment_very_dissatisfied</mat-icon>
+                    </mat-form-field>
+                    <input placeholder="Co tam kupione było?" [(ngModel)]="outcome.name" (input)="onChange()">
+                </td>
                 <td>
                     <input placeholder="A kasiorki ile poszło?" [(ngModel)]="outcome.netto" (input)="onChange()" type="number">
                 </td>
                 <td>{{ outcome.vat | number :'1.2-2' }} pln </td>
                 <td>{{ outcome.netto! * 1.23 | number :'1.2-2' }} pln </td>
 
-                <td><button mat-raised-button (click)="onClickVatReduce(index)"> {{ outcome.vatReduce | number}} % </button></td>
+                <td><button mat-raised-button (click)="onClickVatReduce(index)"> {{ outcome.vatReduce | number}} %
+                    </button></td>
 
                 <td><button mat-raised-button color="warn" (click)="deleteRow(index)">Usuń</button></td>
             </tr>

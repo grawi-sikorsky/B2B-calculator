@@ -48,3 +48,7 @@
 .clickable-row{
     cursor: pointer;
 }
+
+.mat-form-field-wrapper{
+    padding-bottom: 0px!important;
+}
