@@ -29,10 +29,10 @@
             <td class="outcome-table-hajs">{{ outcome.vat | number :'1.2-2' }}zł </td>
             <td class="outcome-table-hajs">{{ outcome.netto! * 1.23 | number :'1.2-2' }}zł </td>
 
-            <td><button mat-raised-button (click)="onClickVatReduce(index)"> {{ outcome.vatReduce | number}} %
+            <td class="outcome-table-hajs"><button mat-raised-button (click)="onClickVatReduce(index)"> {{ outcome.vatReduce | number}} %
                 </button></td>
 
-            <td><button mat-raised-button color="warn" (click)="deleteRow(index)">Usuń</button></td>
+            <td class="outcome-table-hajs"><button mat-raised-button color="warn" (click)="deleteRow(index)">Usuń</button></td>
         </tr>
     </tbody>
 </table>

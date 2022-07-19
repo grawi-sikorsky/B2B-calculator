@@ -1,13 +1,5 @@
-@media only screen and (max-width: 640px) {
-    .outcome-table-hajs{
-        font-size: 11px;
-    }
-}
-@media only screen and (max-width: 980px) {
-    .outcome-table-hajs{
-        font-size: 12px;
-    }
-}
+
+
 .zus-chorobowe{
     padding-top: 5px;
     padding-bottom: 25px;

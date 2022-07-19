@@ -10,6 +10,24 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+@media only screen and (max-width: 640px) {
+    .mat-raised-button {
+        min-width: 35px!important;
+        line-height: 48px!important;
+        padding: 0 8px!important;
+    }
+}
+@media only screen and (max-width: 998px) {
+    .mat-raised-button {
+        min-width: 45px!important;
+        line-height: 48px!important;
+        padding: 0 10px!important;
+    }
+    .mat-expansion-panel-body{
+        padding: 0 14px 16px!important;
+    }
+}
+
 .mat-form-field-outcome .mat-form-field-wrapper {
     padding-bottom: 0 !important;
 }
