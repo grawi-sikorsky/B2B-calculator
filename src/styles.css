@@ -2,3 +2,10 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-form-field-outcome .mat-form-field-wrapper{
+    padding-bottom: 0!important;
+}
+.mat-form-field-outcome .mat-form-field-wrapper .mat-form-field-appearance-outline .mat-form-field-wrapper {
+    margin: 0!important;
+}

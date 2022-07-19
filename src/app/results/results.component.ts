@@ -14,7 +14,9 @@ export class ResultsComponent implements OnInit {
     ngOnInit(): void {
         this.dataService.currentUserData.subscribe(data => {
             console.log("Result:");
+            // localStorage
             this.doTheMath();
+
         })
     }
 
