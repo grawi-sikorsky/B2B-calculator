@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="isMobile === false">
     <!-- INCOME ZONE -->
     <div class="col">
         <mat-accordion class="example-headers-align">
@@ -8,16 +8,8 @@
                     <mat-panel-description> Wpisz swój dochód netto <mat-icon>monetization_on</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-
                 
-                <div class="row">
-                    <!-- INCOME -->
-                    <mat-form-field appearance="outline">
-                        <mat-label>Przychód netto:</mat-label>
-                        <input matInput type="number" placeholder="Kasiorki ile?" (input)="onChange()" [(ngModel)]="this.dataService.userData.income">
-                        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                    </mat-form-field>
-                </div>
+                <app-income-form></app-income-form>
 
             </mat-expansion-panel>
         </mat-accordion>
@@ -31,55 +23,7 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
-                <div class="row">
-                    <!-- ZUS -->
-                    <mat-form-field appearance="fill">
-                        <mat-select (selectionChange)="onChange()" required [(value)]="this.dataService.userData.zusPicked">
-                            <mat-option *ngFor="let zus of this.dataService.userData.zusProfile; let index = index" [value]="index">{{zus.zusType}}</mat-option>
-                        </mat-select>
-                        <mat-label>
-                            <mat-icon>favorite</mat-icon> <b> Kochany ZUS'ik - jaki lubisz? </b>
-                        </mat-label>
-                    </mat-form-field>
-
-                    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.zusChorobowe" class="zus-chorobowe">Mam czas chorować (toteż płacę składkę chorobową). </mat-checkbox>
-
-
-                    <!-- FORMA DUPCZENIA ZA TRUDY PRACY -->
-                    <mat-form-field appearance="fill">
-                        <mat-select (selectionChange)="onChange()" required
-                            [(value)]="this.dataService.userData.taxFormPicked">
-                            <mat-option [value]=0>Oddaję się ryczałtem</mat-option>
-                            <mat-option [value]=1>Oddaję się w skali</mat-option>
-                            <mat-option [value]=2>Oddaję się liniowo</mat-option>
-                        </mat-select>
-                        <mat-label>
-                            <mat-icon>favorite</mat-icon> <b> Skarbówce oddaję się w formie: </b>
-                        </mat-label>
-                    </mat-form-field>
-
-
-                    <!-- MOC DUPCENIA ZA TRUDY PRACY -->
-                    <mat-form-field [hidden]="!(this.dataService.userData.taxFormPicked === 0)" appearance="fill">
-                        <mat-select (selectionChange)="onChange()" required
-                            [(value)]="this.dataService.userData.taxRatePicked">
-                            <mat-option [value]=0.17> 17 % [Wolne zawody]</mat-option>
-                            <mat-option [value]=0.15> 15 % </mat-option>
-                            <mat-option [value]=0.14> 14 % [Architektura/Opieka]</mat-option>
-                            <mat-option [value]=0.12> 12 % [IT Programista]</mat-option>
-                            <mat-option [value]=0.10> 10 % </mat-option>
-                            <mat-option [value]=0.085> 8.5 % [Niektóre Usługi]</mat-option>
-                            <mat-option [value]=0.055> 5.5 % [Działalność wytwórcza] </mat-option>
-                            <mat-option [value]=0.03> 3 % [Handelek]</mat-option>
-                        </mat-select>
-                        <mat-label>
-                            <mat-icon>favorite</mat-icon> <b> Oddaję się z mocą: </b>
-                        </mat-label>
-                    </mat-form-field>
-
-                    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.taxFree" class="zus-chorobowe"> Kwota wolna od podatku (30 000 pln)</mat-checkbox>
-                    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.bigFamily" class="zus-chorobowe"> <mat-icon>pregnant_woman</mat-icon> Ulga dla rodzin 4+ (85 528 pln)</mat-checkbox>
-                </div>
+                <app-tax-form></app-tax-form>
 
             </mat-expansion-panel>
         </mat-accordion>
@@ -95,50 +39,55 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
-                
-                <table class="table table-hover hotspots-table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Netto</th>
-                            <th scope="col">VAT</th>
-                            <th scope="col">Brutto</th>
-                            <th scope="col">Odlicz</th>
-                            <th scope="col">Usuń</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="clickable-row"
-                            *ngFor="let outcome of this.dataService.userData.outcomeList; let index = index">
-                            <td>
-                                <mat-form-field appearance="outline" class="mat-form-field-outcome">
-                                    <mat-label>Nazwa wydatku</mat-label>
-                                    <input matInput placeholder="Co tam kupione zostało?" [(ngModel)]="outcome.name"
-                                        (input)="onChange()">
-                                </mat-form-field>
-                            </td>
-                            <td>
-                                <mat-form-field appearance="outline" class="mat-form-field-outcome">
-                                    <mat-label>Koszt netto</mat-label>
-                                    <input matInput placeholder="A za ile to?" [(ngModel)]="outcome.netto" (input)="onChange()"
-                                        type="number">
-                                    <!-- <mat-icon matSuffix>attach_money</mat-icon> -->
-                                </mat-form-field>
-                            </td>
-                            <td class="outcome-table-hajs">{{ outcome.vat | number :'1.2-2' }}zł </td>
-                            <td class="outcome-table-hajs">{{ outcome.netto! * 1.23 | number :'1.2-2' }}zł </td>
+                <app-outcome-form></app-outcome-form>
 
-                            <td><button mat-raised-button (click)="onClickVatReduce(index)"> {{ outcome.vatReduce | number}} %
-                                </button></td>
-
-                            <td><button mat-raised-button color="warn" (click)="deleteRow(index)">Usuń</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="row">
-                    <button mat-raised-button color="primary" (click)="addRow()">Dodaj</button>
-                </div>
             </mat-expansion-panel>
         </mat-accordion>
     </div>
+</div>
+
+<div class="row" *ngIf="isMobile === true">
+    
+    <div class="col">
+        <mat-accordion class="example-headers-align">
+
+            <!-- INCOME ZONE -->
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header class="accordion-income-header">
+                    <mat-panel-title> Przychód: </mat-panel-title>
+                    <mat-panel-description> Wpisz swój dochód netto <mat-icon>monetization_on</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                
+                <app-income-form></app-income-form>
+
+            </mat-expansion-panel>
+
+            <!-- US ZUS ZONE -->
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header class="accordion-us-header">
+                    <mat-panel-title> Ustawienia podatków / ZUS: </mat-panel-title>
+                    <mat-panel-description> Podatki oraz stawki ZUS <mat-icon>account_balance</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <app-tax-form></app-tax-form>
+
+            </mat-expansion-panel>
+
+
+            <!-- OUTCOME ZONE -->
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header class="accordion-outcome-header">
+                    <mat-panel-title> Wydatki: </mat-panel-title>
+                    <mat-panel-description> Podaj swoje wydatki netto <mat-icon>point_of_sale</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <app-outcome-form></app-outcome-form>
+
+            </mat-expansion-panel>
+
+        </mat-accordion>
+    </div> 
 </div>

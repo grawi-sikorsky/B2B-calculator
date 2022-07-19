@@ -1,0 +1,17 @@
+@media only screen and (max-width: 640px) {
+    .mat-raised-button {
+        min-width: 40px!important;
+        line-height: 48px!important;
+        padding: 0 8px!important;
+    }
+}
+@media only screen and (max-width: 980px) {
+    .mat-raised-button {
+        min-width: 50px!important;
+        line-height: 48px!important;
+        padding: 0 12px!important;
+    }
+    .mat-expansion-panel-body{
+        padding: 0 14px 16px!important;
+    }
+}

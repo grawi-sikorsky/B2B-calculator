@@ -1,0 +1,49 @@
+<div class="row">
+    <!-- ZUS -->
+    <mat-form-field appearance="fill">
+        <mat-select (selectionChange)="onChange()" required [(value)]="this.dataService.userData.zusPicked">
+            <mat-option *ngFor="let zus of this.dataService.userData.zusProfile; let index = index" [value]="index">{{zus.zusType}}</mat-option>
+        </mat-select>
+        <mat-label>
+            <mat-icon>favorite</mat-icon> <b> Kochany ZUS'ik - jaki lubisz? </b>
+        </mat-label>
+    </mat-form-field>
+
+    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.zusChorobowe" class="zus-chorobowe">Mam czas chorować (toteż płacę składkę chorobową). </mat-checkbox>
+
+
+    <!-- FORMA DUPCZENIA ZA TRUDY PRACY -->
+    <mat-form-field appearance="fill">
+        <mat-select (selectionChange)="onChange()" required
+            [(value)]="this.dataService.userData.taxFormPicked">
+            <mat-option [value]=0>Oddaję się ryczałtem</mat-option>
+            <mat-option [value]=1>Oddaję się w skali</mat-option>
+            <mat-option [value]=2>Oddaję się liniowo</mat-option>
+        </mat-select>
+        <mat-label>
+            <mat-icon>favorite</mat-icon> <b> Skarbówce oddaję się w formie: </b>
+        </mat-label>
+    </mat-form-field>
+
+
+    <!-- MOC DUPCENIA ZA TRUDY PRACY -->
+    <mat-form-field [hidden]="!(this.dataService.userData.taxFormPicked === 0)" appearance="fill">
+        <mat-select (selectionChange)="onChange()" required
+            [(value)]="this.dataService.userData.taxRatePicked">
+            <mat-option [value]=0.17> 17 % [Wolne zawody]</mat-option>
+            <mat-option [value]=0.15> 15 % </mat-option>
+            <mat-option [value]=0.14> 14 % [Architektura/Opieka]</mat-option>
+            <mat-option [value]=0.12> 12 % [IT Programista]</mat-option>
+            <mat-option [value]=0.10> 10 % </mat-option>
+            <mat-option [value]=0.085> 8.5 % [Niektóre Usługi]</mat-option>
+            <mat-option [value]=0.055> 5.5 % [Działalność wytwórcza] </mat-option>
+            <mat-option [value]=0.03> 3 % [Handelek]</mat-option>
+        </mat-select>
+        <mat-label>
+            <mat-icon>favorite</mat-icon> <b> Oddaję się z mocą: </b>
+        </mat-label>
+    </mat-form-field>
+
+    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.taxFree" class="zus-chorobowe"> Kwota wolna od podatku (30 000 pln)</mat-checkbox>
+    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.bigFamily" class="zus-chorobowe"> <mat-icon>pregnant_woman</mat-icon> Ulga dla rodzin 4+ (85 528 pln)</mat-checkbox>
+</div>

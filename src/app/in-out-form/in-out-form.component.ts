@@ -12,10 +12,25 @@ export class InOutFormComponent implements OnInit {
     constructor(public dataService: DataService) { }
 
     ngOnInit(): void {
+        this.isMobile = this.getIsMobile();
+        window.onresize = () => {
+            this.isMobile = this.getIsMobile();
+        };
+    }
+
+    isMobile = false;
+    getIsMobile(): boolean {
+        const w = document.documentElement.clientWidth;
+        const breakpoint = 992;
+        console.log(w);
+        if (w < breakpoint) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     onChange() {
-        console.log(this.dataService.userData);
         this.dataService.updateUserData(this.dataService.userData);
     }
 

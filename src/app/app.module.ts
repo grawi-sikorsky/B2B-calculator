@@ -10,6 +10,9 @@ import { DataService } from './service/data.service';
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import { InOutFormComponent } from './in-out-form/in-out-form.component';
+import { IncomeFormComponent } from './accordion/income-form/income-form.component';
+import { TaxFormComponent } from './accordion/tax-form/tax-form.component';
+import { OutcomeFormComponent } from './accordion/outcome-form/outcome-form.component';
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { InOutFormComponent } from './in-out-form/in-out-form.component';
     AppComponent,
     MainViewComponent,
     ResultsComponent,
-    InOutFormComponent
+    InOutFormComponent,
+    IncomeFormComponent,
+    TaxFormComponent,
+    OutcomeFormComponent
   ],
   imports: [
     BrowserModule,
