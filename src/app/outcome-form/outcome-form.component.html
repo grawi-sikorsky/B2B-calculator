@@ -1,53 +1,51 @@
 <p>Outcome:</p>
 <div class="row">
-    <mat-form-field appearance="outline">
-        <mat-label>Wydajemy</mat-label>
-        <input matInput placeholder="Gdzie kasiorka wydana?">
-        <mat-icon matSuffix>sentiment_very_dissatisfied</mat-icon>
-        <mat-hint>Gdzie kaska wydana, co?</mat-hint>
-    </mat-form-field>
+    <div class="col">
 
+        <table class="table table-hover hotspots-table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Netto</th>
+                    <th scope="col">VAT</th>
+                    <th scope="col">Brutto 24h</th>
+                    <th scope="col">Odlicz</th>
+                    <th scope="col">Usuń</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="clickable-row"
+                    *ngFor="let outcome of this.dataService.userData.outcomeList; let index = index">
+                    <td>{{index}}</td>
+                    <td>
+                        <mat-form-field appearance="outline" class="mat-form-field-outcome">
+                            <mat-label>Nazwa wydatku</mat-label>
+                            <input matInput placeholder="Co tam kupione zostało?" [(ngModel)]="outcome.name"
+                                (input)="onChange()">
+                            <mat-icon matSuffix>text_fields</mat-icon>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field appearance="outline" class="mat-form-field-outcome">
+                            <mat-label>Koszt netto</mat-label>
+                            <input matInput placeholder="A za ile to?" [(ngModel)]="outcome.netto" (input)="onChange()"
+                                type="number">
+                            <mat-icon matSuffix>attach_money</mat-icon>
+                        </mat-form-field>
+                    </td>
+                    <td>{{ outcome.vat | number :'1.2-2' }} pln </td>
+                    <td>{{ outcome.netto! * 1.23 | number :'1.2-2' }} pln </td>
 
-    <table class="table table-hover hotspots-table">
-        <thead class="thead-light">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Netto</th>
-                <th scope="col">VAT</th>
-                <th scope="col">Brutto 24h</th>
-                <th scope="col">Odlicz</th>
-                <th scope="col">Usuń</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="clickable-row" *ngFor="let outcome of this.dataService.userData.outcomeList; let index = index">
-                <td>{{index}}</td>
-                <td>
-                    <mat-form-field appearance="outline" class="mat-form-field-outcome">
-                        <mat-label>Nazwa wydatku</mat-label>
-                        <input matInput placeholder="Co tam kupione zostało?" [(ngModel)]="outcome.name" (input)="onChange()">
-                        <mat-icon matSuffix>text_fields</mat-icon>
-                    </mat-form-field>
-                </td>
-                <td>
-                    <mat-form-field appearance="outline" class="mat-form-field-outcome">
-                        <mat-label>Koszt netto</mat-label>
-                        <input matInput placeholder="A za ile to?" [(ngModel)]="outcome.netto" (input)="onChange()" type="number">
-                        <mat-icon matSuffix>attach_money</mat-icon>
-                    </mat-form-field>
-                </td>
-                <td>{{ outcome.vat | number :'1.2-2' }} pln </td>
-                <td>{{ outcome.netto! * 1.23 | number :'1.2-2' }} pln </td>
+                    <td><button mat-raised-button (click)="onClickVatReduce(index)"> {{ outcome.vatReduce | number}} %
+                        </button></td>
 
-                <td><button mat-raised-button (click)="onClickVatReduce(index)"> {{ outcome.vatReduce | number}} %
-                    </button></td>
+                    <td><button mat-raised-button color="warn" (click)="deleteRow(index)">Usuń</button></td>
+                </tr>
+            </tbody>
+        </table>
 
-                <td><button mat-raised-button color="warn" (click)="deleteRow(index)">Usuń</button></td>
-            </tr>
-        </tbody>
-    </table>
+        <button mat-raised-button color="primary" (click)="addRow()">Dodaj</button>
 
-    <button mat-raised-button color="primary" (click)="addRow()">Dodaj</button>
-
+    </div>
 </div>
