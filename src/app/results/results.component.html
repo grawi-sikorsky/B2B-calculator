@@ -3,7 +3,7 @@
         <div class="card-mein card-income">
             <div class="row">
                 <div class="card-mein-caption">Przychód:</div>
-                <div class="col-md-6">
+                <div class="col">
                     <div class="card-mein-mieso">
                         {{ this.dataService.userData.income | number }} PLN netto
                     </div>
@@ -14,7 +14,7 @@
                         {{ this.usVatNaliczony | number :'1.2-2' }} PLN VAT
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col">
                     <div class="card-mein-caption"></div>
                     <div class="card-mein-mieso">
                         <div class="card-mein-sub">
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col">
         <div class="card-mein card-profit">
             <div class="card-mein-caption">Na czysto: </div>
             <div class="card-mein-mieso" *ngIf="isPositive(this.netSalary)">
@@ -48,7 +48,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col">
         <div class="card-mein">
             <div class="card-mein-caption">Wydatki:</div>
             <div class="card-mein-mieso">
@@ -62,11 +62,11 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col">
         <div class="card-mein card-zus">
             <div class="row">
                 <div class="card-mein-caption">ZUS:</div>
-                <div class="col-md-6">
+                <div class="col">
                     <div class="card-mein-mieso">
                         {{this.zusSuma | number : '1.2-2' }} PLN
                     </div>
@@ -74,7 +74,7 @@
                         Do odliczenia: {{ (this.zusZdrowotna / 2 ) * 0.12 | number : '1.2-2' }} pln
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col">
                     <div class="card-mein-mieso">
                         <div class="card-mein-sub">
                             Społeczna: {{this.zusSkladka | number : '1.2-2' }} pln
@@ -90,11 +90,11 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col">
         <div class="card-mein card-us">
             <div class="row">
                 <div class="card-mein-caption">Urzad skarbowy:</div>
-                <div class="col-md-6">
+                <div class="col">
                     <div class="card-mein-mieso">
                         {{this.usPodatekMonthNoTaxFree | number : '1.2-2' }} PLN
                     </div>
@@ -120,7 +120,7 @@
                         Nadplata podatku (rok): {{this.usPodatekDoZwrotu | number : '1.2-2' }} pln
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col">
                     <div class="card-mein-caption-divider">Podatek VAT:</div>
                     <div class="card-mein-mieso">
 
@@ -138,16 +138,16 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col">
         <div class="card-mein card-us">
             <div class="row">
                 <div class="card-mein-caption">Urząd skarbowy:</div>
-                <div class="col-md-6">
+                <div class="col">
                     <div class="card-mein-mieso">
                         {{this.usVatToPay | number : '1.2-2' }} PLN VAT
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col">
                     <div class="card-mein-sub">
                         VAT do zapłaty: {{this.usVatToPay | number : '1.2-2' }}
                     </div>
