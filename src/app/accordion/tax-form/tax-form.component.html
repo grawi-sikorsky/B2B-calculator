@@ -9,13 +9,12 @@
         </mat-label>
     </mat-form-field>
 
-    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.zusChorobowe" class="zus-chorobowe">Mam czas chorować (toteż płacę składkę chorobową). </mat-checkbox>
+    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.zusChorobowe" class="zus-chorobowe"><mat-icon style="vertical-align: middle;">sick</mat-icon> Mam czas chorować (toteż płacę składkę chorobową). </mat-checkbox>
 
 
     <!-- FORMA DUPCZENIA ZA TRUDY PRACY -->
     <mat-form-field appearance="fill">
-        <mat-select (selectionChange)="onChange()" required
-            [(value)]="this.dataService.userData.taxFormPicked">
+        <mat-select (selectionChange)="onChange()" required [(value)]="this.dataService.userData.taxFormPicked">
             <mat-option [value]=0>Oddaję się ryczałtem</mat-option>
             <mat-option [value]=1>Oddaję się w skali</mat-option>
             <mat-option [value]=2>Oddaję się liniowo</mat-option>
@@ -44,6 +43,6 @@
         </mat-label>
     </mat-form-field>
 
-    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.taxFree" class="zus-chorobowe"> Kwota wolna od podatku (30 000 pln)</mat-checkbox>
-    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.bigFamily" class="zus-chorobowe"> <mat-icon>pregnant_woman</mat-icon> Ulga dla rodzin 4+ (85 528 pln)</mat-checkbox>
+    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.taxFree" class="zus-chorobowe"> <mat-icon style="vertical-align: middle;">free_breakfast</mat-icon> Kwota wolna od podatku (30 000 pln)</mat-checkbox>
+    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.bigFamily" class="zus-chorobowe"> <mat-icon style="vertical-align: middle;">pregnant_woman</mat-icon> Ulga dla rodzin 4+ (85 528 pln)</mat-checkbox>
 </div>
