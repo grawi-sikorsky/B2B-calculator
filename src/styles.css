@@ -1,18 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
 
-.mat-form-field-outcome .mat-form-field-wrapper{
-    padding-bottom: 0!important;
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.mat-form-field-outcome .mat-form-field-wrapper {
+    padding-bottom: 0 !important;
+}
+
 .mat-form-field-outcome .mat-form-field-wrapper .mat-form-field-appearance-outline .mat-form-field-wrapper {
-    margin: 0!important;
+    margin: 0 !important;
 }
+
 .mat-form-field-infix {
-    min-width: 50px!important;
-    width: auto!important;
+    min-width: 30px !important;
+    width: auto !important;
 }
-.mat-form-field-appearance-outline .mat-form-field-infix{
+
+.mat-form-field-appearance-outline .mat-form-field-infix {
     padding: 0.6em 0 0.9em 0;
+}
+
+@media only screen and (max-width: 640px) {
+    .mat-raised-button {
+        min-width: 40px!important;
+        line-height: 48px!important;
+        padding: 0 8px!important;
+    }
 }

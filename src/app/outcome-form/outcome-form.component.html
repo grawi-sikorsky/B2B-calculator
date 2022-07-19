@@ -1,10 +1,12 @@
 <div class="col card outcome-card">
     <div class="row">
-        <h3>Wydatki:</h3>
+        <div class="income-card-header">
+            <h3><mat-icon>point_of_sale</mat-icon>Wydatki:</h3>
+        </div>
+        
         <table class="table table-hover hotspots-table">
             <thead class="thead-light">
                 <tr>
-                    <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Netto</th>
                     <th scope="col">VAT</th>
@@ -16,7 +18,6 @@
             <tbody>
                 <tr class="clickable-row"
                     *ngFor="let outcome of this.dataService.userData.outcomeList; let index = index">
-                    <td>{{index}}</td>
                     <td>
                         <mat-form-field appearance="outline" class="mat-form-field-outcome">
                             <mat-label>Nazwa wydatku</mat-label>
@@ -29,11 +30,11 @@
                             <mat-label>Koszt netto</mat-label>
                             <input matInput placeholder="A za ile to?" [(ngModel)]="outcome.netto" (input)="onChange()"
                                 type="number">
-                            <mat-icon matSuffix>attach_money</mat-icon>
+                            <!-- <mat-icon matSuffix>attach_money</mat-icon> -->
                         </mat-form-field>
                     </td>
-                    <td class="outcome-table-hajs">{{ outcome.vat | number :'1.2-2' }} zł </td>
-                    <td class="outcome-table-hajs">{{ outcome.netto! * 1.23 | number :'1.2-2' }} zł </td>
+                    <td class="outcome-table-hajs">{{ outcome.vat | number :'1.2-2' }}zł </td>
+                    <td class="outcome-table-hajs">{{ outcome.netto! * 1.23 | number :'1.2-2' }}zł </td>
 
                     <td><button mat-raised-button (click)="onClickVatReduce(index)"> {{ outcome.vatReduce | number}} %
                         </button></td>
