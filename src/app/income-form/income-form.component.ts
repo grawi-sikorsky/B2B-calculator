@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../service/data.service';
+import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-income-form',
@@ -7,6 +8,7 @@ import { DataService } from '../service/data.service';
   styleUrls: ['./income-form.component.css']
 })
 export class IncomeFormComponent implements OnInit {
+  @ViewChild(MatAccordion) accordion: MatAccordion | undefined;
 
   constructor(public dataService:DataService) { }
 

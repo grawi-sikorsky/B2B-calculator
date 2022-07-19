@@ -1,5 +1,13 @@
 import {NgModule} from '@angular/core';
-
+import {A11yModule} from '@angular/cdk/a11y';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {PortalModule} from '@angular/cdk/portal';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {CdkStepperModule} from '@angular/cdk/stepper';
+import {CdkTableModule} from '@angular/cdk/table';
+import {CdkTreeModule} from '@angular/cdk/tree';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
@@ -39,6 +47,13 @@ import {OverlayModule} from '@angular/cdk/overlay';
 
 @NgModule({
   exports: [
+    A11yModule,
+    CdkAccordionModule,
+    ClipboardModule,
+    CdkStepperModule,
+    CdkTableModule,
+    CdkTreeModule,
+    DragDropModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
@@ -75,6 +90,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
     MatTooltipModule,
     MatTreeModule,
     OverlayModule,
+    PortalModule,
+    ScrollingModule,
   ]
 })
 export class MaterialModule {}
