@@ -1,7 +1,6 @@
-<p>Outcome:</p>
-<div class="row">
-    <div class="col">
-
+<div class="col card outcome-card">
+    <div class="row">
+        <h3>Wydatki:</h3>
         <table class="table table-hover hotspots-table">
             <thead class="thead-light">
                 <tr>
@@ -9,7 +8,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Netto</th>
                     <th scope="col">VAT</th>
-                    <th scope="col">Brutto 24h</th>
+                    <th scope="col">Brutto</th>
                     <th scope="col">Odlicz</th>
                     <th scope="col">Usuń</th>
                 </tr>
@@ -23,7 +22,6 @@
                             <mat-label>Nazwa wydatku</mat-label>
                             <input matInput placeholder="Co tam kupione zostało?" [(ngModel)]="outcome.name"
                                 (input)="onChange()">
-                            <mat-icon matSuffix>text_fields</mat-icon>
                         </mat-form-field>
                     </td>
                     <td>
@@ -34,8 +32,8 @@
                             <mat-icon matSuffix>attach_money</mat-icon>
                         </mat-form-field>
                     </td>
-                    <td>{{ outcome.vat | number :'1.2-2' }} pln </td>
-                    <td>{{ outcome.netto! * 1.23 | number :'1.2-2' }} pln </td>
+                    <td class="outcome-table-hajs">{{ outcome.vat | number :'1.2-2' }} zł </td>
+                    <td class="outcome-table-hajs">{{ outcome.netto! * 1.23 | number :'1.2-2' }} zł </td>
 
                     <td><button mat-raised-button (click)="onClickVatReduce(index)"> {{ outcome.vatReduce | number}} %
                         </button></td>
