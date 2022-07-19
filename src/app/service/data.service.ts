@@ -32,25 +32,18 @@ export class DataService {
 
   updateUserData(data: UserData) {
     this.userDataSubject.next(data);
-    console.log("next.");
+    localStorage.setItem("userData", JSON.stringify(this.userData));
   }
-
-  // INPUT
-  dataChanged: boolean = false;
-  outcomeList: Outcome[] = [];
-  income: number = 0;
-  taxProfile: TaxProfile = {};
-  taxPicked: number = 0;
-  bigFamily: boolean = false;
-  zusProfile: ZusProfile[] = [];
-  zusPicked: number = 0;
-  zusChorobowe: boolean = false;
 
   prepareData() {
     this.userData.zusProfile.push(new ZusProfile("Lubię duży ZUS'ik (lubię schylać się w więzieniu po mydełko)", 1500));
     this.userData.zusProfile.push(new ZusProfile("Lubię mały ZUS'ik (2 lata)", 750));
     this.userData.zusProfile.push(new ZusProfile("ZUS'ik plusik (120k / rok)", 500));
     this.userData.zusProfile.push(new ZusProfile("Morawiecki to mój wuj (ZUS'iku nie płacę)", 0));
+
+    if(localStorage.getItem("userData") !== null){
+      this.userData = JSON.parse(localStorage.getItem("userData")!);
+    }
   }
 
 

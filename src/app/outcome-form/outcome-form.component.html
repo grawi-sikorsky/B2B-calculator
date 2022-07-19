@@ -24,15 +24,18 @@
             <tr class="clickable-row" *ngFor="let outcome of this.dataService.userData.outcomeList; let index = index">
                 <td>{{index}}</td>
                 <td>
-                    <mat-form-field appearance="outline" class="outcome-name-input">
-                        <mat-label>Wydajemy</mat-label>
-                        <input matInput placeholder="Gdzie kasiorka wydana?">
-                        <mat-icon matSuffix>sentiment_very_dissatisfied</mat-icon>
+                    <mat-form-field appearance="outline" class="mat-form-field-outcome">
+                        <mat-label>Nazwa wydatku</mat-label>
+                        <input matInput placeholder="Co tam kupione zostało?" [(ngModel)]="outcome.name" (input)="onChange()">
+                        <mat-icon matSuffix>text_fields</mat-icon>
                     </mat-form-field>
-                    <input placeholder="Co tam kupione było?" [(ngModel)]="outcome.name" (input)="onChange()">
                 </td>
                 <td>
-                    <input placeholder="A kasiorki ile poszło?" [(ngModel)]="outcome.netto" (input)="onChange()" type="number">
+                    <mat-form-field appearance="outline" class="mat-form-field-outcome">
+                        <mat-label>Koszt netto</mat-label>
+                        <input matInput placeholder="A za ile to?" [(ngModel)]="outcome.netto" (input)="onChange()" type="number">
+                        <mat-icon matSuffix>attach_money</mat-icon>
+                    </mat-form-field>
                 </td>
                 <td>{{ outcome.vat | number :'1.2-2' }} pln </td>
                 <td>{{ outcome.netto! * 1.23 | number :'1.2-2' }} pln </td>

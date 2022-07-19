@@ -6,7 +6,7 @@
 
     <mat-form-field appearance="outline">
         <mat-label>Przychód netto:</mat-label>
-        <input matInput type="number" placeholder="Kasiorki ile?" #income (input)="onChangePrice(income.value)">
+        <input matInput type="number" placeholder="Kasiorki ile?" (input)="onChange()" [(ngModel)]="this.dataService.userData.income">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         <mat-hint>Hint</mat-hint>
     </mat-form-field>
