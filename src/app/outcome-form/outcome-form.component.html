@@ -1,8 +1,11 @@
-<div class="col card outcome-card">
-    <div class="row">
-        <div class="income-card-header">
-            <h3><mat-icon>point_of_sale</mat-icon>Wydatki:</h3>
-        </div>
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel expanded>
+        <mat-expansion-panel-header class="accordion-outcome-header">
+            <mat-panel-title> Wydatki: </mat-panel-title>
+            <mat-panel-description> Podaj swoje wydatki netto <mat-icon>point_of_sale</mat-icon>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
         
         <table class="table table-hover hotspots-table">
             <thead class="thead-light">
@@ -43,8 +46,8 @@
                 </tr>
             </tbody>
         </table>
-
-        <button mat-raised-button color="primary" (click)="addRow()">Dodaj</button>
-
-    </div>
-</div>
+        <div class="row">
+            <button mat-raised-button color="primary" (click)="addRow()">Dodaj</button>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

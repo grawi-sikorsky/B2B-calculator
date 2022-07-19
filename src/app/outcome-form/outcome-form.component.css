@@ -13,6 +13,11 @@
         font-size: 11px;
     }
 }
+@media only screen and (max-width: 980px) {
+    .outcome-table-hajs{
+        font-size: 12px;
+    }
+}
 
 .hotspot-reward-price{
     font-size: 12px;
@@ -55,11 +60,9 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 100;
 }
-
 .clickable-row{
     cursor: pointer;
 }
-
 .outcome-card{
     padding: 1rem;
     margin: 0.5rem;
@@ -69,4 +72,30 @@
 .income-card-header h3{
     display: flex;
     align-items: center;
+}
+
+/* MATERIAL ACCORDION STYLING */
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+.mat-expansion-panel{
+    box-shadow: 2px 4px 4px 2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+    margin: 0px!important;
+}
+.mat-expansion-panel-header.mat-expanded{
+    margin-bottom: 7px!important;
+}
+.accordion-outcome-header{
+    background-color: #edffdc!important;
+}
+.accordion-outcome-header:hover{
+    background-color:#e6fdd0 !important;
 }
