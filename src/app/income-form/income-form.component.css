@@ -12,3 +12,37 @@
     display: flex;
     align-items: center;
 }
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.mat-expansion-panel{
+    box-shadow: 2px 4px 4px 2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+    margin: 5px!important;;
+}
+.mat-expansion-panel-header.mat-expanded{
+    margin-bottom: 5px!important;
+}
+.accordion-income-header{
+    background-color: #edffdc!important;
+}
+.accordion-income-header:hover{
+    background-color:#e6fdd0 !important;
+}
+.accordion-us-header{
+    background-color: #ffdfcc!important;
+}
+.accordion-us-header:hover{
+    background-color:#ffdfcc !important;
+}
