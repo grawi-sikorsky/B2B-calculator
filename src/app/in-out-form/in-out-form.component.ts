@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../service/data.service';
 import { Outcome } from '../model/outcome';
-import { Subject } from 'rxjs/internal/Subject';
+import { DataService } from '../service/data.service';
 
 @Component({
-    selector: 'app-outcome-form',
-    templateUrl: './outcome-form.component.html',
-    styleUrls: ['./outcome-form.component.css']
+    selector: 'app-in-out-form',
+    templateUrl: './in-out-form.component.html',
+    styleUrls: ['./in-out-form.component.css']
 })
-export class OutcomeFormComponent implements OnInit {
+export class InOutFormComponent implements OnInit {
 
     constructor(public dataService: DataService) { }
 
@@ -20,12 +19,17 @@ export class OutcomeFormComponent implements OnInit {
         this.dataService.updateUserData(this.dataService.userData);
     }
 
+    onChangePrice(val: any) {
+        this.dataService.userData.income = val;
+        this.dataService.updateUserData(this.dataService.userData);
+    }
+
     addRow() {
         const wydatek: Outcome = new Outcome("Nowy wydatek", 0, 0, 0, 100);
         this.dataService.userData.outcomeList.push(wydatek);
     }
-    deleteRow(index: number) {
 
+    deleteRow(index: number) {
         this.dataService.userData.outcomeList.splice(index, 1);
         this.onChange();
     }
@@ -40,7 +44,7 @@ export class OutcomeFormComponent implements OnInit {
         else {
             this.dataService.userData.outcomeList[index].vatReduce = 100
         }
-        
+
         this.dataService.updateUserData(this.dataService.userData);
     }
 }
