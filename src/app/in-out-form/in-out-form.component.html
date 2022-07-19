@@ -1,0 +1,93 @@
+<div class="row" *ngIf="isMobile === false">
+    <!-- INCOME ZONE -->
+    <div class="col">
+        <mat-accordion class="example-headers-align">
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header class="accordion-income-header">
+                    <mat-panel-title> Przychód: </mat-panel-title>
+                    <mat-panel-description> Wpisz swój dochód netto <mat-icon>monetization_on</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                
+                <app-income-form></app-income-form>
+
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        <!-- US ZUS ZONE -->
+        <mat-accordion class="example-headers-align">
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header class="accordion-us-header">
+                    <mat-panel-title> Ustawienia podatków / ZUS: </mat-panel-title>
+                    <mat-panel-description> Podatki oraz stawki ZUS <mat-icon>account_balance</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <app-tax-form></app-tax-form>
+
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+
+    <!-- OUTCOME ZONE -->
+    <div class="col">
+        <mat-accordion class="example-headers-align">
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header class="accordion-outcome-header">
+                    <mat-panel-title> Wydatki: </mat-panel-title>
+                    <mat-panel-description> Podaj swoje wydatki netto <mat-icon>point_of_sale</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <app-outcome-form></app-outcome-form>
+
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</div>
+
+<div class="row" *ngIf="isMobile === true">
+    
+    <div class="col">
+        <mat-accordion class="example-headers-align">
+
+            <!-- INCOME ZONE -->
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header class="accordion-income-header">
+                    <mat-panel-title> Przychód: </mat-panel-title>
+                    <mat-panel-description> Wpisz swój dochód netto <mat-icon>monetization_on</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                
+                <app-income-form></app-income-form>
+
+            </mat-expansion-panel>
+
+            <!-- US ZUS ZONE -->
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header class="accordion-us-header">
+                    <mat-panel-title> Ustawienia podatków / ZUS: </mat-panel-title>
+                    <mat-panel-description> Podatki oraz stawki ZUS <mat-icon>account_balance</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <app-tax-form></app-tax-form>
+
+            </mat-expansion-panel>
+
+
+            <!-- OUTCOME ZONE -->
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header class="accordion-outcome-header">
+                    <mat-panel-title> Wydatki: </mat-panel-title>
+                    <mat-panel-description> Podaj swoje wydatki netto <mat-icon>point_of_sale</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <app-outcome-form></app-outcome-form>
+
+            </mat-expansion-panel>
+
+        </mat-accordion>
+    </div> 
+</div>
