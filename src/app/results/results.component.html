@@ -10,33 +10,33 @@
             <mat-expansion-panel>
                 <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> Przychód: </mat-panel-title>
-                    <mat-panel-description> {{ this.dataService.userData.income | number }} PLN netto <mat-icon>monetization_on</mat-icon>
+                    <mat-panel-description> <strong>{{ this.dataService.userData.income | number }} zł netto </strong> <mat-icon>monetization_on</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 
                 <div class="row">
                     <div class="col">
                         <div class="card-mein-mieso">
-                            {{ this.dataService.userData.income | number }} PLN netto
+                            {{ this.dataService.userData.income | number }} zł netto
                         </div>
                         <div class="card-mein-sub">
-                            {{ (this.dataService.userData.income * 1.23) | number : '1.2-2' }} PLN brutto
+                            {{ (this.dataService.userData.income * 1.23) | number : '1.2-2' }} zł brutto
                         </div>
                         <div class="card-mein-sub">
-                            {{ this.usVatNaliczony | number :'1.2-2' }} PLN VAT
+                            {{ this.usVatNaliczony | number :'1.2-2' }} zł VAT
                         </div>
                     </div>
                     <div class="col">
                         <div class="card-mein-caption"></div>
                         <div class="card-mein-mieso">
                             <div class="card-mein-sub">
-                                {{ (this.dataService.userData.income * 12) | number : '1.2-2' }} PLN netto rocznie
+                                {{ (this.dataService.userData.income * 12) | number : '1.2-2' }} zł netto rocznie
                             </div>
                             <div class="card-mein-sub">
-                                ~ {{ (this.dataService.userData.income / 24) | number : '1.2-2' }} PLN netto dziennie
+                                ~ {{ (this.dataService.userData.income / 24) | number : '1.2-2' }} zł netto dziennie
                             </div>
                             <div class="card-mein-sub">
-                                ~ {{ (this.dataService.userData.income /24 / 8) | number : '1.2-2' }} PLN netto na godzinę
+                                ~ {{ (this.dataService.userData.income /24 / 8) | number : '1.2-2' }} zł netto na godzinę
                             </div>
                         </div>
                     </div>
@@ -48,22 +48,22 @@
             <mat-expansion-panel>
                 <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> Na czysto: </mat-panel-title>
-                    <mat-panel-description> {{this.netSalary | number : '1.2-2' }} PLN <mat-icon>account_balance</mat-icon>
+                    <mat-panel-description> <strong>{{this.netSalary | number : '1.2-2' }} zł </strong><mat-icon>account_balance</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
                 <div class="col">
                     <div class="card-mein-mieso" *ngIf="isPositive(this.netSalary)">
-                        {{this.netSalary | number : '1.2-2' }} PLN
+                        {{this.netSalary | number : '1.2-2' }} zł
                     </div>
                     <div class="card-mein-mieso" *ngIf="!isPositive(this.netSalary)">
-                        {{this.netSalary | number : '1.2-2' }} PLN <mat-icon>sentiment_very_dissatisfied</mat-icon>
+                        {{this.netSalary | number : '1.2-2' }} zł <mat-icon>sentiment_very_dissatisfied</mat-icon>
                     </div>
                     <div class="card-mein-sub">
-                        {{ (this.netSalary * 1.23) | number : '1.2-2' }} PLN brutto
+                        {{ (this.netSalary * 1.23) | number : '1.2-2' }} zł brutto
                     </div>
                     <div class="card-mein-sub">
-                        {{ this.usVatNaliczony | number :'1.2-2' }} PLN VAT
+                        {{ this.usVatNaliczony | number :'1.2-2' }} zł VAT
                     </div>
                 </div>
 
@@ -74,37 +74,37 @@
             <mat-expansion-panel>
                 <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> US: </mat-panel-title>
-                    <mat-panel-description> {{this.usPodatekMonthNoTaxFree | number : '1.2-2' }} PLN <mat-icon>point_of_sale</mat-icon>
+                    <mat-panel-description> <strong>{{this.usPodatekMonthNoTaxFree | number : '1.2-2' }} zł </strong><mat-icon>point_of_sale</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="row">
                     <div class="col">
                         <div class="card-mein-mieso">
-                            {{this.usPodatekMonthNoTaxFree | number : '1.2-2' }} PLN
+                            {{this.usPodatekMonthNoTaxFree | number : '1.2-2' }} zł
                         </div>
                         <div class="card-mein-caption-divider">Podatek dochodowy:</div>
                         <div class="card-mein-sub">
-                            Podatek za cały rok: {{this.usPodatekYear | number : '1.2-2' }} pln
+                            Podatek za cały rok: {{this.usPodatekYear | number : '1.2-2' }} zł
                         </div>
                         <mat-divider></mat-divider>
                         <div class="card-mein-sub">
-                            Kwota wolna od podatku: {{this.usFullTaxFreeAmount | number : '1.2-2' }} pln
+                            Kwota wolna od podatku: {{this.usFullTaxFreeAmount | number : '1.2-2' }} zł
                         </div>
                         <div class="card-mein-sub" *ngIf="isPositive(this.usTaxFreeAmount - this.dataService.userData.income * 12)">
-                            Pozostała kwota wolna: {{ this.usTaxFreeAmount - this.dataService.userData.income * 12 | number : '1.2-2' }} pln
+                            Pozostała kwota wolna: {{ this.usTaxFreeAmount - this.dataService.userData.income * 12 | number : '1.2-2' }} zł
                         </div>
                         <div class="card-mein-sub" *ngIf="!isPositive(this.usTaxFreeAmount - this.dataService.userData.income * 12)">
-                            Pozostała kwota wolna: {{ 0 | number : '1.2-2' }} pln
+                            Pozostała kwota wolna: {{ 0 | number : '1.2-2' }} zł
                         </div>
                         <mat-divider></mat-divider>
 
                     </div>
                     <div class="col">
                         <div class="card-mein-sub">
-                            Nadplata podatku (msc): {{this.usPodatekDoZwrotuMonth | number : '1.2-2' }} pln
+                            Nadplata podatku (msc): {{this.usPodatekDoZwrotuMonth | number : '1.2-2' }} zł
                         </div>
                         <div class="card-mein-sub">
-                            Nadplata podatku (rok): {{this.usPodatekDoZwrotu | number : '1.2-2' }} pln
+                            Nadplata podatku (rok): {{this.usPodatekDoZwrotu | number : '1.2-2' }} zł
                         </div>
                     </div>
                 </div>
@@ -115,13 +115,13 @@
             <mat-expansion-panel>
                 <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> US VAT: </mat-panel-title>
-                    <mat-panel-description> {{this.usVatToPay | number : '1.2-2' }} PLN VAT <mat-icon>point_of_sale</mat-icon>
+                    <mat-panel-description><strong> {{this.usVatToPay | number : '1.2-2' }} zł VAT </strong><mat-icon>point_of_sale</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
                 <div class="col">
                     <div class="card-mein-mieso">
-                        {{this.usVatToPay | number : '1.2-2' }} PLN VAT
+                        {{this.usVatToPay | number : '1.2-2' }} zł VAT
                     </div>
                 </div>
                 <div class="col">
@@ -142,28 +142,28 @@
             <mat-expansion-panel>
                 <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> ZUS: </mat-panel-title>
-                    <mat-panel-description> {{this.zusSuma | number : '1.2-2' }} PLN <mat-icon>point_of_sale</mat-icon>
+                    <mat-panel-description> <strong>{{this.zusSuma | number : '1.2-2' }} zł </strong><mat-icon>point_of_sale</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
                 <div class="col">
                     <div class="card-mein-mieso">
-                        {{this.zusSuma | number : '1.2-2' }} PLN
+                        {{this.zusSuma | number : '1.2-2' }} zł
                     </div>
                     <div class="card-mein-sub">
-                        Do odliczenia: {{ (this.zusZdrowotna / 2 ) * 0.12 | number : '1.2-2' }} pln
+                        Do odliczenia: {{ (this.zusZdrowotna / 2 ) * 0.12 | number : '1.2-2' }} zł
                     </div>
                 </div>
                 <div class="col">
                     <div class="card-mein-mieso">
                         <div class="card-mein-sub">
-                            Społeczna: {{this.zusSkladka | number : '1.2-2' }} pln
+                            Społeczna: {{this.zusSkladka | number : '1.2-2' }} zł
                         </div>
                         <div class="card-mein-sub">
-                            Zdrowotna: {{this.zusZdrowotna | number : '1.2-2' }} pln
+                            Zdrowotna: {{this.zusZdrowotna | number : '1.2-2' }} zł
                         </div>
                         <div class="card-mein-sub">
-                            Chorobowe: {{this.zusChorobowa | number : '1.2-2' }} pln
+                            Chorobowe: {{this.zusChorobowa | number : '1.2-2' }} zł
                         </div>
                     </div>
                 </div>
@@ -174,16 +174,17 @@
             <mat-expansion-panel>
                 <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> Wydatki: </mat-panel-title>
-                    <mat-panel-description> {{this.outcomeAmount | number :'1.2-2' }} PLN netto <mat-icon>point_of_sale</mat-icon>
+                    <mat-panel-description><strong> {{this.outcomeAmount | number :'1.2-2' }} zł netto </strong><mat-icon>point_of_sale</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
                 <div class="card-mein-mieso">
-                    {{this.outcomeAmount | number :'1.2-2' }} PLN netto
+                    {{this.outcomeAmount | number :'1.2-2' }} zł netto                 
                 </div>
                 <div class="card-mein-sub">
-                    VAT do odliczenia: {{this.usVatKoszty | number : '1.2-2' }} pln
+                    {{this.outcomeAmount * 1.23 | number : '1.2-2' }} zł brutto
                 </div>
+
 
             </mat-expansion-panel>
 
@@ -199,26 +200,26 @@
                 <div class="card-mein-caption">Przychód:</div>
                 <div class="col">
                     <div class="card-mein-mieso">
-                        {{ this.dataService.userData.income | number }} PLN netto
+                        {{ this.dataService.userData.income | number }} zł netto
                     </div>
                     <div class="card-mein-sub">
-                        {{ (this.dataService.userData.income * 1.23) | number : '1.2-2' }} PLN brutto
+                        {{ (this.dataService.userData.income * 1.23) | number : '1.2-2' }} zł brutto
                     </div>
                     <div class="card-mein-sub">
-                        {{ this.usVatNaliczony | number :'1.2-2' }} PLN VAT
+                        {{ this.usVatNaliczony | number :'1.2-2' }} zł VAT
                     </div>
                 </div>
                 <div class="col">
                     <div class="card-mein-caption"></div>
                     <div class="card-mein-mieso">
                         <div class="card-mein-sub">
-                            {{ (this.dataService.userData.income * 12) | number : '1.2-2' }} PLN netto rocznie
+                            {{ (this.dataService.userData.income * 12) | number : '1.2-2' }} zł netto rocznie
                         </div>
                         <div class="card-mein-sub">
-                            ~ {{ (this.dataService.userData.income / 24) | number : '1.2-2' }} PLN netto dziennie
+                            ~ {{ (this.dataService.userData.income / 24) | number : '1.2-2' }} zł netto dziennie
                         </div>
                         <div class="card-mein-sub">
-                            ~ {{ (this.dataService.userData.income /24 / 8) | number : '1.2-2' }} PLN netto na godzinę
+                            ~ {{ (this.dataService.userData.income /24 / 8) | number : '1.2-2' }} zł netto na godzinę
                         </div>
                     </div>
                 </div>
@@ -229,16 +230,16 @@
         <div class="card-mein card-profit">
             <div class="card-mein-caption">Na czysto: </div>
             <div class="card-mein-mieso" *ngIf="isPositive(this.netSalary)">
-                {{this.netSalary | number : '1.2-2' }} PLN
+                {{this.netSalary | number : '1.2-2' }} zł
             </div>
             <div class="card-mein-mieso" *ngIf="!isPositive(this.netSalary)">
-                {{this.netSalary | number : '1.2-2' }} PLN <mat-icon>sentiment_very_dissatisfied</mat-icon>
+                {{this.netSalary | number : '1.2-2' }} zł <mat-icon>sentiment_very_dissatisfied</mat-icon>
             </div>
             <div class="card-mein-sub">
-                {{ (this.netSalary * 1.23) | number : '1.2-2' }} PLN brutto
+                {{ (this.netSalary * 1.23) | number : '1.2-2' }} zł brutto
             </div>
             <div class="card-mein-sub">
-                {{ this.usVatNaliczony | number :'1.2-2' }} PLN VAT
+                {{ this.usVatNaliczony | number :'1.2-2' }} zł VAT
             </div>
         </div>
     </div>
@@ -246,10 +247,10 @@
         <div class="card-mein">
             <div class="card-mein-caption">Wydatki:</div>
             <div class="card-mein-mieso">
-                {{this.outcomeAmount | number :'1.2-2' }} PLN netto
+                {{this.outcomeAmount | number :'1.2-2' }} zł netto
             </div>
             <div class="card-mein-sub">
-                VAT do odliczenia: {{this.usVatKoszty | number : '1.2-2' }} pln
+                VAT do odliczenia: {{this.usVatKoszty | number : '1.2-2' }} zł
             </div>
         </div>
     </div>
@@ -262,22 +263,22 @@
                 <div class="card-mein-caption">ZUS:</div>
                 <div class="col">
                     <div class="card-mein-mieso">
-                        {{this.zusSuma | number : '1.2-2' }} PLN
+                        {{this.zusSuma | number : '1.2-2' }} zł
                     </div>
                     <div class="card-mein-sub">
-                        Do odliczenia: {{ (this.zusZdrowotna / 2 ) * 0.12 | number : '1.2-2' }} pln
+                        Do odliczenia: {{ (this.zusZdrowotna / 2 ) * 0.12 | number : '1.2-2' }} zł
                     </div>
                 </div>
                 <div class="col">
                     <div class="card-mein-mieso">
                         <div class="card-mein-sub">
-                            Społeczna: {{this.zusSkladka | number : '1.2-2' }} pln
+                            Społeczna: {{this.zusSkladka | number : '1.2-2' }} zł
                         </div>
                         <div class="card-mein-sub">
-                            Zdrowotna: {{this.zusZdrowotna | number : '1.2-2' }} pln
+                            Zdrowotna: {{this.zusZdrowotna | number : '1.2-2' }} zł
                         </div>
                         <div class="card-mein-sub">
-                            Chorobowe: {{this.zusChorobowa | number : '1.2-2' }} pln
+                            Chorobowe: {{this.zusChorobowa | number : '1.2-2' }} zł
                         </div>
                     </div>
                 </div>
@@ -290,28 +291,28 @@
                 <div class="card-mein-caption">Urzad skarbowy:</div>
                 <div class="col">
                     <div class="card-mein-mieso">
-                        {{this.usPodatekMonthNoTaxFree | number : '1.2-2' }} PLN
+                        {{this.usPodatekMonthNoTaxFree | number : '1.2-2' }} zł
                     </div>
                     <div class="card-mein-caption-divider">Podatek dochodowy:</div>
                     <div class="card-mein-sub">
-                        Podatek za cały rok: {{this.usPodatekYear | number : '1.2-2' }} pln
+                        Podatek za cały rok: {{this.usPodatekYear | number : '1.2-2' }} zł
                     </div>
                     <mat-divider></mat-divider>
                     <div class="card-mein-sub">
-                        Kwota wolna od podatku: {{this.usFullTaxFreeAmount | number : '1.2-2' }} pln
+                        Kwota wolna od podatku: {{this.usFullTaxFreeAmount | number : '1.2-2' }} zł
                     </div>
                     <div class="card-mein-sub" *ngIf="isPositive(this.usTaxFreeAmount - this.dataService.userData.income * 12)">
-                        Pozostała kwota wolna: {{ this.usTaxFreeAmount - this.dataService.userData.income * 12 | number : '1.2-2' }} pln
+                        Pozostała kwota wolna: {{ this.usTaxFreeAmount - this.dataService.userData.income * 12 | number : '1.2-2' }} zł
                     </div>
                     <div class="card-mein-sub" *ngIf="!isPositive(this.usTaxFreeAmount - this.dataService.userData.income * 12)">
-                        Pozostała kwota wolna: {{ 0 | number : '1.2-2' }} pln
+                        Pozostała kwota wolna: {{ 0 | number : '1.2-2' }} zł
                     </div>
                     <mat-divider></mat-divider>
                     <div class="card-mein-sub">
-                        Nadplata podatku (msc): {{this.usPodatekDoZwrotuMonth | number : '1.2-2' }} pln
+                        Nadplata podatku (msc): {{this.usPodatekDoZwrotuMonth | number : '1.2-2' }} zł
                     </div>
                     <div class="card-mein-sub">
-                        Nadplata podatku (rok): {{this.usPodatekDoZwrotu | number : '1.2-2' }} pln
+                        Nadplata podatku (rok): {{this.usPodatekDoZwrotu | number : '1.2-2' }} zł
                     </div>
                 </div>
                 <div class="col">
@@ -338,7 +339,7 @@
                 <div class="card-mein-caption">Urząd skarbowy:</div>
                 <div class="col">
                     <div class="card-mein-mieso">
-                        {{this.usVatToPay | number : '1.2-2' }} PLN VAT
+                        {{this.usVatToPay | number : '1.2-2' }} zł VAT
                     </div>
                 </div>
                 <div class="col">
