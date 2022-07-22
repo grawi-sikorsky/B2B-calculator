@@ -118,7 +118,12 @@
 .wyniki-headers-accordion .mat-form-field + .mat-form-field {
   margin-left: 8px;
 }
-
+.accordion-wyniki-header{
+    background-color: #ebf6fdaf!important;
+}
+.accordion-wyniki-header:hover{
+    background-color:#e8f4fcaf!important;
+}
 /* RESULTS ACC */
 .results{
     margin-top: 20px;
@@ -132,7 +137,7 @@
     text-align: center;
     border-radius: 15px;
     border-width: 4px;
-    border-color: rgba(153, 214, 255, 0.445);
+    border-color: #d6efffaf!important;
     border-style: solid;
-    background-color: rgba(118, 193, 243, 0.445);
+    background-color: #e0f2fdaf!important;
 }

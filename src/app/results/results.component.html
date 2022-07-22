@@ -8,7 +8,7 @@
 
             <!-- PRZYCHOD ZONE -->
             <mat-expansion-panel>
-                <mat-expansion-panel-header class="accordion-income-header">
+                <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> Przychód: </mat-panel-title>
                     <mat-panel-description> {{ this.dataService.userData.income | number }} PLN netto <mat-icon>monetization_on</mat-icon>
                     </mat-panel-description>
@@ -46,7 +46,7 @@
 
             <!-- NA REKE ZONE -->
             <mat-expansion-panel expanded>
-                <mat-expansion-panel-header class="accordion-us-header">
+                <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> Na czysto: </mat-panel-title>
                     <mat-panel-description> {{this.netSalary | number : '1.2-2' }} PLN <mat-icon>account_balance</mat-icon>
                     </mat-panel-description>
@@ -72,7 +72,7 @@
 
             <!-- US ZONE -->
             <mat-expansion-panel>
-                <mat-expansion-panel-header class="accordion-outcome-header">
+                <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> US: </mat-panel-title>
                     <mat-panel-description> {{this.usPodatekMonthNoTaxFree | number : '1.2-2' }} PLN <mat-icon>point_of_sale</mat-icon>
                     </mat-panel-description>
@@ -113,7 +113,7 @@
 
             <!-- US VAT ZONE -->
             <mat-expansion-panel>
-                <mat-expansion-panel-header class="accordion-outcome-header">
+                <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> US VAT: </mat-panel-title>
                     <mat-panel-description> {{this.usVatToPay | number : '1.2-2' }} PLN VAT <mat-icon>point_of_sale</mat-icon>
                     </mat-panel-description>
@@ -140,7 +140,7 @@
 
             <!-- ZUS ZONE -->
             <mat-expansion-panel>
-                <mat-expansion-panel-header class="accordion-outcome-header">
+                <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> ZUS: </mat-panel-title>
                     <mat-panel-description> {{this.zusSuma | number : '1.2-2' }} PLN <mat-icon>point_of_sale</mat-icon>
                     </mat-panel-description>
@@ -172,7 +172,7 @@
 
             <!-- OUTCOME ZONE -->
             <mat-expansion-panel>
-                <mat-expansion-panel-header class="accordion-outcome-header">
+                <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> Wydatki: </mat-panel-title>
                     <mat-panel-description> {{this.outcomeAmount | number :'1.2-2' }} PLN netto <mat-icon>point_of_sale</mat-icon>
                     </mat-panel-description>
