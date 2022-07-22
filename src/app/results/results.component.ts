@@ -13,11 +13,26 @@ export class ResultsComponent implements OnInit {
 
     ngOnInit(): void {
         this.dataService.currentUserData.subscribe(data => {
-            console.log("Result:");
-            // localStorage
             this.doTheMath();
-
         })
+        
+        // MOBILE
+        this.isMobile = this.getIsMobile();
+        window.onresize = () => {
+            this.isMobile = this.getIsMobile();
+        };
+    }
+
+    isMobile = false;
+    getIsMobile(): boolean {
+        const w = document.documentElement.clientWidth;
+        const breakpoint = 992;
+        console.log(w);
+        if (w < breakpoint) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // ZUS
