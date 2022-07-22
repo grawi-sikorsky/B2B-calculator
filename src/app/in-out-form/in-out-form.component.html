@@ -1,7 +1,7 @@
 <div class="row" *ngIf="isMobile === false">
     <!-- INCOME ZONE -->
     <div class="col">
-        <mat-accordion class="example-headers-align">
+        <mat-accordion class="input-headers-accordion">
             <mat-expansion-panel expanded>
                 <mat-expansion-panel-header class="accordion-income-header">
                     <mat-panel-title> Przychód: </mat-panel-title>
@@ -15,7 +15,7 @@
         </mat-accordion>
 
         <!-- US ZUS ZONE -->
-        <mat-accordion class="example-headers-align">
+        <mat-accordion class="input-headers-accordion">
             <mat-expansion-panel expanded>
                 <mat-expansion-panel-header class="accordion-us-header">
                     <mat-panel-title> Ustawienia podatków / ZUS: </mat-panel-title>
@@ -31,7 +31,7 @@
 
     <!-- OUTCOME ZONE -->
     <div class="col">
-        <mat-accordion class="example-headers-align">
+        <mat-accordion class="input-headers-accordion">
             <mat-expansion-panel expanded>
                 <mat-expansion-panel-header class="accordion-outcome-header">
                     <mat-panel-title> Wydatki: </mat-panel-title>
@@ -49,7 +49,7 @@
 <div class="row" *ngIf="isMobile === true">
     
     <div class="col">
-        <mat-accordion class="example-headers-align">
+        <mat-accordion class="input-headers-accordion">
 
             <!-- INCOME ZONE -->
             <mat-expansion-panel expanded>
