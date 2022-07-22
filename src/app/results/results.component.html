@@ -1,5 +1,145 @@
+<div class="row" *ngIf="isMobile === true">
+    
+    <div class="col">
+        <mat-accordion class="example-headers-align">
+
+            <!-- PRZYCHOD ZONE -->
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header class="accordion-income-header">
+                    <mat-panel-title> Przychód: </mat-panel-title>
+                    <mat-panel-description> {{ this.dataService.userData.income | number }} PLN netto <mat-icon>monetization_on</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="card-mein-mieso">
+                            {{ this.dataService.userData.income | number }} PLN netto
+                        </div>
+                        <div class="card-mein-sub">
+                            {{ (this.dataService.userData.income * 1.23) | number : '1.2-2' }} PLN brutto
+                        </div>
+                        <div class="card-mein-sub">
+                            {{ this.usVatNaliczony | number :'1.2-2' }} PLN VAT
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card-mein-caption"></div>
+                        <div class="card-mein-mieso">
+                            <div class="card-mein-sub">
+                                {{ (this.dataService.userData.income * 12) | number : '1.2-2' }} PLN netto rocznie
+                            </div>
+                            <div class="card-mein-sub">
+                                ~ {{ (this.dataService.userData.income / 24) | number : '1.2-2' }} PLN netto dziennie
+                            </div>
+                            <div class="card-mein-sub">
+                                ~ {{ (this.dataService.userData.income /24 / 8) | number : '1.2-2' }} PLN netto na godzinę
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </mat-expansion-panel>
+
+            <!-- NA REKE ZONE -->
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header class="accordion-us-header">
+                    <mat-panel-title> Ustawienia podatków / ZUS: </mat-panel-title>
+                    <mat-panel-description> Podatki oraz stawki ZUS <mat-icon>account_balance</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div class="col">
+                    <div class="card-mein card-profit">
+                        <div class="card-mein-caption">Na czysto: </div>
+                        <div class="card-mein-mieso" *ngIf="isPositive(this.netSalary)">
+                            {{this.netSalary | number : '1.2-2' }} PLN
+                        </div>
+                        <div class="card-mein-mieso" *ngIf="!isPositive(this.netSalary)">
+                            {{this.netSalary | number : '1.2-2' }} PLN <mat-icon>sentiment_very_dissatisfied</mat-icon>
+                        </div>
+                        <div class="card-mein-sub">
+                            {{ (this.netSalary * 1.23) | number : '1.2-2' }} PLN brutto
+                        </div>
+                        <div class="card-mein-sub">
+                            {{ this.usVatNaliczony | number :'1.2-2' }} PLN VAT
+                        </div>
+                    </div>
+                </div>
+
+            </mat-expansion-panel>
+
+
+            <!-- US ZONE -->
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header class="accordion-outcome-header">
+                    <mat-panel-title> Wydatki: </mat-panel-title>
+                    <mat-panel-description> Podaj swoje wydatki netto <mat-icon>point_of_sale</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <app-outcome-form></app-outcome-form>
+
+            </mat-expansion-panel>
+
+            <!-- ZUS ZONE -->
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header class="accordion-outcome-header">
+                    <mat-panel-title> Wydatki: </mat-panel-title>
+                    <mat-panel-description> Podaj swoje wydatki netto <mat-icon>point_of_sale</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <app-outcome-form></app-outcome-form>
+
+            </mat-expansion-panel>
+
+            <!-- WYDATKI ZONE -->
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header class="accordion-outcome-header">
+                    <mat-panel-title> Wydatki: </mat-panel-title>
+                    <mat-panel-description> {{this.outcomeAmount | number :'1.2-2' }} PLN netto <mat-icon>point_of_sale</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div class="col">
+                    <div class="card-mein">
+                        <div class="card-mein-caption">Wydatki:</div>
+                        <div class="card-mein-mieso">
+                            {{this.outcomeAmount | number :'1.2-2' }} PLN netto
+                        </div>
+                        <div class="card-mein-sub">
+                            VAT do odliczenia: {{this.usVatKoszty | number : '1.2-2' }} pln
+                        </div>
+                    </div>
+                </div>
+
+            </mat-expansion-panel>
+
+            <!-- OUTCOME ZONE -->
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header class="accordion-outcome-header">
+                    <mat-panel-title> Wydatki: </mat-panel-title>
+                    <mat-panel-description> {{this.outcomeAmount | number :'1.2-2' }} PLN netto <mat-icon>point_of_sale</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div class="card-mein-mieso">
+                    {{this.outcomeAmount | number :'1.2-2' }} PLN netto
+                </div>
+                <div class="card-mein-sub">
+                    VAT do odliczenia: {{this.usVatKoszty | number : '1.2-2' }} pln
+                </div>
+
+            </mat-expansion-panel>
+
+        </mat-accordion>
+    </div> 
+</div>
+
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col">
         <div class="card-mein card-income">
             <div class="row">
                 <div class="card-mein-caption">Przychód:</div>
