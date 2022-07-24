@@ -152,7 +152,28 @@ export class ResultsComponent implements OnInit {
         }
         // SKALA
         else if (this.dataService.userData.taxFormPicked === 1) {
-            // this.usPodatek = 
+            // Pierwszy prog < 120 000 = 12%
+            if( this.dataService.userData.income * 12 <= 120000)
+            {
+                this.usPodatekYear = (((this.dataService.userData.income * 12) - (this.usFullTaxFreeAmount)) * 0.12);
+                this.usPodatekMonth = this.usPodatekYear / 12;
+
+                // NO TAX FREE
+                this.usPodatekYearNoTaxFree = ((this.dataService.userData.income * 12) * 0.12);
+                this.usPodatekMonthNoTaxFree = this.usPodatekYearNoTaxFree / 12;
+            }
+            // Drugi prog > 120 000 = 32%
+            else if(this.dataService.userData.income * 12 > 120000){
+                this.usPodatekYear = 120000 * 0.12;
+                this.usPodatekYear += (((this.dataService.userData.income * 12) - (this.usFullTaxFreeAmount + 120000)) * 0.32);
+                this.usPodatekMonth = this.usPodatekYear / 12;
+
+                // NO TAX FREE
+                this.usPodatekYearNoTaxFree = 120000 * 0.12;
+                this.usPodatekYearNoTaxFree += (((this.dataService.userData.income * 12) - 120000) * 0.32);
+                this.usPodatekMonthNoTaxFree = this.usPodatekYearNoTaxFree / 12;
+            }
+            
         }
         // LINIOWO
         else if (this.dataService.userData.taxFormPicked === 2) {
