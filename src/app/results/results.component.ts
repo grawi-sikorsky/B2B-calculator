@@ -165,7 +165,7 @@ export class ResultsComponent implements OnInit {
             // Drugi prog > 120 000 = 32%
             else if(this.dataService.userData.income * 12 > 120000){
                 this.usPodatekYear = 120000 * 0.12;
-                this.usPodatekYear += (((this.dataService.userData.income * 12) - (this.usFullTaxFreeAmount + 120000)) * 0.32);
+                this.usPodatekYear += (((this.dataService.userData.income * 12) - (this.usFullTaxFreeAmount)) * 0.32);
                 this.usPodatekMonth = this.usPodatekYear / 12;
 
                 // NO TAX FREE
@@ -177,7 +177,12 @@ export class ResultsComponent implements OnInit {
         }
         // LINIOWO
         else if (this.dataService.userData.taxFormPicked === 2) {
-
+            // TAX FREE
+            this.usPodatekYear = (((this.dataService.userData.income * 12) - (this.usFullTaxFreeAmount)) * 0.19);
+            this.usPodatekMonth = this.usPodatekYear / 12;
+            // NO TAX FREE
+            this.usPodatekYearNoTaxFree = ((this.dataService.userData.income * 12) * 0.19);
+            this.usPodatekMonthNoTaxFree = this.usPodatekYearNoTaxFree / 12;
         }
 
         // NADPLATA / ZWROT PODATKU

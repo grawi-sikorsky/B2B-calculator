@@ -43,6 +43,7 @@
         </mat-label>
     </mat-form-field>
 
-    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.taxFree" class="zus-chorobowe"> <mat-icon style="vertical-align: middle;">free_breakfast</mat-icon> Kwota wolna od podatku (30 000 pln)</mat-checkbox>
+    <mat-checkbox *ngIf="this.dataService.userData.taxFormPicked !== 2" (input)="onChange()" [(ngModel)]="this.dataService.userData.taxFree" class="zus-chorobowe"> <mat-icon style="vertical-align: middle;">free_breakfast</mat-icon> Kwota wolna od podatku (30 000 pln)</mat-checkbox>
+    <mat-checkbox *ngIf="this.dataService.userData.taxFormPicked === 2" disabled (input)="onChange()" [(ngModel)]="this.dataService.userData.taxFree" class="zus-chorobowe"> <mat-icon style="vertical-align: middle;">free_breakfast</mat-icon> Kwota wolna od podatku (30 000 pln)</mat-checkbox>
     <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.bigFamily" class="zus-chorobowe"> <mat-icon style="vertical-align: middle;">pregnant_woman</mat-icon> Ulga dla rodzin 4+ (85 528 pln)</mat-checkbox>
 </div>

@@ -100,8 +100,8 @@
 
                     </div>
                     <div class="col">
-                        <div class="card-mein-sub">
-                            Nadplata podatku (msc): {{this.usPodatekDoZwrotuMonth | number : '1.2-2' }} zł
+                        <div class="card-mein-sub" #tooltip="matTooltip" matTooltip="Wysokość nadpłaconego podatku miesięcznie (podatek - kwota wolna)" matTooltipPosition="right">
+                            Nadplata podatku (msc): {{this.usPodatekDoZwrotuMonth | number : '1.2-2' }} zł 
                         </div>
                         <div class="card-mein-sub">
                             Nadplata podatku (rok): {{this.usPodatekDoZwrotu | number : '1.2-2' }} zł

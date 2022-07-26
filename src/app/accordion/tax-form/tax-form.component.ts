@@ -14,6 +14,13 @@ export class TaxFormComponent implements OnInit {
   }
   
   onChange() {
+    this.checkFormFields();
     this.dataService.updateUserData(this.dataService.userData);
+  }
+
+  checkFormFields(){
+    if(this.dataService.userData.taxFormPicked === 2){
+      this.dataService.userData.taxFree = false;
+    }
   }
 }
