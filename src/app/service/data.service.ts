@@ -45,7 +45,4 @@ export class DataService {
       this.userData = JSON.parse(localStorage.getItem("userData")!);
     }
   }
-
-
-
 }
