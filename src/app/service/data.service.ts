@@ -36,11 +36,6 @@ export class DataService {
   }
 
   prepareData() {
-    this.userData.zusProfile.push(new ZusProfile("Lubię duży ZUS'ik", 1500));
-    this.userData.zusProfile.push(new ZusProfile("Lubię mały ZUS'ik (2 lata)", 750));
-    this.userData.zusProfile.push(new ZusProfile("ZUS'ik plusik (do 120k / rok)", 500));
-    this.userData.zusProfile.push(new ZusProfile("ZUS'iku nie płacę", 0));
-
     if(localStorage.getItem("userData") !== null){
       this.userData = JSON.parse(localStorage.getItem("userData")!);
     }
