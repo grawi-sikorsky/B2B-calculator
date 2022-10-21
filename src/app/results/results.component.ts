@@ -56,6 +56,7 @@ export class ResultsComponent implements OnInit {
 
     // OUTCOME
     outcomeAmount: number = 0;
+    outcomeAmountNet: number = 0;
 
     // PROFIT
     netSalary: number = 0;
@@ -219,10 +220,12 @@ export class ResultsComponent implements OnInit {
 
     calculateOutcomes() {
         this.outcomeAmount = 0;
+        this.outcomeAmountNet = 0;
         this.usVatKoszty = 0;
 
         for (let i = 0; i < this.dataService.userData.outcomeList.length; i++) {
             if (this.dataService.userData.outcomeList[i].netto !== null && this.dataService.userData.outcomeList[i].netto !== undefined) {
+                this.outcomeAmountNet += this.dataService.userData.outcomeList[i].netto!;
                 this.outcomeAmount += this.dataService.userData.outcomeList[i].netto! * 1.23 - (this.dataService.userData.outcomeList[i].netto! * 0.23 * (this.dataService.userData.outcomeList[i].vatReduce / 100));
 
                 this.dataService.userData.outcomeList[i].vat = this.dataService.userData.outcomeList[i].netto! * 0.23 * (this.dataService.userData.outcomeList[i].vatReduce / 100);

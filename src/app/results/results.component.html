@@ -8,7 +8,9 @@
             <mat-expansion-panel>
                 <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> Przychód: </mat-panel-title>
-                    <mat-panel-description> <strong>{{ this.dataService.userData.income | number }} zł netto </strong> <mat-icon>monetization_on</mat-icon>
+                    <mat-panel-description> <strong>{{ this.dataService.userData.income | number }} zł netto</strong>
+                        {{this.dataService.userData.income * 1.23}} zł brutto
+                        <mat-icon>monetization_on</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 
@@ -71,16 +73,23 @@
             <!-- US ZONE -->
             <mat-expansion-panel>
                 <mat-expansion-panel-header class="accordion-wyniki-header">
-                    <mat-panel-title> US: </mat-panel-title>
-                    <mat-panel-description> <strong>{{this.usPodatekMonthNoTaxFree | number : '1.2-2' }} zł </strong><mat-icon>account_balance</mat-icon>
+                    <mat-panel-title> US dochodowy: </mat-panel-title>
+                    <mat-panel-description> 
+                        <strong>{{this.usPodatekMonthNoTaxFree | number : '1.2-2' }} zł </strong>
+                        <span>Zwrot podatku / msc: <strong> {{this.usPodatekDoZwrotuMonth | number : '1.2-2' }} zł </strong></span>
+                        <span>Zwrot podatku / rok: <strong> {{this.usPodatekDoZwrotu | number : '1.2-2' }} zł </strong></span>
+                        <mat-icon>account_balance</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="row">
                     <div class="col">
                         <div class="card-mein-mieso">
-                            {{this.usPodatekMonthNoTaxFree | number : '1.2-2' }} zł
+                            
                         </div>
-                        <div class="card-mein-caption-divider">Podatek dochodowy:</div>
+                        <div class="card-mein-caption-divider">
+                            Podatek dochodowy: {{this.usPodatekMonthNoTaxFree | number : '1.2-2' }} zł
+                        </div>
+                        <mat-divider></mat-divider>
                         <div class="card-mein-sub">
                             Podatek za cały rok: {{this.usPodatekYear | number : '1.2-2' }} zł
                         </div>
@@ -113,24 +122,23 @@
             <mat-expansion-panel>
                 <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> US VAT: </mat-panel-title>
-                    <mat-panel-description><strong> {{this.usVatToPay | number : '1.2-2' }} zł VAT </strong><mat-icon>account_balance</mat-icon>
+                    <mat-panel-description>
+                        <strong> {{this.usVatToPay | number : '1.2-2' }} zł VAT </strong>
+                        VAT odliczony: {{this.usVatKoszty | number : '1.2-2' }} zł
+                        <mat-icon>account_balance</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
                 <div class="col">
-                    <div class="card-mein-mieso">
-                        {{this.usVatToPay | number : '1.2-2' }} zł VAT
-                    </div>
-                </div>
-                <div class="col">
                     <div class="card-mein-sub">
-                        VAT do zapłaty: {{this.usVatToPay | number : '1.2-2' }}
+                        VAT naliczony: {{this.usVatNaliczony | number : '1.2-2' }} zł
                     </div>
                     <div class="card-mein-sub">
-                        VAT naliczony: {{this.usVatNaliczony | number : '1.2-2' }}
+                        VAT do odliczenia: {{this.usVatKoszty | number : '1.2-2' }} zł
                     </div>
+                    <mat-divider></mat-divider>
                     <div class="card-mein-sub">
-                        VAT do odliczenia: {{this.usVatKoszty | number : '1.2-2' }}
+                        <strong> VAT do zapłaty: {{this.usVatToPay | number : '1.2-2' }} zł </strong>
                     </div>
                 </div>
 
@@ -140,18 +148,19 @@
             <mat-expansion-panel>
                 <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> ZUS: </mat-panel-title>
-                    <mat-panel-description> <strong>{{this.zusSuma | number : '1.2-2' }} zł </strong><mat-icon>account_balance</mat-icon>
+                    <mat-panel-description> 
+                        <strong>{{this.zusSuma | number : '1.2-2' }} zł </strong>
+                        Zdrowotna: {{this.zusZdrowotna | number : '1.2-2' }} zł
+                        <mat-icon>account_balance</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
-                <div class="col">
-                    <div class="card-mein-mieso">
-                        {{this.zusSuma | number : '1.2-2' }} zł
-                    </div>
-                    <div class="card-mein-sub">
-                        Do odliczenia: {{ (this.zusZdrowotna / 2 ) * 0.12 | number : '1.2-2' }} zł
-                    </div>
+
+                <div class="card-mein-mieso">
+                    <strong>ZUS do zapłaty: {{this.zusSuma | number : '1.2-2' }} zł </strong>
                 </div>
+                <mat-divider></mat-divider>
+                W tym:
                 <div class="col">
                     <div class="card-mein-mieso">
                         <div class="card-mein-sub">
@@ -159,6 +168,9 @@
                         </div>
                         <div class="card-mein-sub">
                             Zdrowotna: {{this.zusZdrowotna | number : '1.2-2' }} zł
+                        </div>
+                        <div class="card-mein-sub">
+                            Zdrowotna do odliczenia: {{ (this.zusZdrowotna / 2 ) * 0.12 | number : '1.2-2' }} zł
                         </div>
                         <div class="card-mein-sub">
                             Chorobowe: {{this.zusChorobowa | number : '1.2-2' }} zł
@@ -172,15 +184,22 @@
             <mat-expansion-panel>
                 <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> Wydatki: </mat-panel-title>
-                    <mat-panel-description><strong> {{this.outcomeAmount | number :'1.2-2' }} zł netto </strong><mat-icon>point_of_sale</mat-icon>
+                    <mat-panel-description>
+                        <strong> {{this.outcomeAmount | number :'1.2-2' }} zł </strong>
+                        
+                        <mat-icon>point_of_sale</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
                 <div class="card-mein-mieso">
-                    {{this.outcomeAmount | number :'1.2-2' }} zł netto                 
+                    Suma osobistych wydatków: {{this.outcomeAmount | number :'1.2-2' }} zł                 
+                </div>
+                <mat-divider></mat-divider>
+                <div class="card-mein-sub">
+                    W tym VAT 23% do budżetu: {{this.outcomeAmount - this.outcomeAmountNet | number : '1.2-2' }} zł brutto
                 </div>
                 <div class="card-mein-sub">
-                    {{this.outcomeAmount * 1.23 | number : '1.2-2' }} zł brutto
+                    Z którego odliczysz: {{this.usVatKoszty | number : '1.2-2' }} zł brutto
                 </div>
 
 
