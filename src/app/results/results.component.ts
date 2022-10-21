@@ -223,7 +223,7 @@ export class ResultsComponent implements OnInit {
 
         for (let i = 0; i < this.dataService.userData.outcomeList.length; i++) {
             if (this.dataService.userData.outcomeList[i].netto !== null && this.dataService.userData.outcomeList[i].netto !== undefined) {
-                this.outcomeAmount += this.dataService.userData.outcomeList[i].netto!;
+                this.outcomeAmount += this.dataService.userData.outcomeList[i].netto! * 1.23 - (this.dataService.userData.outcomeList[i].netto! * 0.23 * (this.dataService.userData.outcomeList[i].vatReduce / 100));
 
                 this.dataService.userData.outcomeList[i].vat = this.dataService.userData.outcomeList[i].netto! * 0.23 * (this.dataService.userData.outcomeList[i].vatReduce / 100);
                 this.usVatKoszty += this.dataService.userData.outcomeList[i].vat;
