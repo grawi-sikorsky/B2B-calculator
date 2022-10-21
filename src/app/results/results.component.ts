@@ -60,6 +60,7 @@ export class ResultsComponent implements OnInit {
 
     // PROFIT
     netSalary: number = 0;
+    netNadwyzka: number = 0;
 
     // UTILS
     isPositive(val: number): boolean {
@@ -215,7 +216,8 @@ export class ResultsComponent implements OnInit {
     }
 
     calculateNetSalary() {
-        this.netSalary = this.dataService.userData.income - (this.usPodatekMonth + this.zusSuma + this.outcomeAmount);
+        this.netNadwyzka = this.dataService.userData.income - (this.usPodatekMonth + this.zusSuma + this.outcomeAmount);
+        this.netSalary = this.dataService.userData.income - (this.usPodatekMonth + this.zusSuma);
     }
 
     calculateOutcomes() {

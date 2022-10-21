@@ -9,7 +9,7 @@
                 <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> Przychód: </mat-panel-title>
                     <mat-panel-description> <strong>{{ this.dataService.userData.income | number }} zł netto</strong>
-                        {{this.dataService.userData.income * 1.23}} zł brutto
+                        <span><strong>{{this.dataService.userData.income * 1.23}}</strong> zł brutto</span>
                         <mat-icon>monetization_on</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
@@ -47,23 +47,23 @@
             <!-- NA REKE ZONE -->
             <mat-expansion-panel>
                 <mat-expansion-panel-header class="accordion-wyniki-header">
-                    <mat-panel-title> Na czysto: </mat-panel-title>
-                    <mat-panel-description> <strong>{{this.netSalary | number : '1.2-2' }} zł </strong><mat-icon>mood</mat-icon>
+                    <mat-panel-title> Na rękę: </mat-panel-title>
+                    <mat-panel-description> 
+                        <strong>{{this.netSalary | number : '1.2-2' }} zł </strong>
+                        <span>Na czysto: <strong>{{this.netNadwyzka | number : '1.2-2' }} zł</strong></span>
+                        <mat-icon>mood</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
 
                 <div class="col">
-                    <div class="card-mein-mieso" *ngIf="isPositive(this.netSalary)">
-                        {{this.netSalary | number : '1.2-2' }} zł
+                    <div class="card-mein-mieso">
+                        <strong>Na rękę otrzymasz: {{this.netSalary | number : '1.2-2' }} zł </strong>
                     </div>
-                    <div class="card-mein-mieso" *ngIf="!isPositive(this.netSalary)">
-                        {{this.netSalary | number : '1.2-2' }} zł <mat-icon>sentiment_very_dissatisfied</mat-icon>
+                    <div class="card-mein-sub" *ngIf="isPositive(this.netNadwyzka)">
+                        Na czysto pozostaje: {{ this.netNadwyzka | number : '1.2-2' }} zł
                     </div>
-                    <div class="card-mein-sub">
-                        {{ (this.netSalary * 1.23) | number : '1.2-2' }} zł brutto
-                    </div>
-                    <div class="card-mein-sub">
-                        {{ this.usVatNaliczony | number :'1.2-2' }} zł VAT
+                    <div class="card-mein-sub" *ngIf="!isPositive(this.netNadwyzka)">
+                        Jesteś w plecy: {{ this.netNadwyzka | number : '1.2-2' }} zł
                     </div>
                 </div>
 
@@ -124,7 +124,7 @@
                     <mat-panel-title> US VAT: </mat-panel-title>
                     <mat-panel-description>
                         <strong> {{this.usVatToPay | number : '1.2-2' }} zł VAT </strong>
-                        VAT odliczony: {{this.usVatKoszty | number : '1.2-2' }} zł
+                        <span>VAT odliczony: <strong>{{this.usVatKoszty | number : '1.2-2' }} zł </strong></span>
                         <mat-icon>account_balance</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
@@ -150,7 +150,7 @@
                     <mat-panel-title> ZUS: </mat-panel-title>
                     <mat-panel-description> 
                         <strong>{{this.zusSuma | number : '1.2-2' }} zł </strong>
-                        Zdrowotna: {{this.zusZdrowotna | number : '1.2-2' }} zł
+                        <span>Zdrowotna: <strong>{{this.zusZdrowotna | number : '1.2-2' }} zł</strong></span>
                         <mat-icon>account_balance</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
