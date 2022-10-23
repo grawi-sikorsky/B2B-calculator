@@ -17,6 +17,9 @@
 .mat-expansion-panel-header.mat-expanded{
     margin-bottom: 7px!important;
 }
+.mat-expansion-panel-header{
+    font-size: 11px!important;
+}
 .accordion-income-header{
     background-color: #e6f0e6!important;
 }
