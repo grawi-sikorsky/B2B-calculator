@@ -7,8 +7,22 @@
   justify-content: space-between;
   align-items: center;
 }
+@media only screen and (max-width: 640px) {
+  .mat-expansion-panel-header{
+    font-size: 11px!important;
+  }
+}
+@media only screen and (max-width: 998px) {
+  .mat-expansion-panel-header{
+    font-size: 12px!important;
+  }
+}
 .mat-expansion-panel-header{
-  font-size: 11px!important;
+  font-size: 13px!important;
+  height: 35px;
+}
+.mat-expansion-panel-header.mat-expanded{
+  height: 48px;
 }
 .wyniki-headers-accordion .mat-form-field + .mat-form-field {
   margin-left: 8px;

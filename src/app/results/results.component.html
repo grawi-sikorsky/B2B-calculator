@@ -9,8 +9,8 @@
                 <mat-expansion-panel-header class="accordion-wyniki-header">
                     <mat-panel-title> Przychód: </mat-panel-title>
                     <mat-panel-description> 
-                        <span><strong>{{ this.dataService.userData.income | number }} zł</strong> netto</span>
-                        <span><strong>{{this.dataService.userData.income * 1.23}} zł</strong> brutto</span>
+                        <span><strong>{{ this.dataService.userData.income | number : '1.2-2' }} zł</strong> netto</span>
+                        <span><strong>{{this.dataService.userData.income * 1.23 | number : '1.2-2'}} zł</strong> brutto</span>
                         <mat-icon>monetization_on</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
