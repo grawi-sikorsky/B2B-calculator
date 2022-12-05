@@ -2,7 +2,10 @@
     <!-- ZUS -->
     <mat-form-field appearance="fill">
         <mat-select (selectionChange)="onChange()" required [(value)]="this.dataService.userData.zusPicked">
-            <mat-option *ngFor="let zus of this.dataService.userData.zusProfile; let index = index" [value]="index">{{zus.zusType}}</mat-option>
+            <mat-option [value]=0>Lubię duży ZUS'ik</mat-option>
+            <mat-option [value]=1>Lubię mały ZUS'ik (2 lata)</mat-option>
+            <mat-option [value]=2>ZUS'ik plusik (do 120k / rok)</mat-option>
+            <mat-option [value]=3>A ja ZUS'iku nie płacę..</mat-option>
         </mat-select>
         <mat-label>
             <mat-icon>favorite</mat-icon> <b> Kochany ZUS'ik - jaki lubisz? </b>
@@ -43,7 +46,7 @@
         </mat-label>
     </mat-form-field>
 
-    <mat-checkbox *ngIf="this.dataService.userData.taxFormPicked !== 2" (input)="onChange()" [(ngModel)]="this.dataService.userData.taxFree" class="zus-chorobowe"> <mat-icon style="vertical-align: middle;">free_breakfast</mat-icon> Kwota wolna od podatku (30 000 pln)</mat-checkbox>
-    <mat-checkbox *ngIf="this.dataService.userData.taxFormPicked === 2" disabled (input)="onChange()" [(ngModel)]="this.dataService.userData.taxFree" class="zus-chorobowe"> <mat-icon style="vertical-align: middle;">free_breakfast</mat-icon> Kwota wolna od podatku (30 000 pln)</mat-checkbox>
-    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.bigFamily" class="zus-chorobowe"> <mat-icon style="vertical-align: middle;">pregnant_woman</mat-icon> Ulga dla rodzin 4+ (85 528 pln)</mat-checkbox>
+    <mat-checkbox *ngIf="this.dataService.userData.taxFormPicked !== 0" (input)="onChange()" [(ngModel)]="this.dataService.userData.taxFree" class="zus-chorobowe"> <mat-icon style="vertical-align: middle;">free_breakfast</mat-icon> Kwota wolna od podatku (30 000 pln)</mat-checkbox>
+    <mat-checkbox *ngIf="this.dataService.userData.taxFormPicked === 0" disabled (input)="onChange()" [(ngModel)]="this.dataService.userData.taxFree" class="zus-chorobowe"><span matTooltip="Nie dla psa kiełbasa (ryczałtowcy nie mogo)" matTooltipPosition="right"><mat-icon style="vertical-align: middle;">free_breakfast</mat-icon> Kwota wolna od podatku (30 000 pln)</span></mat-checkbox>
+    <mat-checkbox (input)="onChange()" [(ngModel)]="this.dataService.userData.bigFamily" class="zus-chorobowe"><span matTooltip="Big familiy - small bonus" matTooltipPosition="right"><mat-icon style="vertical-align: middle;">pregnant_woman</mat-icon> Ulga dla rodzin 4+ (85 528 pln)</span></mat-checkbox>
 </div>

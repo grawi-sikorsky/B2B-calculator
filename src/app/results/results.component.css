@@ -7,14 +7,35 @@
   justify-content: space-between;
   align-items: center;
 }
+@media only screen and (max-width: 640px) {
+  .mat-expansion-panel-header{
+    font-size: 11px!important;
+  }
+}
+@media only screen and (max-width: 998px) {
+  .mat-expansion-panel-header{
+    font-size: 12px!important;
+  }
+}
+.mat-expansion-panel-header{
+  font-size: 13px!important;
+  height: 35px;
+}
+.mat-expansion-panel-header.mat-expanded{
+  height: 48px;
+}
 .wyniki-headers-accordion .mat-form-field + .mat-form-field {
   margin-left: 8px;
 }
+.mat-expansion-panel-header-title{
+  flex-grow: 0.45!important;
+  margin-right: 2px;
+}
 .accordion-wyniki-header{
-    background-color: #F4F1DE!important;
+    background-color: #eaf1f3!important;
 }
 .accordion-wyniki-header:hover{
-    background-color:#f5f0d0!important;
+    background-color:#e1eaf3!important;
 }
 /* RESULTS ACC */
 .results{

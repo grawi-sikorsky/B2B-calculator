@@ -16,12 +16,27 @@
 }
 .mat-expansion-panel-header.mat-expanded{
     margin-bottom: 7px!important;
+    height: 48px;
+}
+@media only screen and (max-width: 640px) {
+    .mat-expansion-panel-header{
+      font-size: 11px!important;
+    }
+  }
+  @media only screen and (max-width: 998px) {
+    .mat-expansion-panel-header{
+      font-size: 12px!important;
+    }
+  }
+.mat-expansion-panel-header{
+    font-size: 13px!important;
+    height: 35px;
 }
 .accordion-income-header{
-    background-color: #81B29A!important;
+    background-color: #e6f0e6!important;
 }
 .accordion-income-header:hover{
-    background-color:#629c80 !important;
+    background-color:#d7ecd7 !important;
 }
 .accordion-us-header{
     background-color: #fcdfcfa2!important;
