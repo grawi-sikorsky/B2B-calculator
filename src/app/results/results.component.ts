@@ -56,9 +56,11 @@ export class ResultsComponent implements OnInit {
 
     // OUTCOME
     outcomeAmount: number = 0;
+    outcomeAmountNet: number = 0;
 
     // PROFIT
     netSalary: number = 0;
+    netNadwyzka: number = 0;
 
     // UTILS
     isPositive(val: number): boolean {
@@ -214,16 +216,19 @@ export class ResultsComponent implements OnInit {
     }
 
     calculateNetSalary() {
-        this.netSalary = this.dataService.userData.income - (this.usPodatekMonth + this.zusSuma + this.outcomeAmount);
+        this.netNadwyzka = this.dataService.userData.income - (this.usPodatekMonth + this.zusSuma + this.outcomeAmount);
+        this.netSalary = this.dataService.userData.income - (this.usPodatekMonth + this.zusSuma);
     }
 
     calculateOutcomes() {
         this.outcomeAmount = 0;
+        this.outcomeAmountNet = 0;
         this.usVatKoszty = 0;
 
         for (let i = 0; i < this.dataService.userData.outcomeList.length; i++) {
             if (this.dataService.userData.outcomeList[i].netto !== null && this.dataService.userData.outcomeList[i].netto !== undefined) {
-                this.outcomeAmount += this.dataService.userData.outcomeList[i].netto!;
+                this.outcomeAmountNet += this.dataService.userData.outcomeList[i].netto!;
+                this.outcomeAmount += this.dataService.userData.outcomeList[i].netto! * 1.23 - (this.dataService.userData.outcomeList[i].netto! * 0.23 * (this.dataService.userData.outcomeList[i].vatReduce / 100));
 
                 this.dataService.userData.outcomeList[i].vat = this.dataService.userData.outcomeList[i].netto! * 0.23 * (this.dataService.userData.outcomeList[i].vatReduce / 100);
                 this.usVatKoszty += this.dataService.userData.outcomeList[i].vat;

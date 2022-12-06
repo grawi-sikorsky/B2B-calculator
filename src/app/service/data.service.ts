@@ -36,17 +36,8 @@ export class DataService {
   }
 
   prepareData() {
-    this.userData.zusProfile.push(new ZusProfile("Lubię duży ZUS'ik (lubię schylać się w więzieniu po mydełko)", 1500));
-    this.userData.zusProfile.push(new ZusProfile("Lubię mały ZUS'ik (2 lata)", 750));
-    this.userData.zusProfile.push(new ZusProfile("ZUS'ik plusik (120k / rok)", 500));
-    this.userData.zusProfile.push(new ZusProfile("Morawiecki to mój wuj (ZUS'iku nie płacę)", 0));
-
     if(localStorage.getItem("userData") !== null){
       this.userData = JSON.parse(localStorage.getItem("userData")!);
     }
   }
-
-
-
 }
-
