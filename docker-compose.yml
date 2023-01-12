@@ -4,8 +4,16 @@ services:
   b2b-front:
     image: chodzi/b2bcalculator:latest
     container_name: b2b-calculator
-    ports:
-      - "8100:80"
     volumes:
       - "/app/node_modules"
       - ".:/app"
+
+    environment:
+      VIRTUAL_HOST: b2b.grawires.pl
+      LETSENCRYPT_HOST: b2b.grawires.pl
+      LETSENCRYPT_EMAIL: your-email@grawires.pl
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
