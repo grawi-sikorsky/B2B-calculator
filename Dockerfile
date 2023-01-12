@@ -7,3 +7,4 @@ RUN npm run build --prod
 #stage 2
 FROM nginx:alpine
 COPY --from=node /app/dist/b2b-calculator /usr/share/nginx/html
+COPY /b2b.nginx.conf /etc/nginx/conf.d/nginx.conf
