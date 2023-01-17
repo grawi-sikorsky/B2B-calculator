@@ -7,12 +7,13 @@ import { AppComponent } from './app.component';
 import { MainViewComponent } from './main-view/main-view.component';
 import { ResultsComponent } from './results/results.component';
 import { DataService } from './service/data.service';
-import { MaterialModule } from './material.module';
+import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
 import { InOutFormComponent } from './in-out-form/in-out-form.component';
 import { IncomeFormComponent } from './accordion/income-form/income-form.component';
 import { TaxFormComponent } from './accordion/tax-form/tax-form.component';
 import { OutcomeFormComponent } from './accordion/outcome-form/outcome-form.component';
+import { FooterComponent } from './main-view/footer/footer.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { OutcomeFormComponent } from './accordion/outcome-form/outcome-form.comp
     InOutFormComponent,
     IncomeFormComponent,
     TaxFormComponent,
-    OutcomeFormComponent
+    OutcomeFormComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
