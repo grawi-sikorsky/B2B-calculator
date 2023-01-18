@@ -1,6 +1,8 @@
 # B2bCalculator
 Very Simple Angular project to calculate net salary with B2B contracts in IT.
-Live version: https://b2b-calculator-prod-b2b-calculator-caj6kl.mo2.mogenius.io/
+Live version: 
+https://b2b-calculator-prod-b2b-calculator-caj6kl.mo2.mogenius.io/
+https://b2b.grawires.pl/
 
 ## Development server
 
