@@ -1,7 +1,5 @@
-version: "3.7"
-
 services:
-  b2b-front:
+  b2b-calculator:
     image: chodzi/b2bcalculator:latest
     container_name: b2b-calculator
     volumes:
@@ -9,12 +7,13 @@ services:
       - ".:/app"
     restart: always
 
-    environment:
-      VIRTUAL_HOST: b2b.grawires.pl
-      LETSENCRYPT_HOST: b2b.grawires.pl
-      LETSENCRYPT_EMAIL: grawires@gmail.com
+#     environment:
+#       VIRTUAL_HOST: b2b.grawires.pl
+#       LETSENCRYPT_HOST: b2b.grawires.pl
+#       LETSENCRYPT_EMAIL: grawires@gmail.com
 
-networks:
-  default:
-    external:
-      name: nginx-proxy
+# networks:
+#   default:
+#     external:
+#       name: nginx-proxy
+a
