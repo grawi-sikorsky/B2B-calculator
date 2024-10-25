@@ -18,7 +18,7 @@ build:
     - docker tag $DOCKER_IMAGE $CI_REGISTRY_IMAGE:latest
     - docker push $DOCKER_IMAGE
   only:
-    - main  # Or your default branch
+    - develop  # Or your default branch
 
 deploy:
   stage: deploy
@@ -35,4 +35,4 @@ deploy:
       docker rm b2b-calculator || true &&
       docker run -d --name b2b-calculator -p 8080:80 $DOCKER_IMAGE"
   only:
-    - main
+    - develop
