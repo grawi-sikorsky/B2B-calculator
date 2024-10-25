@@ -3,7 +3,7 @@ name: Deploy b2b-calculator
 on:
   push:
     branches:
-      - main  # Run workflow on pushes to the main branch
+      - develop  # Run workflow on pushes to the main branch
 
 jobs:
   build-and-deploy:
