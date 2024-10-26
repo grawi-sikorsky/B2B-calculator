@@ -32,8 +32,8 @@ jobs:
         username: ${{ secrets.SERVER_SSH_USER }}
         password: ${{ secrets.SERVER_SSH_PASS }}
         script: |
-          docker pull chodzi/b2bcalculator:latest &&
-          docker stop b2b-calculator &&
+          docker pull chodzi/b2bcalculator:latest
+          docker stop b2b-calculator
           docker rm b2b-calculator
 
     - name: SSH into Server and Deploy
