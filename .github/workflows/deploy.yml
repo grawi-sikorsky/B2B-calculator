@@ -20,8 +20,8 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t chodzi/b2bcalculator:latest .
-        docker push chodzi/b2bcalculator:latest
+        sudo docker build -t chodzi/b2bcalculator:latest .
+        sudo docker push chodzi/b2bcalculator:latest
 
     - name: SSH into Server and Pull
       uses: appleboy/ssh-action@v1.1.0
