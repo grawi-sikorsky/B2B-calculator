@@ -16,5 +16,5 @@ services:
     image: chodzi/b2bcalculator:latest
     container_name: b2b-calculator
     ports:
-      - "8080:80"  # Expose on 8080 or any available port
+      - "6950:80"  # Expose on 8080 or any available port
     restart: unless-stopped
