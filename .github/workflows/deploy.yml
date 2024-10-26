@@ -33,6 +33,7 @@ jobs:
           host: ${{ secrets.SERVER_SSH_HOST }}
           port: ${{ secrets.SERVER_SSH_PORT }}
           username: ${{ secrets.SERVER_SSH_USER }}
+          password: ${{ secrets.SERVER_SSH_PASS }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             docker pull chodzi/b2bcalculator:latest
