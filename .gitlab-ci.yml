@@ -1,0 +1,38 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_IMAGE: chodzi/b2bcalculator:latest
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+    - docker build -t $DOCKER_IMAGE .
+    - docker tag $DOCKER_IMAGE $CI_REGISTRY_IMAGE:latest
+    - docker push $DOCKER_IMAGE
+  only:
+    - develop  # Or your default branch
+
+deploy:
+  stage: deploy
+  before_script:
+    - 'which ssh-agent || ( apk add --update openssh )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+  script:
+    - ssh pc@ha-homepc.tplinkdns.com "
+      docker pull $DOCKER_IMAGE &&
+      docker stop b2b-calculator || true &&
+      docker rm b2b-calculator || true &&
+      docker run -d --name b2b-calculator -p 8080:80 $DOCKER_IMAGE"
+  only:
+    - develop
