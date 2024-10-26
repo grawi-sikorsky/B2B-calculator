@@ -32,9 +32,9 @@ jobs:
         username: ${{ secrets.SERVER_SSH_USER }}
         password: ${{ secrets.SERVER_SSH_PASS }}
         script: |
-          docker pull chodzi/b2bcalculator:latest
-          docker stop b2b-calculator || true
-          docker rm b2b-calculator || true
+          docker pull chodzi/b2bcalculator:latest &&
+          docker stop b2b-calculator &&
+          docker rm b2b-calculator
 
     - name: SSH into Server and Deploy
       uses: appleboy/ssh-action@v1.1.0
