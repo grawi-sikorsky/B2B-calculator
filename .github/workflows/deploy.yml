@@ -32,7 +32,10 @@ jobs:
         username: ${{ secrets.SERVER_SSH_USER }}
         password: ${{ secrets.SERVER_SSH_PASS }}
         script: |
-          docker pull chodzi/b2bcalculator:latest && docker stop b2b-calculator || true && docker rm b2b-calculator || true && docker run -d --restart unless-stopped --name b2b-calculator -p 6950:80 chodzi/b2bcalculator:latest
+          docker pull chodzi/b2bcalculator:latest &&
+          docker stop b2b-calculator || true &&
+          docker rm b2b-calculator || true &&
+          docker run -d --restart unless-stopped --name b2b-calculator -p 6950:80 chodzi/b2bcalculator:latest
 
 
     # - name: SSH into Server and Stop
