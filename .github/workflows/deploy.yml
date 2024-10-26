@@ -38,4 +38,4 @@ jobs:
             docker pull chodzi/b2bcalculator:latest
             docker stop b2b-calculator || true
             docker rm b2b-calculator || true
-            docker run -d --name b2b-calculator -p 8080:80 chodzi/b2bcalculator:latest
+            docker run -d --name b2b-calculator -p 6950:80 chodzi/b2bcalculator:latest
