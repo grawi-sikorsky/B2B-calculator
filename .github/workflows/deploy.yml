@@ -1,57 +1,33 @@
-name: Deploy b2b-calculator
+name: Deploy Angular App
 
 on:
   push:
     branches:
-      - develop  # Run workflow on pushes to the main branch
+      - develop  # or your deployment branch
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    # runs-on: self-hosted
 
     steps:
-      # Step 1: Check out the repository
-      - name: Check out code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      # Step 2: Log in to Docker Hub
-      - name: Log in to Docker Hub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      # # Step 3: Build the Docker image
-      # - name: Build Docker image
-      #   run: docker build -t chodzi/b2bcalculator:latest .
+    - name: Build and push Docker image
+      run: |
+        docker build -t chodzi/b2bcalculator:latest .
+        docker push chodzi/b2bcalculator:latest
 
-      # # Step 4: Push the Docker image to Docker Hub
-      # - name: Push Docker image
-      #   run: docker push chodzi/b2bcalculator:latest
-
-      # Step 5: Deploy to the server
-      - name: Deploy on Server
-        uses: garygrossgarten/github-action-ssh@v0.2.1
-        with:
-          host: ${{ secrets.SERVER_SSH_HOST }}
-          port: ${{ secrets.SERVER_SSH_PORT }}
-          username: ${{ secrets.SERVER_SSH_USER }}
-          password: ${{ secrets.SERVER_SSH_PASS }}
-          # key: ${{ secrets.SERVER_SSH_KEY }}
-          command: |
-            docker pull chodzi/b2bcalculator:latest
-            docker stop b2b-calculator || true
-            docker rm b2b-calculator || true
-            docker run -d --name b2b-calculator -p 6950:80 chodzi/b2bcalculator:latest
-
-
-
-
-
-
-
-        # script: |
-        #   docker pull chodzi/b2bcalculator:latest
-        #   docker stop b2b-calculator || true
-        #   docker rm b2b-calculator || true
-        #   docker run -d --name b2b-calculator --restart unless-stopped -p 6950:80 chodzi/b2bcalculator:latest
-
-# docker run -d --name b2b-calculator -p 6950:80 chodzi/b2bcalculator:latest
+    - name: SSH into Server and Deploy
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: ${{ secrets.SERVER_SSH_HOST }}
+        port: ${{ secrets.SERVER_SSH_PORT }}
+        username: ${{ secrets.SERVER_SSH_USER }}
+        password: ${{ secrets.SERVER_SSH_PASS }}
+        script: |
+          docker pull chodzi/b2bcalculator:latest
+          docker-compose -f /path/to/your/docker-compose.yml up -d --force-recreate
