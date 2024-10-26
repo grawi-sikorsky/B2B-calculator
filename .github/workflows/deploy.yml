@@ -34,7 +34,7 @@ jobs:
         script: |
           docker pull chodzi/b2bcalculator:latest
 
-    - name: SSH into Server and Stop/RM
+    - name: SSH into Server and Stop
       uses: appleboy/ssh-action@v1.1.0
       with:
         host: ${{ secrets.SERVER_SSH_HOST }}
@@ -43,6 +43,16 @@ jobs:
         password: ${{ secrets.SERVER_SSH_PASS }}
         script: |
           docker stop b2b-calculator || true
+          docker rm b2b-calculator || true
+
+    - name: SSH into Server and RM
+      uses: appleboy/ssh-action@v1.1.0
+      with:
+        host: ${{ secrets.SERVER_SSH_HOST }}
+        port: ${{ secrets.SERVER_SSH_PORT }}
+        username: ${{ secrets.SERVER_SSH_USER }}
+        password: ${{ secrets.SERVER_SSH_PASS }}
+        script: |
           docker rm b2b-calculator || true
 
     - name: SSH into Server and Deploy
