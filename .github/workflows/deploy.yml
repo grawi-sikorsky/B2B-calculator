@@ -45,4 +45,3 @@ jobs:
         password: ${{ secrets.SERVER_SSH_PASS }}
         script: |
           docker run -d --restart unless-stopped --name b2b-calculator -p 6950:80 chodzi/b2bcalculator:latest
-
