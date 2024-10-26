@@ -35,13 +35,13 @@ jobs:
           username: ${{ secrets.SERVER_SSH_USER }}
           password: ${{ secrets.SERVER_SSH_PASS }}
           # key: ${{ secrets.SERVER_SSH_KEY }}
-        script: |
-          docker pull chodzi/b2bcalculator:latest
-          docker stop b2b-calculator || true
-          docker rm b2b-calculator || true
-          docker run -d --name b2b-calculator -p 6950:80 chodzi/b2bcalculator:latest
-          docker ps -a  # List containers to confirm the run state
-          docker logs b2b-calculator  # Display logs if available
+          script: |
+            docker pull chodzi/b2bcalculator:latest
+            docker stop b2b-calculator || true
+            docker rm b2b-calculator || true
+            docker run -d --name b2b-calculator -p 6950:80 chodzi/b2bcalculator:latest
+            docker ps -a  # List containers to confirm the run state
+            docker logs b2b-calculator  # Display logs if available
 
 
 
