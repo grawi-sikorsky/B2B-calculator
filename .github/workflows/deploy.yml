@@ -29,20 +29,18 @@ jobs:
 
       # Step 5: Deploy to the server
       - name: Deploy on Server
-        uses: appleboy/ssh-action@v1.1.0
+        uses: garygrossgarten/github-action-ssh@v0.2.1
         with:
           host: ${{ secrets.SERVER_SSH_HOST }}
           port: ${{ secrets.SERVER_SSH_PORT }}
           username: ${{ secrets.SERVER_SSH_USER }}
           password: ${{ secrets.SERVER_SSH_PASS }}
           # key: ${{ secrets.SERVER_SSH_KEY }}
-          script: |
+          command: |
             docker pull chodzi/b2bcalculator:latest
             docker stop b2b-calculator || true
             docker rm b2b-calculator || true
             docker run -d --name b2b-calculator -p 6950:80 chodzi/b2bcalculator:latest
-            docker ps -a  # List containers to confirm the run state
-            docker logs b2b-calculator  # Display logs if available
 
 
 
