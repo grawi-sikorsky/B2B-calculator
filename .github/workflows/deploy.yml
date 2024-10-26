@@ -21,7 +21,7 @@ jobs:
         docker build -t chodzi/b2bcalculator:latest .
         docker push chodzi/b2bcalculator:latest
 
-    - name: SSH into Server and Deploy
+    - name: SSH into Server and Pull
       uses: appleboy/ssh-action@v0.1.8
       with:
         host: ${{ secrets.SERVER_SSH_HOST }}
@@ -30,4 +30,14 @@ jobs:
         password: ${{ secrets.SERVER_SSH_PASS }}
         script: |
           docker pull chodzi/b2bcalculator:latest
-          docker-compose -f /path/to/your/docker-compose.yml up -d --force-recreate
+
+    - name: SSH into Server and Deploy
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: ${{ secrets.SERVER_SSH_HOST }}
+        port: ${{ secrets.SERVER_SSH_PORT }}
+        username: ${{ secrets.SERVER_SSH_USER }}
+        password: ${{ secrets.SERVER_SSH_PASS }}
+        script: |
+          docker run -d --name b2b-calculator unless-stopped -p 6950:80 chodzi/b2bcalculator:latest
+
