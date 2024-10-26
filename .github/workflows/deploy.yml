@@ -28,7 +28,7 @@ jobs:
 
       # Step 5: Deploy to the server
       - name: Deploy on Server
-        uses: appleboy/ssh-action@v0.1.6
+        uses: appleboy/ssh-action@v1.1.0
         with:
           host: ${{ secrets.SERVER_SSH_HOST }}
           port: ${{ secrets.SERVER_SSH_PORT }}
