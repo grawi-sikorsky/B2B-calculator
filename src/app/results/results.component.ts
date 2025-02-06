@@ -150,40 +150,40 @@ export class ResultsComponent implements OnInit {
 
   calculateZUS2023a() {
     if (this.dataService.userData.zusPicked === 0) {
-      this.zusSkladka = 1316.54;
+      this.zusSkladka = 1646.47;
 
       if ((this.dataService.userData.income * 12) <= 60000) {
-        this.zusZdrowotna = 376.16;
+        this.zusZdrowotna = 461.66;
       }
       else if (((this.dataService.userData.income * 12) > 60000) && (this.dataService.userData.income * 12) <= 300000) {
-        this.zusZdrowotna = 626.93;
+        this.zusZdrowotna = 769.43;
       }
       else {
-        this.zusZdrowotna = 1128.48;
+        this.zusZdrowotna = 1384.97;
       }
     }
     else if (this.dataService.userData.zusPicked === 1) {
-      this.zusSkladka = 263.59;
+      this.zusSkladka = 371.46;
 
       if ((this.dataService.userData.income * 12) <= 60000) {
-        this.zusZdrowotna = 376.16;
+        this.zusZdrowotna = 461.66;
       }
       else if (((this.dataService.userData.income * 12) > 60000) && (this.dataService.userData.income * 12) <= 300000) {
-        this.zusZdrowotna = 626.93;
+        this.zusZdrowotna = 769.43;
       }
       else {
-        this.zusZdrowotna = 1128.48;
+        this.zusZdrowotna = 1384.97;
       }
     }
     else if (this.dataService.userData.zusPicked === 2) {
       if ((this.dataService.userData.income * 12) <= 60000) {
-        this.zusZdrowotna = 376.16;
+        this.zusZdrowotna = 461.66;
       }
       else if (((this.dataService.userData.income * 12) > 60000) && (this.dataService.userData.income * 12) <= 300000) {
-        this.zusZdrowotna = 626.93;
+        this.zusZdrowotna = 769.43;
       }
       else {
-        this.zusZdrowotna = 1128.48;
+        this.zusZdrowotna = 1384.97;
       }
     }
     else if (this.dataService.userData.zusPicked === 3) {
@@ -194,10 +194,10 @@ export class ResultsComponent implements OnInit {
 
     // CHOROBOWA
     if (this.dataService.userData.zusChorobowe === true && this.dataService.userData.zusPicked === 0) {
-      this.zusChorobowa = 101.94;
+      this.zusChorobowa = 127.49;
     }
     else if (this.dataService.userData.zusChorobowe === true && this.dataService.userData.zusPicked === 1) {
-      this.zusChorobowa = 25.65;
+      this.zusChorobowa = 34.30;
     }
     else if (this.dataService.userData.zusChorobowe === false) {
       this.zusChorobowa = 0;
