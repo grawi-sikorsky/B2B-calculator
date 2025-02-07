@@ -22,6 +22,9 @@ jobs:
         docker build -t chodzi/b2bcalculator:latest .
         docker push chodzi/b2bcalculator:latest
 
+    - name: Portainer Webhook call
+      run: curl -X POST ${{ secrets.PORTAINER_WEBHOOK_URL }}
+
     - name: Update Portainer Stack
       run: |
         curl -X POST "${{ secrets.PORTAINER_URL }}/api/stacks/{stack_id}/deploy" \
