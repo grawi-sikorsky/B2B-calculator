@@ -3,7 +3,7 @@ name: Deploy Angular App
 on:
   push:
     branches:
-      - develop  # or your deployment branch
+      - develop
 
 jobs:
   build-and-deploy:
