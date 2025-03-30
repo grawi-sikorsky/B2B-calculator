@@ -28,5 +28,5 @@ jobs:
     - name: Update Portainer Stack
       run: |
         curl -X POST "${{ secrets.PORTAINER_URL }}/api/stacks/{stack_id}/deploy" \
-          -H "Authorization: Bearer ${{ secrets.PORTAINER_API_TOKEN }}"
-      
+          -H "X-API-Key: ${{ secrets.PORTAINER_API_TOKEN }}"
+
