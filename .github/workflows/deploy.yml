@@ -1,4 +1,4 @@
-name: Deploy Angular App
+name: Build and Deploy GH Hosted + SSH deploy
 
 on:
   push:

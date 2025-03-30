@@ -1,4 +1,4 @@
-name: Build and Deploy with Portainer
+name: Build and Deploy - GH hosted + webhook deploy
 
 on:
   push:
@@ -27,6 +27,6 @@ jobs:
 
     - name: Update Portainer Stack
       run: |
-        curl -X POST "${{ secrets.PORTAINER_URL }}/api/stacks/b2b/deploy" \
+        curl -X POST "${{ secrets.PORTAINER_URL }}/api/stacks/9/deploy" \
           -H "X-API-Key: ${{ secrets.PORTAINER_API_TOKEN }}"
 
