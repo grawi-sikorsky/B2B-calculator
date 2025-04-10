@@ -26,7 +26,7 @@ RUN npm run build -- --output-path=dist/b2b-calculator
 # Stage 2: Serve with NGINX
 FROM nginx:alpine
 
-# Copy the build output to NGINX’s default public directory
+# Copy the build output to NGINX’s default public directory 
 COPY --from=build /app/dist/b2b-calculator /usr/share/nginx/html
 
 # Copy custom NGINX configuration
