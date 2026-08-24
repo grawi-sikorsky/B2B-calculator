@@ -54,18 +54,35 @@ body {
     padding: 0.6em 0 0.9em 0;
 }
 
-/* Pola bez mat-label (np. tabela wydatków) - infix nie musi rezerwować
-   miejsca na floating label nad tekstem, więc padding pionowy jest niższy
-   i symetryczny. Szerokość wymuszona na 100%, bo reguła ".mat-mdc-form-field-infix"
-   powyżej (width: auto) każe infixowi (kontenerowi inputu wewnątrz form-field)
-   przestać dziedziczyć pełną szerokość, mimo że .mat-form-field-outcome samo
-   ma width: 100% - bez tego pole robi się wąskie. */
+/* Pola w tabeli wydatków (.mat-form-field-outcome) mają wypełniać całą
+   komórkę tabeli, nie tylko szerokość wpisanego tekstu. ".mat-form-field-outcome
+   { width: 100% }" (outcome-form.component.css) samo nie wystarcza - trzeba
+   osobno rozciągnąć każde ogniwo łańcucha Material MDC (form-field > text-field-
+   wrapper > form-field-flex > form-field-infix > input), bo domyślnie każde z
+   nich shrink-wrapuje się do treści zamiast dziedziczyć szerokość rodzica -
+   w tym sam <input>, którego flex-grow trzeba osobno ustawić. Te reguły muszą
+   być globalne (nie w outcome-form.component.css) - Angular ViewEncapsulation
+   scopuje component CSS atrybutem [_ngcontent-xxx] unikalnym per-komponent, a
+   form-field-flex/infix/input są renderowane wewnątrz szablonu Angular Material
+   MatFormField (inny _ngcontent) - scoped selektor stąd nigdy by się nie
+   dopasował. */
+.mat-form-field-outcome.mat-mdc-form-field {
+    flex-direction: column;
+}
+.mat-form-field-outcome .mat-mdc-form-field-flex {
+    width: 100% !important;
+}
 .mat-form-field-outcome .mat-mdc-form-field-infix {
     width: 100% !important;
+    flex: 1 1 auto;
     padding: 0.4em 0 !important;
     min-height: 0;
 }
 .mat-form-field-outcome .mat-mdc-form-field-input-control {
     font-size: 13px;
+}
+.mat-form-field-outcome .mat-mdc-form-field-input-control.mat-mdc-input-element {
+    flex: 1 1 auto;
+    width: 100%;
 }
 

@@ -16,7 +16,13 @@
 }
 
 /* Kompaktowe pola tekstowe w tabeli wydatków - bez mat-label, szerokość
-   wypełniająca komórkę, mniejsza czcionka. */
+   wypełniająca komórkę, mniejsza czcionka. Reguły wymuszające faktyczne
+   rozciągnięcie inputu (flex-direction, form-field-flex, infix, input-control)
+   są w styles.scss (globalnym), nie tutaj - Angular ViewEncapsulation scopuje
+   ten plik atrybutem [_ngcontent-xxx] unikalnym dla outcome-form, a elementy
+   wewnętrzne <mat-form-field> (form-field-flex/infix/input) renderują się
+   w szablonie Angular Material z innym _ngcontent - scoped selektor stąd
+   nigdy by się nie dopasował. */
 .mat-form-field-outcome {
     width: 100%;
     font-size: 13px;
