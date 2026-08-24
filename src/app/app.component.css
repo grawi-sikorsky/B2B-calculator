@@ -7,3 +7,13 @@
 .content-wrapper{
   flex: 1;
 }
+
+/* Zastrzeżenie o aktualności stawek - nad stopką, wyciszone (mały, wygaszony
+   tekst) żeby nie konkurowało wizualnie z resztą "fancy" motywu. */
+.tax-year-note {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--b2b-text-dim);
+  opacity: 0.7;
+  margin: 24px 0 8px;
+}
