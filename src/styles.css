@@ -31,20 +31,22 @@ body {
 .mat-expansion-panel-body{
     padding: 16px 24px 16px!important;
 }
-.mat-form-field-outcome .mat-form-field-wrapper {
+/* Klasy .mat-mdc-* pochodzą z komponentów Material opartych o MDC (od w. 15+),
+   zastępując dawne prywatne klasy .mat-form-field-wrapper / .mat-form-field-infix. */
+.mat-form-field-outcome .mat-mdc-text-field-wrapper {
     padding-bottom: 0 !important;
 }
 
-.mat-form-field-outcome .mat-form-field-wrapper .mat-form-field-appearance-outline .mat-form-field-wrapper {
+.mat-form-field-outcome .mat-form-field-appearance-outline .mat-mdc-text-field-wrapper {
     margin: 0 !important;
 }
 
-.mat-form-field-infix {
+.mat-mdc-form-field-infix {
     min-width: 30px !important;
     width: auto !important;
 }
 
-.mat-form-field-appearance-outline .mat-form-field-infix {
+.mat-form-field-appearance-outline .mat-mdc-form-field-infix {
     padding: 0.6em 0 0.9em 0;
 }
 
