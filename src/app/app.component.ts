@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ThemeService } from './theme.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +8,4 @@ import { ThemeService } from './theme.service';
 })
 export class AppComponent {
   title = 'b2b-calculator';
-
-  constructor(public themeService: ThemeService) { }
 }

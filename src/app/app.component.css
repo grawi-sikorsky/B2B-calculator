@@ -2,21 +2,6 @@
   display:flex;
   flex-direction:column;
   min-height:100vh;
-  position: relative;
-}
-
-/* Przełącznik jasny/ciemny - stały, w prawym górnym rogu nad całą treścią,
-   "glass" spójny z resztą motywu (patrz styles.scss). */
-.theme-toggle-btn {
-  position: fixed;
-  top: 12px;
-  right: 12px;
-  z-index: 1000;
-  background: var(--b2b-glass-bg);
-  backdrop-filter: var(--b2b-glass-blur);
-  -webkit-backdrop-filter: var(--b2b-glass-blur);
-  border: 1px solid var(--b2b-glass-border);
-  color: var(--b2b-text);
 }
 
 .content-wrapper{

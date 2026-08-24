@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from '../service/data.service';
+import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-results',
@@ -10,7 +11,7 @@ import { DataService } from '../service/data.service';
 })
 export class ResultsComponent implements OnInit {
 
-  constructor(public dataService: DataService) { }
+  constructor(public dataService: DataService, public themeService: ThemeService) { }
 
   ngOnInit(): void {
     this.dataService.currentUserData.subscribe(data => {

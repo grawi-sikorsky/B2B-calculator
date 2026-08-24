@@ -1,7 +1,17 @@
 <div class="row" > 
     <!-- *ngIf="isMobile === true" -->
     <div class="col results">
-        <mat-card class="results-header"><p> Wyniki: </p></mat-card>
+        <mat-card class="mat-mdc-card mdc-card results-header">
+            <p>B2B Calculator</p>
+            <button mat-icon-button
+                    class="theme-toggle-btn"
+                    type="button"
+                    (click)="themeService.toggle()"
+                    [attr.aria-label]="themeService.isLight ? 'Przełącz na ciemny motyw' : 'Przełącz na jasny motyw'"
+                    [matTooltip]="themeService.isLight ? 'Ciemny motyw' : 'Jasny motyw'">
+                <mat-icon>{{ themeService.isLight ? 'dark_mode' : 'light_mode' }}</mat-icon>
+            </button>
+        </mat-card>
         <mat-accordion class="wyniki-headers-accordion">
 
             <!-- PRZYCHOD ZONE -->

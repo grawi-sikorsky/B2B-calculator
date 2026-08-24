@@ -42,4 +42,20 @@
     margin-bottom: 15px;
     font-size:medium;
     text-align: center;
+    position: relative;
+}
+
+/* Przełącznik jasny/ciemny - osadzony w prawym rogu karty nagłówka
+   (results-header) zamiast osobnego elementu "position: fixed" na całą
+   stronę, "glass" spójny z resztą motywu (patrz styles.scss). */
+.theme-toggle-btn {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  background: var(--b2b-glass-bg);
+  backdrop-filter: var(--b2b-glass-blur);
+  -webkit-backdrop-filter: var(--b2b-glass-blur);
+  border: 1px solid var(--b2b-glass-border);
+  color: var(--b2b-text);
 }
