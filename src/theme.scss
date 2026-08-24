@@ -1,24 +1,25 @@
 // Motyw Material 3 (design tokeny) dla aplikacji.
-// Zastępuje dawny prebuilt theme "indigo-pink.css" (Material 2 / pre-MDC).
 //
-// Paleta $blue-palette została wybrana jako najbliższa odcieniem klasycznemu
-// indygo (#3F51B5) używanemu wcześniej w prebuilt "indigo-pink" - zgodnie
-// z decyzją o zachowaniu zbliżonego brandingu.
+// Ciemny motyw z gradientowo-neonowym akcentem (fiolet/róż → cyan), w duchu
+// reszty projektów (portfolio: neon na czerni). Paleta $violet-palette jako
+// primary daje spójne tokeny (--mat-sys-primary itd.) do przycisków/pól/
+// selectów, a właściwy "fancy" efekt (gradienty, glass, blur) dochodzi
+// osobno w styles.scss na tle tych tokenów.
 @use '@angular/material' as mat;
 
 $b2b-theme: mat.define-theme((
   color: (
-    theme-type: light,
-    primary: mat.$blue-palette,
-    tertiary: mat.$azure-palette,
+    theme-type: dark,
+    primary: mat.$violet-palette,
+    tertiary: mat.$cyan-palette,
     // Emituje pełną warstwę zmiennych CSS --mat-sys-* (np. inverse-surface/
     // inverse-on-surface), z których korzysta stopka (footer.component.css)
     // do ciemnego, "odwróconego" pasa bez twardo wpisanych kolorów.
     use-system-variables: true,
   ),
   typography: (
-    plain-family: Roboto,
-    brand-family: Roboto,
+    plain-family: 'Space Grotesk',
+    brand-family: 'Space Grotesk',
   ),
   // Kompaktowa gęstość (M3: 0 = domyślna/"comfortable", -5 = maksymalnie
   // ścieśniona) - obniża wysokość/padding pól, przycisków, selectów itd.

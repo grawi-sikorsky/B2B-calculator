@@ -1,6 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 @use './theme';
 
+:root {
+    /* Paleta akcentów - fiolet/róż → cyan, spójna z primary/tertiary
+       ustawionymi w theme.scss (mat.$violet-palette / mat.$cyan-palette).
+       Osobne zmienne (zamiast --mat-sys-* wprost) bo używane też tam, gdzie
+       potrzebny jest surowy gradient (tło, obwódki glass), nie pojedynczy kolor. */
+    --b2b-gradient-accent: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #22d3ee 100%);
+    --b2b-gradient-bg: radial-gradient(circle at 15% 0%, rgba(168, 85, 247, 0.35), transparent 45%),
+        radial-gradient(circle at 85% 15%, rgba(34, 211, 238, 0.25), transparent 40%),
+        radial-gradient(circle at 50% 100%, rgba(236, 72, 153, 0.18), transparent 50%),
+        #0b0b14;
+    --b2b-glass-bg: rgba(255, 255, 255, 0.05);
+    --b2b-glass-border: rgba(255, 255, 255, 0.12);
+    --b2b-glass-blur: blur(16px);
+    --b2b-font-display: 'Space Grotesk', 'Helvetica Neue', sans-serif;
+    --b2b-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
 html,
 body {
     height: 100%;
@@ -8,7 +25,20 @@ body {
 
 body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: var(--b2b-font-display);
+    background: var(--b2b-gradient-bg);
+    background-attachment: fixed;
+    color: #f1f0f7;
+    min-height: 100vh;
+}
+
+/* Liczby/kwoty w mono - czytelniejsze wyrównanie cyfr, techniczny akcent
+   spójny z resztą projektów (portfolio używa tego samego JetBrains Mono). */
+.card-mein-mieso,
+.card-mein-sub,
+.mat-mdc-form-field-input-control.mat-mdc-input-element[type="number"],
+.outcome-table-hajs {
+    font-family: var(--b2b-font-mono);
 }
 
 /* W Material 3 "mat-raised-button" (M2) odpowiada stylowi "Elevated" - jasne tło,
@@ -92,5 +122,158 @@ body {
    pokazujemy hintów/błędów walidacji przy inputach. */
 .mat-form-field-outcome .mat-mdc-form-field-subscript-wrapper {
     display: none;
+}
+
+/* ============================================================
+   FANCY / GLASSMORPHIC RESTYLE
+   Ciemne tło z gradientem (patrz "body" wyżej) + panele "szkła"
+   (półprzezroczyste tło + backdrop-filter blur + delikatna
+   obwódka) dla wszystkich głównych bloków UI (akordeony, karty
+   wyników, tabela wydatków). Gradientowy akcent (--b2b-gradient-
+   accent) na nagłówkach paneli i kluczowych przyciskach zamiast
+   płaskich pastelowych teł z poprzedniej (jasnej) wersji.
+   ============================================================ */
+
+/* Karty/panele Material (mat-expansion-panel, mat-card) - bazowy "glass". */
+.mat-expansion-panel,
+.mat-mdc-card {
+    background: var(--b2b-glass-bg) !important;
+    backdrop-filter: var(--b2b-glass-blur);
+    -webkit-backdrop-filter: var(--b2b-glass-blur);
+    border: 1px solid var(--b2b-glass-border);
+    border-radius: 14px !important;
+    color: #f1f0f7;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35) !important;
+    overflow: hidden;
+}
+
+.mat-expansion-panel-header {
+    background: transparent !important;
+    color: #f1f0f7 !important;
+}
+
+.mat-expansion-panel-header .mat-expansion-panel-header-title,
+.mat-expansion-panel-header .mat-expansion-panel-header-description {
+    color: inherit;
+}
+
+.mat-expansion-panel-header:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.mat-expansion-panel-body {
+    color: #e4e2f0;
+}
+
+/* Nagłówki akordeonów "Przychód / Podatki / Wydatki / Wyniki" - gradientowy
+   pasek zamiast płaskiego pastelu, z lekką przezroczystością żeby glass-blur
+   panelu pod spodem dalej "działał". */
+.accordion-income-header,
+.accordion-us-header,
+.accordion-outcome-header,
+.accordion-wyniki-header {
+    background: linear-gradient(120deg, rgba(168, 85, 247, 0.22), rgba(236, 72, 153, 0.14)) !important;
+}
+.accordion-income-header:hover,
+.accordion-us-header:hover,
+.accordion-outcome-header:hover,
+.accordion-wyniki-header:hover {
+    background: linear-gradient(120deg, rgba(168, 85, 247, 0.35), rgba(236, 72, 153, 0.25)) !important;
+}
+
+.mat-expansion-panel-header mat-icon,
+.mat-expansion-panel-header .mat-icon {
+    color: #22d3ee;
+}
+
+/* Nagłówek "Wyniki:" (mat-card) - gradientowy tekst + wyśrodkowany, spójny
+   z resztą "fancy" akcentów. */
+.results-header {
+    background: transparent !important;
+    color: #f1f0f7 !important;
+    font-family: var(--b2b-font-display);
+    font-weight: 600 !important;
+    letter-spacing: 0.02em;
+    border: 1px solid var(--b2b-glass-border) !important;
+    border-radius: 14px !important;
+    backdrop-filter: var(--b2b-glass-blur);
+    -webkit-backdrop-filter: var(--b2b-glass-blur);
+}
+.results-header p {
+    margin: 0;
+    background: var(--b2b-gradient-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.1rem;
+}
+
+.card-mein-mieso {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #f1f0f7;
+}
+.card-mein-sub {
+    color: #b8b6c8;
+}
+
+/* Przyciski filled (Dodaj, VAT %) - gradient zamiast płaskiego primary,
+   spójny z resztą akcentów. mat-flat-button z color="primary"/bez koloru
+   nadpisany na warstwę gradientu; kolor tekstu zostaje jasny z tokenów motywu. */
+.mat-mdc-unelevated-button.mat-primary,
+.add-row-btn.mat-mdc-unelevated-button {
+    background: var(--b2b-gradient-accent) !important;
+    color: #fff !important;
+}
+
+/* Tabela wydatków - lekko przyciemnione wiersze na hover, spójne z glass. */
+.hotspots-table {
+    color: #e4e2f0;
+}
+.hotspots-table .clickable-row:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+.mat-form-field-outcome .mat-mdc-text-field-wrapper {
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+.mat-form-field-outcome .mat-mdc-form-field-input-control,
+.mat-form-field-outcome .mat-mdc-input-element {
+    color: #f1f0f7 !important;
+    caret-color: #f1f0f7;
+}
+.mat-form-field-outcome .mat-mdc-input-element::placeholder {
+    color: #9a97ad !important;
+    opacity: 1;
+}
+
+/* mat-select panele (ZUS, forma opodatkowania) - dopasowanie do glass zamiast
+   domyślnego jasnego tła overlay. */
+.mat-mdc-select-panel {
+    background: #16162a !important;
+    border: 1px solid var(--b2b-glass-border);
+}
+.mat-mdc-option {
+    color: #e4e2f0 !important;
+}
+.mat-mdc-option:hover:not(.mdc-list-item--disabled),
+.mat-mdc-option.mat-mdc-option-active {
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* mat-form-field appearance="fill" (selecty ZUS/forma opodatkowania) ma
+   domyślnie jasnoszary background-color token z Material - nadpisany na
+   glass, spójnie z resztą pól. */
+.mat-mdc-form-field:not(.mat-form-field-outcome) .mat-mdc-text-field-wrapper {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 8px 8px 0 0;
+}
+.mat-mdc-form-field .mat-mdc-form-field-input-control,
+.mat-mdc-form-field .mat-mdc-select-value,
+.mat-mdc-form-field .mat-mdc-select-arrow,
+.mat-mdc-form-field .mat-mdc-floating-label {
+    color: #f1f0f7 !important;
+}
+.mat-mdc-checkbox label {
+    color: #e4e2f0;
 }
 

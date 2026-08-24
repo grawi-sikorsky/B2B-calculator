@@ -32,24 +32,9 @@
     font-size: 13px!important;
     height: 35px;
 }
-.accordion-income-header{
-    background-color: #e6f0e6!important;
-}
-.accordion-income-header:hover{
-    background-color:#d7ecd7 !important;
-}
-.accordion-us-header{
-    background-color: #fcdfcfa2!important;
-}
-.accordion-us-header:hover{
-    background-color:#ffdac6a2!important;
-}
-.accordion-outcome-header{
-    background-color: #ffdfdfcb!important;
-}
-.accordion-outcome-header:hover{
-    background-color:#ffd9d9cb!important;
-}
+/* Gradientowe tła nagłówków akordeonu (glass + accent) zdefiniowane globalnie
+   w styles.scss (.accordion-income-header itd.), spójnie dla wszystkich
+   trzech sekcji zamiast osobnych pastelowych kolorów per-sekcja. */
 
 .hotspots-table{
     text-align: center;

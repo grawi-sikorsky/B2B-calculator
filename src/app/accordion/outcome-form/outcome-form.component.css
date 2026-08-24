@@ -15,6 +15,21 @@
     padding: 0.3rem 0.4rem!important;
 }
 
+/* Bootstrap ".thead-light" wnosi twarde jasne tło niepasujące do ciemnego/
+   glass motywu - nadpisane na przezroczyste, kolor tekstu dziedziczy z
+   .hotspots-table (styles.scss). Bootstrap ".table" też domyślnie koloruje
+   tekst/obwódki komórek na ciemno - stąd też override koloru i border-color
+   na coś widocznego na ciemnym tle. */
+.thead-light {
+    background: transparent !important;
+}
+.table {
+    --bs-table-color: #f1f0f7;
+    --bs-table-bg: transparent;
+    --bs-table-border-color: var(--b2b-glass-border);
+    color: #f1f0f7;
+}
+
 /* Kompaktowe pola tekstowe w tabeli wydatków - bez mat-label, szerokość
    wypełniająca komórkę, mniejsza czcionka. Reguły wymuszające faktyczne
    rozciągnięcie inputu (flex-direction, form-field-flex, infix, input-control)
