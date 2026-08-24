@@ -8,7 +8,9 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    # Repo przeniesione do jsikora-org (2026-08-24) - korzystamy z runnera
+    # przypisanego do organizacji zamiast ubuntu-latest.
+    runs-on: self-hosted
 
     steps:
     - name: Checkout code

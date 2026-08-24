@@ -8,9 +8,10 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
-    # runs-on: self-hosted
-    # runs-on: wsl
+    # Repo przeniesione do jsikora-org (2026-08-24) - korzystamy z runnera
+    # przypisanego do organizacji zamiast ubuntu-latest. GitHub-hosted runner
+    # nie miał sieciowego dostępu do serwera wdrożeniowego (i/o timeout na SSH).
+    runs-on: self-hosted
 
     steps:
     - name: Checkout code
