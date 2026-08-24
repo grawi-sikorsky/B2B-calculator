@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@use './theme';
 
 html,
 body {
@@ -10,15 +11,18 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+/* W Material 3 "mat-raised-button" (M2) odpowiada stylowi "Elevated" - jasne tło,
+   kolorowy tekst, subtelny cień. Zamieniono w szablonach na "mat-flat-button"
+   ("Filled" w M3), żeby zachować mocny, wypełniony wygląd przycisków sprzed migracji. */
 @media only screen and (max-width: 640px) {
-    .mat-raised-button {
+    .mat-flat-button {
         min-width: 35px!important;
         line-height: 48px!important;
         padding: 0 8px!important;
     }
 }
 @media only screen and (max-width: 998px) {
-    .mat-raised-button {
+    .mat-flat-button {
         min-width: 45px!important;
         line-height: 48px!important;
         padding: 0 10px!important;

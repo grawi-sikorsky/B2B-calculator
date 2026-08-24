@@ -1,0 +1,32 @@
+// Motyw Material 3 (design tokeny) dla aplikacji.
+// Zastępuje dawny prebuilt theme "indigo-pink.css" (Material 2 / pre-MDC).
+//
+// Paleta $blue-palette została wybrana jako najbliższa odcieniem klasycznemu
+// indygo (#3F51B5) używanemu wcześniej w prebuilt "indigo-pink" - zgodnie
+// z decyzją o zachowaniu zbliżonego brandingu.
+@use '@angular/material' as mat;
+
+$b2b-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$blue-palette,
+    tertiary: mat.$azure-palette,
+  ),
+  typography: (
+    plain-family: Roboto,
+    brand-family: Roboto,
+  ),
+  density: (
+    scale: 0,
+  ),
+));
+
+html {
+  @include mat.core();
+  @include mat.all-component-themes($b2b-theme);
+
+  // Bez tego mixinu warianty koloru ustawiane atrybutem [color="accent"/"warn"]
+  // (np. przycisk usuwania z color="warn" w outcome-form) nie generują własnego
+  // CSS i po cichu spadają na domyślny (primary) kolor motywu.
+  @include mat.color-variants-backwards-compatibility($b2b-theme);
+}
