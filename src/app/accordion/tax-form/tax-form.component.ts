@@ -4,7 +4,8 @@ import { DataService } from '../../service/data.service';
 @Component({
   selector: 'app-tax-form',
   templateUrl: './tax-form.component.html',
-  styleUrls: ['./tax-form.component.css']
+  styleUrls: ['./tax-form.component.css'],
+  standalone: false
 })
 export class TaxFormComponent implements OnInit {
 

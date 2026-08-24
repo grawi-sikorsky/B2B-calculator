@@ -5,7 +5,8 @@ import { DataService } from '../../service/data.service';
 @Component({
   selector: 'app-outcome-form',
   templateUrl: './outcome-form.component.html',
-  styleUrls: ['./outcome-form.component.css']
+  styleUrls: ['./outcome-form.component.css'],
+  standalone: false
 })
 export class OutcomeFormComponent implements OnInit {
 

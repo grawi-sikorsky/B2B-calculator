@@ -5,7 +5,8 @@ import { DataService } from '../service/data.service';
 @Component({
     selector: 'app-in-out-form',
     templateUrl: './in-out-form.component.html',
-    styleUrls: ['./in-out-form.component.css']
+    styleUrls: ['./in-out-form.component.css'],
+    standalone: false
 })
 export class InOutFormComponent implements OnInit {
 

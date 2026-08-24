@@ -5,7 +5,8 @@ import { DataService } from '../service/data.service';
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
-  styleUrls: ['./results.component.css']
+  styleUrls: ['./results.component.css'],
+  standalone: false
 })
 export class ResultsComponent implements OnInit {
 

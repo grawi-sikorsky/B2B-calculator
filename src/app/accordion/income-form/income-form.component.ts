@@ -4,7 +4,8 @@ import { DataService } from '../../service/data.service';
 @Component({
   selector: 'app-income-form',
   templateUrl: './income-form.component.html',
-  styleUrls: ['./income-form.component.css']
+  styleUrls: ['./income-form.component.css'],
+  standalone: false
 })
 export class IncomeFormComponent implements OnInit {
 
