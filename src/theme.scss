@@ -20,8 +20,11 @@ $b2b-theme: mat.define-theme((
     plain-family: Roboto,
     brand-family: Roboto,
   ),
+  // Kompaktowa gęstość (M3: 0 = domyślna/"comfortable", -5 = maksymalnie
+  // ścieśniona) - obniża wysokość/padding pól, przycisków, selectów itd.
+  // globalnie, żeby nie trzeba było tego odtwarzać ręcznie w każdym komponencie.
   density: (
-    scale: 0,
+    scale: -3,
   ),
 ));
 

@@ -54,3 +54,14 @@ body {
     padding: 0.6em 0 0.9em 0;
 }
 
+/* Pola bez mat-label (np. tabela wydatków) - infix nie musi rezerwować
+   miejsca na floating label nad tekstem, więc padding pionowy jest niższy
+   i symetryczny. */
+.mat-form-field-outcome .mat-mdc-form-field-infix {
+    padding: 0.4em 0 !important;
+    min-height: 0;
+}
+.mat-form-field-outcome .mat-mdc-form-field-input-control {
+    font-size: 13px;
+}
+

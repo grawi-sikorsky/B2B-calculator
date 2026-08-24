@@ -1,6 +1,6 @@
 <table class="table table-hover hotspots-table">
     <thead class="thead-light">
-        <tr>
+        <tr class="outcome-table-hajs">
             <th scope="col">Name</th>
             <th scope="col">Netto</th>
             <th scope="col">VAT</th>
@@ -14,26 +14,23 @@
             *ngFor="let outcome of this.dataService.userData.outcomeList; let index = index">
             <td>
                 <mat-form-field appearance="outline" class="mat-form-field-outcome">
-                    <mat-label>Nazwa wydatku</mat-label>
-                    <input matInput placeholder="Co tam kupione zostało?" [(ngModel)]="outcome.name" (input)="onChange()">
+                    <input matInput placeholder="Nazwa wydatku" [(ngModel)]="outcome.name" (input)="onChange()">
                 </mat-form-field>
             </td>
             <td>
                 <mat-form-field appearance="outline" class="mat-form-field-outcome">
-                    <mat-label>Koszt netto</mat-label>
-                    <input matInput placeholder="A za ile to?" [(ngModel)]="outcome.netto" (input)="onChange()"
+                    <input matInput placeholder="Koszt netto" [(ngModel)]="outcome.netto" (input)="onChange()"
                         type="number">
-                    <!-- <mat-icon matSuffix>attach_money</mat-icon> -->
                 </mat-form-field>
             </td>
             <td class="outcome-table-hajs">{{ outcome.vat | number :'1.2-2' }}zł </td>
             <td class="outcome-table-hajs">{{ outcome.netto! * 1.23 | number :'1.2-2' }}zł </td>
 
-            <td class="outcome-table-hajs"><button mat-flat-button (click)="onClickVatReduce(index)"> {{ outcome.vatReduce | number}} %
+            <td class="outcome-table-hajs"><button mat-flat-button class="vat-reduce-btn" (click)="onClickVatReduce(index)"> {{ outcome.vatReduce | number}} %
                 </button></td>
 
-            <td class="outcome-table-hajs"><button mat-flat-button color="warn" (click)="deleteRow(index)"><mat-icon>delete_forever</mat-icon></button></td>
+            <td class="outcome-table-hajs"><button mat-icon-button color="warn" class="delete-row-btn" (click)="deleteRow(index)"><mat-icon>delete_forever</mat-icon></button></td>
         </tr>
     </tbody>
 </table>
-<div class="row"><button mat-flat-button color="primary" (click)="addRow()">Dodaj</button></div>
+<div class="row"><button mat-flat-button color="primary" class="add-row-btn" (click)="addRow()">Dodaj</button></div>

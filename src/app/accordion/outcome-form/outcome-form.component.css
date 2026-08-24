@@ -12,5 +12,61 @@
     vertical-align: middle;
 }
 .table > :not(caption) > * > *{
-    padding: 0.5rem 0.2rem!important;
+    padding: 0.3rem 0.4rem!important;
+}
+
+/* Kompaktowe pola tekstowe w tabeli wydatków - bez mat-label, szerokość
+   wypełniająca komórkę, mniejsza czcionka. */
+.mat-form-field-outcome {
+    width: 100%;
+    font-size: 13px;
+}
+
+/* Mały, kwadratowy przycisk usuwania wiersza (ikonka ~24px w obrysie
+   32x32px) zamiast pełnego mat-flat-button z podpisem. mat-icon-button
+   w M3 domyślnie rezerwuje 40-48px na touch-target i rysuje okrągły
+   state-layer na całej tej powierzchni - trzeba go przyciąć ręcznie,
+   inaczej zamiast "małej ikonki" wychodzi duża czerwona plama. */
+.delete-row-btn.mat-mdc-icon-button {
+    width: 32px !important;
+    height: 32px !important;
+    padding: 4px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.delete-row-btn.mat-mdc-icon-button .mat-mdc-button-touch-target {
+    width: 32px !important;
+    height: 32px !important;
+}
+.delete-row-btn .mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+/* Kompaktowy przycisk przełączania % odliczenia VAT - stały rozmiar,
+   tekst w jednej linii i wyśrodkowany (mat-flat-button domyślnie
+   centruje zawartość w pionie przez line-height, co przy obniżonej
+   wysokości psuje "100 %" na dwie linie). */
+.vat-reduce-btn.mat-mdc-button-base {
+    min-width: 48px !important;
+    width: 48px !important;
+    height: 28px !important;
+    padding: 0 !important;
+    font-size: 11px !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+.vat-reduce-btn .mdc-button__label {
+    white-space: nowrap;
+}
+
+.add-row-btn {
+    height: 32px !important;
+    line-height: 32px !important;
+    font-size: 13px !important;
 }
