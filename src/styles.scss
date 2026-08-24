@@ -5,7 +5,10 @@
     /* Paleta akcentów - fiolet/róż → cyan, spójna z primary/tertiary
        ustawionymi w theme.scss (mat.$violet-palette / mat.$cyan-palette).
        Osobne zmienne (zamiast --mat-sys-* wprost) bo używane też tam, gdzie
-       potrzebny jest surowy gradient (tło, obwódki glass), nie pojedynczy kolor. */
+       potrzebny jest surowy gradient (tło, obwódki glass), nie pojedynczy kolor.
+       Sekcja "domyślna" (bez selektora) to motyw DARK - html.light-theme
+       (patrz blok na końcu pliku) nadpisuje tylko to, co faktycznie różni się
+       w jasnym wariancie (tła, kolory tekstu), nie duplikuje reszty. */
     --b2b-gradient-accent: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #22d3ee 100%);
     --b2b-gradient-bg: radial-gradient(circle at 15% 0%, rgba(168, 85, 247, 0.35), transparent 45%),
         radial-gradient(circle at 85% 15%, rgba(34, 211, 238, 0.25), transparent 40%),
@@ -16,6 +19,14 @@
     --b2b-glass-blur: blur(16px);
     --b2b-font-display: 'Space Grotesk', 'Helvetica Neue', sans-serif;
     --b2b-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --b2b-text: #f1f0f7;
+    --b2b-text-dim: #b8b6c8;
+    --b2b-placeholder: #9a97ad;
+    --b2b-select-panel-bg: #16162a;
+    --b2b-hover-bg: rgba(255, 255, 255, 0.06);
+    --b2b-hover-bg-strong: rgba(255, 255, 255, 0.08);
+    --b2b-field-bg: rgba(255, 255, 255, 0.05);
 }
 
 html,
@@ -28,7 +39,7 @@ body {
     font-family: var(--b2b-font-display);
     background: var(--b2b-gradient-bg);
     background-attachment: fixed;
-    color: #f1f0f7;
+    color: var(--b2b-text);
     min-height: 100vh;
 }
 
@@ -142,14 +153,14 @@ body {
     -webkit-backdrop-filter: var(--b2b-glass-blur);
     border: 1px solid var(--b2b-glass-border);
     border-radius: 14px !important;
-    color: #f1f0f7;
+    color: var(--b2b-text);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35) !important;
     overflow: hidden;
 }
 
 .mat-expansion-panel-header {
     background: transparent !important;
-    color: #f1f0f7 !important;
+    color: var(--b2b-text) !important;
 }
 
 .mat-expansion-panel-header .mat-expansion-panel-header-title,
@@ -158,11 +169,11 @@ body {
 }
 
 .mat-expansion-panel-header:hover {
-    background: rgba(255, 255, 255, 0.06) !important;
+    background: var(--b2b-hover-bg) !important;
 }
 
 .mat-expansion-panel-body {
-    color: #e4e2f0;
+    color: var(--b2b-text-dim);
 }
 
 /* Nagłówki akordeonów "Przychód / Podatki / Wydatki / Wyniki" - gradientowy
@@ -190,7 +201,7 @@ body {
    z resztą "fancy" akcentów. */
 .results-header {
     background: transparent !important;
-    color: #f1f0f7 !important;
+    color: var(--b2b-text) !important;
     font-family: var(--b2b-font-display);
     font-weight: 600 !important;
     letter-spacing: 0.02em;
@@ -211,10 +222,10 @@ body {
 .card-mein-mieso {
     font-size: 1.15rem;
     font-weight: 600;
-    color: #f1f0f7;
+    color: var(--b2b-text);
 }
 .card-mein-sub {
-    color: #b8b6c8;
+    color: var(--b2b-text-dim);
 }
 
 /* Przyciski filled (Dodaj, VAT %) - gradient zamiast płaskiego primary,
@@ -228,52 +239,76 @@ body {
 
 /* Tabela wydatków - lekko przyciemnione wiersze na hover, spójne z glass. */
 .hotspots-table {
-    color: #e4e2f0;
+    color: var(--b2b-text-dim);
 }
 .hotspots-table .clickable-row:hover {
-    background: rgba(255, 255, 255, 0.05) !important;
+    background: var(--b2b-field-bg) !important;
 }
 .mat-form-field-outcome .mat-mdc-text-field-wrapper {
-    background: rgba(255, 255, 255, 0.05) !important;
+    background: var(--b2b-field-bg) !important;
 }
 .mat-form-field-outcome .mat-mdc-form-field-input-control,
 .mat-form-field-outcome .mat-mdc-input-element {
-    color: #f1f0f7 !important;
-    caret-color: #f1f0f7;
+    color: var(--b2b-text) !important;
+    caret-color: var(--b2b-text);
 }
 .mat-form-field-outcome .mat-mdc-input-element::placeholder {
-    color: #9a97ad !important;
+    color: var(--b2b-placeholder) !important;
     opacity: 1;
 }
 
 /* mat-select panele (ZUS, forma opodatkowania) - dopasowanie do glass zamiast
    domyślnego jasnego tła overlay. */
 .mat-mdc-select-panel {
-    background: #16162a !important;
+    background: var(--b2b-select-panel-bg) !important;
     border: 1px solid var(--b2b-glass-border);
 }
 .mat-mdc-option {
-    color: #e4e2f0 !important;
+    color: var(--b2b-text-dim) !important;
 }
 .mat-mdc-option:hover:not(.mdc-list-item--disabled),
 .mat-mdc-option.mat-mdc-option-active {
-    background: rgba(255, 255, 255, 0.08) !important;
+    background: var(--b2b-hover-bg-strong) !important;
 }
 
 /* mat-form-field appearance="fill" (selecty ZUS/forma opodatkowania) ma
    domyślnie jasnoszary background-color token z Material - nadpisany na
    glass, spójnie z resztą pól. */
 .mat-mdc-form-field:not(.mat-form-field-outcome) .mat-mdc-text-field-wrapper {
-    background: rgba(255, 255, 255, 0.05) !important;
+    background: var(--b2b-field-bg) !important;
     border-radius: 8px 8px 0 0;
 }
 .mat-mdc-form-field .mat-mdc-form-field-input-control,
 .mat-mdc-form-field .mat-mdc-select-value,
 .mat-mdc-form-field .mat-mdc-select-arrow,
 .mat-mdc-form-field .mat-mdc-floating-label {
-    color: #f1f0f7 !important;
+    color: var(--b2b-text) !important;
 }
 .mat-mdc-checkbox label {
-    color: #e4e2f0;
+    color: var(--b2b-text-dim);
 }
 
+/* ============================================================
+   LIGHT THEME OVERRIDE
+   Przełącznik w app.component (ThemeService) dokłada klasę
+   "light-theme" na <html>. Kolory samych komponentów Material
+   (przyciski, pola, selecty) obsługuje już theme.scss (html.light-theme
+   { mat.all-component-colors(...) }) - tu nadpisywane są tylko zmienne
+   --b2b-* używane w powyższym "fancy" layerze (tło strony, glass, tekst),
+   bo Material nie wie nic o naszych własnych gradientach/blurach.
+   ============================================================ */
+html.light-theme {
+    --b2b-gradient-bg: radial-gradient(circle at 15% 0%, rgba(168, 85, 247, 0.16), transparent 45%),
+        radial-gradient(circle at 85% 15%, rgba(34, 211, 238, 0.14), transparent 40%),
+        radial-gradient(circle at 50% 100%, rgba(236, 72, 153, 0.10), transparent 50%),
+        #f4f2fa;
+    --b2b-glass-bg: rgba(255, 255, 255, 0.55);
+    --b2b-glass-border: rgba(20, 10, 40, 0.10);
+    --b2b-text: #201c2c;
+    --b2b-text-dim: #55506a;
+    --b2b-placeholder: #8b869c;
+    --b2b-select-panel-bg: #ffffff;
+    --b2b-hover-bg: rgba(20, 10, 40, 0.05);
+    --b2b-hover-bg-strong: rgba(20, 10, 40, 0.08);
+    --b2b-field-bg: rgba(20, 10, 40, 0.04);
+}

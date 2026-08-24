@@ -24,10 +24,10 @@
     background: transparent !important;
 }
 .table {
-    --bs-table-color: #f1f0f7;
+    --bs-table-color: var(--b2b-text);
     --bs-table-bg: transparent;
     --bs-table-border-color: var(--b2b-glass-border);
-    color: #f1f0f7;
+    color: var(--b2b-text);
 }
 
 /* Kompaktowe pola tekstowe w tabeli wydatków - bez mat-label, szerokość

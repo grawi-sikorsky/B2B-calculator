@@ -1,3 +1,19 @@
+/* Divider oddzielający sekcję wyników (Wyniki) od sekcji inputowej
+   (Przychód / Podatki / Wydatki) - gradientowy akcent zamiast płaskiej
+   szarej linii, spójny z resztą "fancy" motywu. Na desktop (.row bez
+   flex-direction:column) leży po prostu w kolejności źródła HTML, między
+   .mobile-top-div i .mobile-bottom-div. Na mobile (<40em, .container-mob
+   flex-column) kolejność sterowana jest "order" - .mobile-top-div/-bottom-div
+   mają swój order z reguł niżej, divider dostaje wartość POŚREDNIĄ, żeby
+   faktycznie wylądować między nimi zamiast na source-order (patrz media
+   query niżej). */
+.results-inputs-divider {
+    margin: 24px 0;
+    border-top: none !important;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.6), rgba(34, 211, 238, 0.6), transparent);
+}
+
 @media (max-width: 40em) {
     .container-mob {
         padding-top: 15px;
@@ -20,11 +36,11 @@
     }
 
     .container-mob .mobile-bottom-div {
-        -webkit-box-ordinal-group: 2;
-        -moz-box-ordinal-group: 2;
-        -ms-flex-order: 2;
-        -webkit-order: 2;
-        order: 2;
+        -webkit-box-ordinal-group: 3;
+        -moz-box-ordinal-group: 3;
+        -ms-flex-order: 3;
+        -webkit-order: 3;
+        order: 3;
     }
 
     .container-mob .mobile-top-div {
@@ -34,5 +50,9 @@
         -webkit-order: 1;
         order: 1;
         margin-top: 10px;
+    }
+
+    .container-mob .results-inputs-divider {
+        order: 2;
     }
 }

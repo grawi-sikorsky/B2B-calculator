@@ -1,13 +1,14 @@
-/* Stopka jako ciemny pas spójny z resztą dark/glass motywu aplikacji (patrz
-   styles.scss - body ma gradientowe ciemne tło). Motyw M3 jest teraz "dark",
-   więc inverse-surface/inverse-on-surface wypadłyby JASNO (odwrotność
-   ciemnego), co kłóciłoby się z resztą strony - stąd stałe, ciemne kolory
-   zamiast tokenów inverse-*. */
+/* Stopka jako stały ciemny, kontrastowy pas - CELOWO niezależny od motywu
+   jasny/ciemny (ThemeService), w obu wariantach wygląda tak samo. Dawniej
+   robiły to tokeny M3 inverse-surface/inverse-on-surface, ale przy motywie
+   "dark" wypadłyby JASNO (odwrotność ciemnego) - a przy przełączniku
+   jasny/ciemny token inverse-* zmieniałby się WRAZ z resztą strony zamiast
+   zostać stałym kontrastowym pasem, więc stałe kolory zamiast tokenów. */
 .app-footer {
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.55);
   backdrop-filter: var(--b2b-glass-blur);
   -webkit-backdrop-filter: var(--b2b-glass-blur);
-  border-top: 1px solid var(--b2b-glass-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   color: #e4e2f0;
   text-align: center;
   padding: 1.5rem 1rem 0;
@@ -40,7 +41,7 @@
      ikony/obrys pozostały czytelne na ciemnym tle stopki. */
   --mat-icon-button-icon-color: #e4e2f0;
   --mat-button-outlined-label-text-color: #e4e2f0;
-  --mat-button-outlined-outline-color: var(--b2b-glass-border);
+  --mat-button-outlined-outline-color: rgba(255, 255, 255, 0.12);
 }
 
 .app-footer__brand-svg {
@@ -54,7 +55,7 @@
 }
 
 .app-footer__divider {
-  --mat-divider-color: var(--b2b-glass-border);
+  --mat-divider-color: rgba(255, 255, 255, 0.12);
   opacity: 0.6;
 }
 

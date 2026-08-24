@@ -1,4 +1,13 @@
 <div class="body-wrapper">
+  <button mat-icon-button
+          class="theme-toggle-btn"
+          type="button"
+          (click)="themeService.toggle()"
+          [attr.aria-label]="themeService.isLight ? 'Przełącz na ciemny motyw' : 'Przełącz na jasny motyw'"
+          [matTooltip]="themeService.isLight ? 'Ciemny motyw' : 'Jasny motyw'">
+    <mat-icon>{{ themeService.isLight ? 'dark_mode' : 'light_mode' }}</mat-icon>
+  </button>
+
   <div class="content-wrapper">
     <router-outlet></router-outlet>
     <app-main-view></app-main-view>

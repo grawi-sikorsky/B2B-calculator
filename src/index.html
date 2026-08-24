@@ -9,6 +9,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script>
+    // Ustawia klasę motywu na <html> PRZED narysowaniem strony, żeby
+    // uniknąć "mignięcia" domyślnym (dark) motywem u kogoś, kto wybrał
+    // wcześniej light - ThemeService (app/theme.service.ts) czyta ten sam
+    // klucz i tylko synchronizuje swój stan przy starcie Angulara.
+    (function () {
+      try {
+        if (localStorage.getItem('b2b-calculator-theme') === 'light') {
+          document.documentElement.classList.add('light-theme');
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body class="mat-typography">
   <app-root></app-root>

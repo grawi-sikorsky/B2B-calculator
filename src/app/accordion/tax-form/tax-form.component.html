@@ -1,6 +1,6 @@
 <div class="row">
     <!-- ZUS -->
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="outline">
         <mat-select (selectionChange)="onChange()" required [(value)]="this.dataService.userData.zusPicked">
             <mat-option [value]=0>Lubię duży ZUS'ik</mat-option>
             <mat-option [value]=1>Lubię mały ZUS'ik (2 lata)</mat-option>
@@ -16,7 +16,7 @@
 
 
     <!-- FORMA DUPCZENIA ZA TRUDY PRACY -->
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="outline">
         <mat-select (selectionChange)="onChange()" required [(value)]="this.dataService.userData.taxFormPicked">
             <mat-option [value]=0>Oddaję się ryczałtem</mat-option>
             <mat-option [value]=1>Oddaję się w skali</mat-option>
@@ -29,7 +29,7 @@
 
 
     <!-- MOC DUPCENIA ZA TRUDY PRACY -->
-    <mat-form-field [hidden]="!(this.dataService.userData.taxFormPicked === 0)" appearance="fill">
+    <mat-form-field [hidden]="!(this.dataService.userData.taxFormPicked === 0)" appearance="outline">
         <mat-select (selectionChange)="onChange()" required
             [(value)]="this.dataService.userData.taxRatePicked">
             <mat-option [value]=0.17> 17 % [Wolne zawody]</mat-option>

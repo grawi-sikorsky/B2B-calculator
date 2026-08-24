@@ -1,20 +1,19 @@
 // Motyw Material 3 (design tokeny) dla aplikacji.
 //
-// Ciemny motyw z gradientowo-neonowym akcentem (fiolet/róż → cyan), w duchu
-// reszty projektów (portfolio: neon na czerni). Paleta $violet-palette jako
-// primary daje spójne tokeny (--mat-sys-primary itd.) do przycisków/pól/
-// selectów, a właściwy "fancy" efekt (gradienty, glass, blur) dochodzi
-// osobno w styles.scss na tle tych tokenów.
+// Dwa pełne motywy (dark - domyślny, light - opcjonalny) w duchu reszty
+// projektów (portfolio: neon na czerni), z przełącznikiem w app.component
+// (ThemeService, przycisk w prawym górnym rogu). Dark theme aplikowany na
+// "html" (bez selektora), light jako override pod "html.light-theme" -
+// zgodnie z oficjalnym wzorcem Angular Material dla wielu motywów scoped
+// klasą (mat.all-component-colors można wywołać ponownie w innym scope,
+// bez duplikowania structural/typography/density styles).
 @use '@angular/material' as mat;
 
-$b2b-theme: mat.define-theme((
+$b2b-theme-dark: mat.define-theme((
   color: (
     theme-type: dark,
     primary: mat.$violet-palette,
     tertiary: mat.$cyan-palette,
-    // Emituje pełną warstwę zmiennych CSS --mat-sys-* (np. inverse-surface/
-    // inverse-on-surface), z których korzysta stopka (footer.component.css)
-    // do ciemnego, "odwróconego" pasa bez twardo wpisanych kolorów.
     use-system-variables: true,
   ),
   typography: (
@@ -29,9 +28,25 @@ $b2b-theme: mat.define-theme((
   ),
 ));
 
+$b2b-theme-light: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$violet-palette,
+    tertiary: mat.$cyan-palette,
+    use-system-variables: true,
+  ),
+  typography: (
+    plain-family: 'Space Grotesk',
+    brand-family: 'Space Grotesk',
+  ),
+  density: (
+    scale: -3,
+  ),
+));
+
 html {
   @include mat.core();
-  @include mat.all-component-themes($b2b-theme);
+  @include mat.all-component-themes($b2b-theme-dark);
 
   // "use-system-variables: true" powyżej sprawia, że komponenty Material
   // odwołują się do wspólnej warstwy zmiennych --mat-sys-* zamiast mieć
@@ -39,10 +54,19 @@ html {
   // zmienne trzeba dopiero zdefiniować na elemencie - stąd system-level-colors.
   // Dzięki temu --mat-sys-inverse-surface/--mat-sys-inverse-on-surface są
   // dostępne także we własnym CSS (np. footer.component.css).
-  @include mat.system-level-colors($b2b-theme);
+  @include mat.system-level-colors($b2b-theme-dark);
 
   // Bez tego mixinu warianty koloru ustawiane atrybutem [color="accent"/"warn"]
   // (np. przycisk usuwania z color="warn" w outcome-form) nie generują własnego
   // CSS i po cichu spadają na domyślny (primary) kolor motywu.
-  @include mat.color-variants-backwards-compatibility($b2b-theme);
+  @include mat.color-variants-backwards-compatibility($b2b-theme-dark);
+
+  // Wariant jasny - tylko kolory (structural/typography/density zostają
+  // wspólne z motywem dark, all-component-colors nie duplikuje ich), scoped
+  // pod klasą przełączaną przez ThemeService (patrz app/theme.service.ts).
+  &.light-theme {
+    @include mat.all-component-colors($b2b-theme-light);
+    @include mat.system-level-colors($b2b-theme-light);
+    @include mat.color-variants-backwards-compatibility($b2b-theme-light);
+  }
 }
