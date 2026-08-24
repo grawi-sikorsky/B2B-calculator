@@ -14,11 +14,12 @@
 
 
 # Stage 1: Build the Angular application
-FROM node:16 AS build
+# Angular 21 wymaga Node >= 20.19 lub >= 22.12 (patrz package.json/engines Angular CLI)
+FROM node:22 AS build
 
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
 COPY . .
 RUN npm run build -- --output-path=dist/b2b-calculator
