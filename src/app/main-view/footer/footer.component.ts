@@ -8,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+  // Rok w stopce liczony dynamicznie, żeby copyright nie wymagał ręcznej
+  // aktualizacji co roku (poprzednio zapisany na sztywno w szablonie).
+  readonly currentYear = new Date().getFullYear();
+
   constructor() { }
 
   ngOnInit(): void {

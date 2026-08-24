@@ -11,6 +11,10 @@ $b2b-theme: mat.define-theme((
     theme-type: light,
     primary: mat.$blue-palette,
     tertiary: mat.$azure-palette,
+    // Emituje pełną warstwę zmiennych CSS --mat-sys-* (np. inverse-surface/
+    // inverse-on-surface), z których korzysta stopka (footer.component.css)
+    // do ciemnego, "odwróconego" pasa bez twardo wpisanych kolorów.
+    use-system-variables: true,
   ),
   typography: (
     plain-family: Roboto,
@@ -24,6 +28,14 @@ $b2b-theme: mat.define-theme((
 html {
   @include mat.core();
   @include mat.all-component-themes($b2b-theme);
+
+  // "use-system-variables: true" powyżej sprawia, że komponenty Material
+  // odwołują się do wspólnej warstwy zmiennych --mat-sys-* zamiast mieć
+  // kolory zapisane na sztywno w każdym tokenie z osobna, ALE same te
+  // zmienne trzeba dopiero zdefiniować na elemencie - stąd system-level-colors.
+  // Dzięki temu --mat-sys-inverse-surface/--mat-sys-inverse-on-surface są
+  // dostępne także we własnym CSS (np. footer.component.css).
+  @include mat.system-level-colors($b2b-theme);
 
   // Bez tego mixinu warianty koloru ustawiane atrybutem [color="accent"/"warn"]
   // (np. przycisk usuwania z color="warn" w outcome-form) nie generują własnego

@@ -1,0 +1,65 @@
+/* Stopka jako ciemny, "odwrócony" pas w obrębie jasnego motywu - modelowany
+   parą tokenów M3 inverse-surface/inverse-on-surface (dokładnie do tego
+   zaprojektowaną: kontrastowy baner/pasek na tle reszty jasnej aplikacji),
+   zamiast dawnego Bootstrapowego .bg-dark/.text-white. */
+.app-footer {
+  background-color: var(--mat-sys-inverse-surface);
+  color: var(--mat-sys-inverse-on-surface);
+  text-align: center;
+  padding: 1.5rem 1rem 0;
+}
+
+.app-footer__section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.app-footer__social {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.app-footer__apps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.app-footer__icon-link,
+.app-footer__app-link {
+  /* Nadpisanie tokenów przycisków Material tylko w obrębie stopki, żeby
+     ikony/obrys pozostały czytelne na ciemnym tle inverse-surface. */
+  --mat-icon-button-icon-color: var(--mat-sys-inverse-on-surface);
+  --mat-button-outlined-label-text-color: var(--mat-sys-inverse-on-surface);
+  --mat-button-outlined-outline-color: var(--mat-sys-inverse-on-surface);
+}
+
+.app-footer__brand-svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.app-footer__app-link mat-icon {
+  margin-right: 0.25rem;
+}
+
+.app-footer__divider {
+  --mat-divider-color: var(--mat-sys-inverse-on-surface);
+  opacity: 0.3;
+}
+
+.app-footer__copyright {
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.app-footer__copyright-link {
+  color: var(--mat-sys-inverse-on-surface);
+}
