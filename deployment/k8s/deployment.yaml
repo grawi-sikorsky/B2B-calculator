@@ -1,13 +1,15 @@
 # Pojedynczy kontener (statyczny Angular za nginx) — analogicznie do portfolio-web
 # (deployment/k8s/deployment.yaml w repo portfolio), bez podziału backend/web bo
 # B2B-calculator nie ma osobnego API.
+# 1 replika - niski, nieistotny ruch, szkoda zasobów na drugą (maxSurge=1 poniżej
+# nadal daje rollout bez przestoju: na czas update chwilowo wstaje 2. pod).
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: b2b-calculator-web
   namespace: b2b-calculator
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 3
   strategy:
     type: RollingUpdate
@@ -24,13 +26,6 @@ spec:
     spec:
       imagePullSecrets:
         - name: ghcr-secret
-      topologySpreadConstraints:
-        - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
-          whenUnsatisfiable: ScheduleAnyway
-          labelSelector:
-            matchLabels:
-              app: b2b-calculator-web
       containers:
         - name: b2b-calculator-web
           # IMAGE_SHA podstawiane przez envsubst w CI (patrz .github/workflows/deploy.yml).
