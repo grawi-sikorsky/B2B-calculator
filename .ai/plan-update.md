@@ -104,9 +104,27 @@ Przy okazji: TypeScript zostanie podbity automatycznie przez schematy `ng update
 - Rozmiar bundle: Material 3/MDC + pełny `MaterialModule` (import wszystkich modułów Material na raz, patrz [material.module.ts](src/app/material/material.module.ts)) może zbliżyć się do budżetu `maximumError: 4mb` w `angular.json` – przy okazji standalone/refaktoru warto rozważyć importowanie tylko używanych modułów per-komponent.
 - Bootstrap + Font Awesome + Material razem = 3 systemy stylowania w jednej stopce – warto zdecydować, czy zostają (dług wizualny) czy są zastępowane Materialem (Krok 4).
 
-## 5. Decyzje do potwierdzenia z Tobą
+## 5. Decyzje podjęte (2026-08-24)
 
-1. Cel wersji: **Angular 22 (latest)** czy **Angular 21 (LTS)** jako bezpieczniejszy przystanek?
-2. Czy przy okazji usuwamy Bootstrap/Font Awesome ze stopki na rzecz czystego Material, czy zostawiamy jak jest?
-3. Czy wchodzimy w standalone components + nowy control flow (`@if`/`@for`), czy tylko sama aktualizacja bibliotek bez zmiany architektury?
-4. Paleta kolorów dla nowego motywu M3 – zostajemy przy odcieniu indygo (zbliżonym do obecnego) czy nowy branding?
+1. Cel wersji: **Angular 21 (LTS)**.
+2. Bootstrap/Font Awesome w stopce: **usunięte**, stopka przepisana na czysty Material (Bootstrap zostaje globalnie – nadal używany w layoutach innych komponentów, poza zakresem decyzji).
+3. Standalone components / nowy control flow: **nie** – zostaje architektura `NgModule` + `*ngIf`/`*ngFor`, tylko aktualizacja bibliotek.
+4. Paleta M3: **zbliżona do obecnej (indygo)** – wybrano `mat.$blue-palette` jako najbliższą hue klasycznemu indygo (#3F51B5).
+
+## 6. Status realizacji – ZAKOŃCZONE (branch `2026-update`, wypchnięty na `develop`)
+
+Wszystkie kroki 1–7 wykonane i zweryfikowane (`ng build`, `ng test`, zrzuty ekranu ng serve po każdym większym kroku). Commity (branch `2026-update`, chronologicznie):
+
+1. Angular 13 → 14 → 15 (+ `@angular/material:mdc-migration`, poprawki CSS na klasy `.mat-mdc-*`) → 16 → 17 (ES2022) → 18 → 19 (`standalone: false` wymagane jawnie na wszystkich 8 komponentach – od w.19 `standalone: true` jest domyślne) → 20 (`platformBrowserDynamic` → `platformBrowser`, deprecacja) → 21 (LTS).
+2. Przy skoku na 21 wyszły na jaw sprawy pominięte przez ręczny bump zamiast `ng update` ze schematami: `tsconfig.json` `moduleResolution: node → bundler` (pakiety Angulara używają `exports` w package.json), `rxjs` 7.4→7.8.2 (brak `exports` w starej wersji gubił typy), `angular.json` `browserTarget → buildTarget`, nowy builder karma bez `require.context` (usunięto `src/test.ts`, auto-discovery speców), naprawiono przy okazji zepsuty od zawsze `app.component.spec.ts` (NG0304).
+3. Własny motyw Material 3 w `src/theme.scss` (`mat.define-theme` + `mat.system-level-colors` + `mat.color-variants-backwards-compatibility` – bez tych dwóch ostatnich `--mat-sys-*` nie istnieją i `color="warn"` po cichu renderuje się jako primary). `mat-raised-button` → `mat-flat-button` w 3 miejscach (`outcome-form`), bo w M3 "raised" znaczy semantycznie "Elevated" (jasne tło) zamiast dawnego pełnego wypełnienia kolorem.
+4. Stopka przepisana na Material (SVG inline dla LinkedIn/GitHub, `mat-stroked-button`+`mat-icon` dla linków do innych appek, `--mat-sys-inverse-surface`/`inverse-on-surface` zamiast `.bg-dark`/`.text-white`). Font Awesome CDN usunięty z `index.html`.
+5. Copyright: `currentYear = new Date().getFullYear()` w `footer.component.ts`, już nie trzeba go ręcznie poprawiać co roku.
+6. `Dockerfile`: `node:16 → node:22`, `npm install → npm ci`. To była jedyna rzecz, którą realny CI (GitHub Actions) złapał na czerwono po pierwszym pushu na `develop` – build padał na "Node.js version v16.20.2 detected, wymaga >=20.19/22.12" – naprawione i zweryfikowane lokalnym `docker build`.
+7. `package.json`: usunięty artefakt `"b2b-calculator": "file:"`.
+
+### Znane, świadomie nieporuszone sprawy
+- `@angular/animations` zgłasza deprecation (na rzecz `animate.enter`/`animate.leave`) – zostawione, bo nadal wspierane i używane wewnętrznie przez komponenty Material (menu, expansion panel).
+- Bootstrap zostaje globalnie (grid/tabele/spacing w innych komponentach) – wykraczało poza zakres decyzji o samej stopce.
+- Infrastruktura deployu: po pushu na `develop` workflow "SSH into Server and Pull" kończy się `dial tcp ...: i/o timeout` do serwera produkcyjnego – to nie jest efekt tej migracji (build Dockera przechodzi), tylko dostępność sieciowa docelowego hosta z runnera GitHub Actions w danym momencie. Wymaga sprawdzenia poza tym repo. Dodano `workflow_dispatch` do obu workflow deployowych, żeby dało się ręcznie ponowić bez pushowania.
+- `npm audit`: 0 podatności w zależnościach produkcyjnych (`--omit=dev`), kilka w dev-tooling (karma/build) – nieistotne dla wysyłanego kodu.
