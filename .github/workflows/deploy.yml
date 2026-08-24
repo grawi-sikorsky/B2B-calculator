@@ -1,72 +1,72 @@
-name: Build and Deploy GH Hosted + SSH deploy
+name: Deploy (k3s)
 
+# Pojedyncze środowisko (bez staging jak w conficast/dev-whisper) — B2B-calculator to
+# statyczna kalkulatorowa strona bez bazy/płatności, więc każdy push na develop jedzie
+# prosto na klaster. Wzorowane na portfolio (.github/workflows/deploy.yml).
 on:
+  workflow_dispatch: {}
   push:
     branches:
       - develop
-  workflow_dispatch: {}
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE: ghcr.io/${{ github.repository_owner }}/b2b-calculator
 
 jobs:
-  build-and-deploy:
-    # Repo przeniesione do jsikora-org (2026-08-24) - korzystamy z runnera
-    # przypisanego do organizacji zamiast ubuntu-latest. GitHub-hosted runner
-    # nie miał sieciowego dostępu do serwera wdrożeniowego (i/o timeout na SSH).
+  build:
     runs-on: self-hosted
-
+    permissions:
+      contents: read
+      packages: write
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Log in to Docker Hub
-      run: |
-        echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build and push Docker image
-      run: |
-        docker build -t chodzi/b2bcalculator:latest .
-        docker push chodzi/b2bcalculator:latest
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-    - name: SSH into Server and Pull
-      uses: appleboy/ssh-action@v1.1.0
-      with:
-        host: ${{ secrets.SERVER_SSH_HOST }}
-        port: ${{ secrets.SERVER_SSH_PORT }}
-        username: ${{ secrets.SERVER_SSH_USER }}
-        password: ${{ secrets.SERVER_SSH_PASS }}
-        script: |
-          docker pull chodzi/b2bcalculator:latest &&
-          docker stop b2b-calculator || true &&
-          docker rm b2b-calculator || true &&
-          docker run -d --restart unless-stopped --name b2b-calculator -p 80:80 chodzi/b2bcalculator:latest
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ env.IMAGE }}:develop,${{ env.IMAGE }}:sha-${{ github.sha }}
+          cache-from: type=local,src=/home/chodzi/buildx-cache/b2b-calculator
+          cache-to: type=local,dest=/home/chodzi/buildx-cache/b2b-calculator,mode=max
 
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    environment: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    # - name: SSH into Server and Stop
-    #   uses: appleboy/ssh-action@v1.1.0
-    #   with:
-    #     host: ${{ secrets.SERVER_SSH_HOST }}
-    #     port: ${{ secrets.SERVER_SSH_PORT }}
-    #     username: ${{ secrets.SERVER_SSH_USER }}
-    #     password: ${{ secrets.SERVER_SSH_PASS }}
-    #     script: |
-    #       docker stop b2b-calculator || true
-    #       docker rm b2b-calculator || true
+      # Runner ma już skonfigurowany ~/.kube/config (dostęp do klastra), tak jak przy
+      # dev-whisper/conficast/portfolio — brak KUBECONFIG w env poniżej celowo, kubectl
+      # bierze domyślną lokalizację.
+      - name: Deploy to k3s
+        env:
+          IMAGE_SHA: sha-${{ github.sha }}
+          GH_USER: ${{ github.actor }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          cd deployment/k8s
 
-    # - name: SSH into Server and RM
-    #   uses: appleboy/ssh-action@v1.1.0
-    #   with:
-    #     host: ${{ secrets.SERVER_SSH_HOST }}
-    #     port: ${{ secrets.SERVER_SSH_PORT }}
-    #     username: ${{ secrets.SERVER_SSH_USER }}
-    #     password: ${{ secrets.SERVER_SSH_PASS }}
-    #     script: |
-    #       docker rm b2b-calculator || true
+          kubectl apply -f namespace.yaml
+          ./create-secrets.sh
 
-    # - name: SSH into Server and Deploy
-    #   uses: appleboy/ssh-action@v1.1.0
-    #   with:
-    #     host: ${{ secrets.SERVER_SSH_HOST }}
-    #     port: ${{ secrets.SERVER_SSH_PORT }}
-    #     username: ${{ secrets.SERVER_SSH_USER }}
-    #     password: ${{ secrets.SERVER_SSH_PASS }}
-    #     script: |
-    #       docker run -d --restart unless-stopped --name b2b-calculator -p 6950:80 chodzi/b2bcalculator:latest
+          for f in deployment.yaml service.yaml pdb.yaml; do
+            envsubst < "$f" | kubectl apply -f -
+          done
+
+          kubectl -n b2b-calculator rollout status deployment/b2b-calculator-web --timeout=3m

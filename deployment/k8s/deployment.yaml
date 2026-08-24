@@ -1,0 +1,58 @@
+# Pojedynczy kontener (statyczny Angular za nginx) — analogicznie do portfolio-web
+# (deployment/k8s/deployment.yaml w repo portfolio), bez podziału backend/web bo
+# B2B-calculator nie ma osobnego API.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: b2b-calculator-web
+  namespace: b2b-calculator
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: b2b-calculator-web
+  template:
+    metadata:
+      labels:
+        app: b2b-calculator-web
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app: b2b-calculator-web
+      containers:
+        - name: b2b-calculator-web
+          # IMAGE_SHA podstawiane przez envsubst w CI (patrz .github/workflows/deploy.yml).
+          image: ghcr.io/jsikora-org/b2b-calculator:${IMAGE_SHA}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          startupProbe:
+            httpGet: { path: /, port: 80 }
+            periodSeconds: 3
+            failureThreshold: 10
+          livenessProbe:
+            httpGet: { path: /, port: 80 }
+            periodSeconds: 10
+            failureThreshold: 3
+          readinessProbe:
+            httpGet: { path: /, port: 80 }
+            periodSeconds: 10
+            failureThreshold: 2
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"

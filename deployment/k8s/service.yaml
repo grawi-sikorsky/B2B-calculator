@@ -1,0 +1,19 @@
+# VIP 192.168.0.81 współdzielony z conficast/carwash/portfolio (kube-vip pozwala kilku
+# Service'om na jeden loadBalancerIP, różne porty). Port 5591 zweryfikowany jako wolny
+# na tym VIP w chwili pisania (zajęte: 4567, 5550, 5551, 5558, 5559, 5560, 5569, 5590) —
+# jeśli w międzyczasie ktoś inny go zajął, zmień tu i w NPM.
+apiVersion: v1
+kind: Service
+metadata:
+  name: b2b-calculator-web-lb
+  namespace: b2b-calculator
+spec:
+  type: LoadBalancer
+  loadBalancerClass: kube-vip.io/kube-vip-class
+  loadBalancerIP: 192.168.0.81
+  selector:
+    app: b2b-calculator-web
+  ports:
+    - port: 5591
+      targetPort: 80
+      name: http
