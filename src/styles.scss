@@ -56,8 +56,12 @@ body {
 
 /* Pola bez mat-label (np. tabela wydatków) - infix nie musi rezerwować
    miejsca na floating label nad tekstem, więc padding pionowy jest niższy
-   i symetryczny. */
+   i symetryczny. Szerokość wymuszona na 100%, bo reguła ".mat-mdc-form-field-infix"
+   powyżej (width: auto) każe infixowi (kontenerowi inputu wewnątrz form-field)
+   przestać dziedziczyć pełną szerokość, mimo że .mat-form-field-outcome samo
+   ma width: 100% - bez tego pole robi się wąskie. */
 .mat-form-field-outcome .mat-mdc-form-field-infix {
+    width: 100% !important;
     padding: 0.4em 0 !important;
     min-height: 0;
 }
