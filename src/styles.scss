@@ -86,3 +86,11 @@ body {
     width: 100%;
 }
 
+/* mat-mdc-form-field-subscript-wrapper rezerwuje miejsce pod polem na hint/error
+   text nawet gdy jest puste (brak mat-hint/mat-error w tabeli wydatków) - dokłada
+   ~16-20px pustej wysokości do każdego wiersza. Ukryte, bo w tej tabeli nigdy nie
+   pokazujemy hintów/błędów walidacji przy inputach. */
+.mat-form-field-outcome .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+}
+
